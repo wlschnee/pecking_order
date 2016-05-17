@@ -2,7 +2,7 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :location
-      t.DateTime :start_time
+      t.datetime :start_time
       t.string :meeting_place
       t.string :duration
       t.belongs_to :host
