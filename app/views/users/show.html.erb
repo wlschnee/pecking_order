@@ -1,5 +1,4 @@
-<h2>Welcome <%= @user.full_name %>!</h2>
+<%= session[:flash] %>
+<h2><%= @user.full_name %></h2>
 
-<ul>
-  <li><%= @user.email %></li>
-</ul>
+<%= link_to "edit", edit_user_path(@user) %>
