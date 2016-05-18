@@ -25,20 +25,13 @@ ActiveRecord::Schema.define(version: 20160517214542) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer   "location_id"
+    t.integer  "location_id"
     t.datetime "start_time"
     t.string   "meeting_place"
     t.string   "duration"
     t.integer  "host_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string   "name"
-    t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "registrations", force: :cascade do |t|
