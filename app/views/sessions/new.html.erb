@@ -1,0 +1,16 @@
+<%= session[:flash] %>
+
+<h2>Log into your account</h2>
+
+<%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
+  <div>
+  Enter email address: <input name=email placeholder="email address">
+  </div>
+  <div>
+  Enter password: <input type="password" name=password placeholder="password">
+  </div>
+  <div>
+  <input type=submit value="login">
+  </div>
+  <% end %>
+  <%= link_to "Create new user", new_user_path %>

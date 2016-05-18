@@ -1,0 +1,11 @@
+<%= session[:flash] %>
+
+<h2>All the users!!!</h2>
+
+
+<% @users.each do |user| %>
+<div>
+  <%= link_to user.full_name, user %>
+</div>
+
+<% end %>
