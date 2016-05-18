@@ -20,6 +20,6 @@ Address: <%= @event.location.address %><br>
 </button>
 
 <button type="button" class='btn btn-danger'>
-<%= button_to "Cancel", @events, :method => :delete %>
+<%= link_to "Cancel", @events, :method => :delete %>
 </button>
 
