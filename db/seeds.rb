@@ -6,15 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(first_name: "Will", last_name: "S", email: "will@fi.com")
-User.create(first_name: "Justin", last_name: "N", email: "justin@fi.com")
-User.create(first_name: "Kristen", last_name: "D", email: "kristen@fi.com")
-User.create(first_name: "Lamine", last_name: "N", email: "lamine@fi.com")
+User.create(first_name: "Will", last_name: "S", email: "will@fi.com", password: "password")
+User.create(first_name: "Justin", last_name: "N", email: "justin@fi.com", password: "password")
+User.create(first_name: "Kristen", last_name: "D", email: "kristen@fi.com", password: "password")
+User.create(first_name: "Lamine", last_name: "N", email: "lamine@fi.com", password: "password")
 
 other_users = [["Alex", "S", "alemosie@fi.com"], ["Gabriel", "S", "gabe@fi.com"], ["Michael", "A-A", "michael-aa@fi.com"], ["Einar", "S", "einar@fi.com"], ["Chris", "M", "xm@fi.com"], ["Liana", "G", "liana@fi.com"]]
 
 other_users.each do |first, last, email|
-  User.create(first_name: first, last_name: last, email: email)
+  User.create(first_name: first, last_name: last, email: email, password: "password")
 end
 
 chipotle = Location.create(name: "Chipotle", address: "2 Broadway")

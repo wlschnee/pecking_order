@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20160517214542) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "registrations", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "guest_id"
