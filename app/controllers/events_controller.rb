@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
-    redirect_to @event
+    redirect_to event_path(@event)
   end
 
   def show
