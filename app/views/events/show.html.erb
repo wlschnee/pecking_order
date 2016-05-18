@@ -1,0 +1,25 @@
+<h1><%= @event.name %></h1>
+
+<h2>Where we're going:</h2>
+Place: <%= @event.location.name %><br>
+Address: <%= @event.location.address %><br>
+
+<h2>Meet details</h2>
+<%= @event.start_time.strftime("%I:%M %p, %a, %b, %-d, %Y") %>
+<%= @event.duration %>
+
+<h2>Who's going!?</h2>
+<ul>
+  <% @event.guests.each do |guest| %>
+    <li><%= link_to guest.first_name, user_path(guest) %></li>
+  <% end %>
+</ul>
+
+<button type="button" class='btn btn-default'>
+<%= link_to "Edit", edit_event_path(@event) %>
+</button>
+
+<button type="button" class='btn btn-danger'>
+<%= link_to "Cancel", @events, :method => :delete %>
+</button>
+

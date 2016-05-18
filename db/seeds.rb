@@ -6,25 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(first_name: "Will", last_name: "S", email: "will@fi.com")
-User.create(first_name: "Justin", last_name: "N", email: "justin@fi.com")
-User.create(first_name: "Kristen", last_name: "D", email: "kristen@fi.com")
-User.create(first_name: "Lamine", last_name: "N", email: "lamine@fi.com")
+User.create(first_name: "Will", last_name: "S", email: "will@fi.com", password: "password")
+User.create(first_name: "Justin", last_name: "N", email: "justin@fi.com", password: "password")
+User.create(first_name: "Kristen", last_name: "D", email: "kristen@fi.com", password: "password")
+User.create(first_name: "Lamine", last_name: "N", email: "lamine@fi.com", password: "password")
 
 other_users = [["Alex", "S", "alemosie@fi.com"], ["Gabriel", "S", "gabe@fi.com"], ["Michael", "A-A", "michael-aa@fi.com"], ["Einar", "S", "einar@fi.com"], ["Chris", "M", "xm@fi.com"], ["Liana", "G", "liana@fi.com"]]
 
 other_users.each do |first, last, email|
-  User.create(first_name: first, last_name: last, email: email)
+  User.create(first_name: first, last_name: last, email: email, password: "password")
 end
 
 chipotle = Location.create(name: "Chipotle", address: "2 Broadway")
 openkitchen =  Location.create(name: "Open Kitchen", address: "33 William St")
 varietycafe = Location.create(name: "Variety Cafe", address: "25 Broadway")
 
-event1 = Event.create(location_id: 1, start_time: Time.parse("12:15"), meeting_place: "In the hall by the elevator", duration: "rabbit emoji")
-event2 = Event.create(location_id: 2, start_time: Time.parse("12:00"), meeting_place: "Downstairs lobby", duration: "snail emoji")
-event3 = Event.create(location_id: 1, start_time: Time.parse("12:30"), meeting_place: "At Chipotle", duration: "rabbit emoji")
-event4 = Event.create(location_id: 3, start_time: Time.parse("12:10"), meeting_place: "In the park!", duration: "snail emoji")
+event1 = Event.create(name: "Burrito face", location_id: 1, start_time: Time.parse("12:15"), meeting_place: "In the hall by the elevator", duration: "rabbit emoji")
+event2 = Event.create(name: "Cooked sushi", location_id: 2, start_time: Time.parse("12:00"), meeting_place: "Downstairs lobby", duration: "snail emoji")
+event3 = Event.create(name: "Taco Tuesday", location_id: 1, start_time: Time.parse("12:30"), meeting_place: "At Chipotle", duration: "rabbit emoji")
+event4 = Event.create(name: "Cold nachos", location_id: 3, start_time: Time.parse("12:10"), meeting_place: "In the park!", duration: "snail emoji")
 
 User.first.events << event1
 User.second.events << event2
