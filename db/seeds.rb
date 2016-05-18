@@ -21,10 +21,10 @@ chipotle = Location.create(name: "Chipotle", address: "2 Broadway")
 openkitchen =  Location.create(name: "Open Kitchen", address: "33 William St")
 varietycafe = Location.create(name: "Variety Cafe", address: "25 Broadway")
 
-event1 = Event.create(location_id: 1, start_time: Time.parse("12:15"), meeting_place: "In the hall by the elevator", duration: "rabbit emoji")
-event2 = Event.create(location_id: 2, start_time: Time.parse("12:00"), meeting_place: "Downstairs lobby", duration: "snail emoji")
-event3 = Event.create(location_id: 1, start_time: Time.parse("12:30"), meeting_place: "At Chipotle", duration: "rabbit emoji")
-event4 = Event.create(location_id: 3, start_time: Time.parse("12:10"), meeting_place: "In the park!", duration: "snail emoji")
+event1 = Event.create(name: "Burrito face", location_id: 1, start_time: Time.parse("12:15"), meeting_place: "In the hall by the elevator", duration: "rabbit emoji")
+event2 = Event.create(name: "Cooked sushi", location_id: 2, start_time: Time.parse("12:00"), meeting_place: "Downstairs lobby", duration: "snail emoji")
+event3 = Event.create(name: "Taco Tuesday", location_id: 1, start_time: Time.parse("12:30"), meeting_place: "At Chipotle", duration: "rabbit emoji")
+event4 = Event.create(name: "Cold nachos", location_id: 3, start_time: Time.parse("12:10"), meeting_place: "In the park!", duration: "snail emoji")
 
 User.first.events << event1
 User.second.events << event2

@@ -4,4 +4,11 @@ class Event < ActiveRecord::Base
   has_many :registrations
   has_many :guests, :class_name => "User", through: :registrations
   has_many :comments
+
+
+
+
+  
+
+
 end
