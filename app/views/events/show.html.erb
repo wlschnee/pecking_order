@@ -15,11 +15,13 @@ Address: <%= @event.location.address %><br>
   <% end %>
 </ul>
 
-<button type="button" class='btn btn-default'>
-<%= link_to "Edit", edit_event_path(@event) %>
-</button>
+<div class="btn-group">
+  <button type="button" class="btn btn-default">
+    <%= link_to "Edit", edit_event_path(@event), :class => "btn" %>
+  </button>
 
-<button type="button" class='btn btn-danger'>
-<%= link_to "Cancel", @events, :method => :delete %>
-</button>
+  <div type="button" class="btn btn-danger">
+    <%= link_to "Cancel", @events, :method => :delete, :class => "btn" %>
+  </button>
+</div>
 
