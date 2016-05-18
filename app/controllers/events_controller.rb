@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
-  before_action :select_event, only: [:show, :update, :delete]
+  before_action :select_event, only: [:show, :update, :edit,:destroy]
+
+  def index
+    @events = Event.all
+  end
 
   def new
     @event = Event.new
@@ -10,12 +14,28 @@ class EventsController < ApplicationController
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
-    binding.pry
     redirect_to @event
   end
 
   def show
   end
+
+  def edit
+  end
+
+  def update
+    @event.update(event_params)
+    @event.start_time = parse_time
+    @event.save
+    redirect_to event_path(@event)
+  end
+
+
+  def destroy
+  @event.destroy
+  redirect_to events_path
+  end
+
 
 
   private
@@ -26,7 +46,8 @@ class EventsController < ApplicationController
     def parse_time
       time = params[:event]
       DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
-    end
+  end
+
 
     def select_event
       @event = Event.find(params[:id])
