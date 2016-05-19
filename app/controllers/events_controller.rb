@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :select_event, only: [:show, :update, :edit,:destroy]
+  before_action :select_event, only: [:show, :update, :edit, :destroy]
 
   def index
     @events = Event.all
@@ -30,13 +30,10 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
-
   def destroy
-  @event.destroy
-  redirect_to events_path
+    @event.destroy
+    redirect_to events_path
   end
-
-
 
   private
     def event_params
@@ -46,7 +43,7 @@ class EventsController < ApplicationController
     def parse_time
       time = params[:event]
       DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
-  end
+    end
 
 
     def select_event
