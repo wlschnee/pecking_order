@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   has_many :registrations
   has_many :guests, :class_name => "User", through: :registrations
   has_many :comments
-  accepts_nested_attributes_for :location
+  accepts_nested_attributes_for :location, reject_if: :all_blank
 
   def update_registration(user)
     user_joined?(user) ? leave(user) : join(user)
