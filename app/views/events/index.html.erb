@@ -5,8 +5,7 @@
   <% @events.each do |event| %>
     <li> <%= link_to event.name, event_path(event) %> </li>
   <% end %>
-</ul>
-
-<button type="button" class="btn btn-success">
-<%= link_to "New Event", new_event_path %>
-</button>
+</ul><br>
+<div>
+ <%= link_to "New Event", new_event_path, class:"btn btn-primary" %>
+ </div>
