@@ -6,10 +6,4 @@ class Event < ActiveRecord::Base
   has_many :comments
   accepts_nested_attributes_for :location
 
-
-
-
-
-
-
 end

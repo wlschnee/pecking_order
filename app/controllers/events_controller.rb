@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
-  before_action :select_event, only: [:show, :update, :edit, :destroy]
-  # before_action :new_location, only: [:new, :edit]
+  before_action :select_event, only: [:show, :update, :destroy]
 
   def index
     @events = Event.all
@@ -8,11 +7,11 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.build_location 
+    hide_new_location
   end
 
   def create
-    @event = Event.create(event_params)
+    @event = Event.new(event_params)
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
@@ -23,6 +22,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    hide_new_location_edit
   end
 
   def update
@@ -52,5 +52,13 @@ class EventsController < ApplicationController
 
     def select_event
       @event = Event.find(params[:id])
+    end
+
+    def hide_new_location
+      @event.build_location
+    end
+
+    def hide_new_location_edit
+      select_event
     end
 end
