@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :select_user, only: [:show, :update, :edit,:destroy]
+  skip_before_action :require_login, only: [:new, :create]
 
 def index
   @users = User.all
@@ -10,27 +12,23 @@ end
 
 def create
   @user = User.create(user_params)
-  redirect_to @user
+  session[:flash] = "User successfully created"
+  redirect_to login_path
 end
 
 def show
-  @user = User.find(params[:id])
-  render :show
 end
 
 def edit
- @user = User.find(params[:id])
 end
 
 def update
-  @user = User.find(params[:id])
   @user.update(user_params)
   session[:flash] = "User updated"
   redirect_to user_path
 end
 
 def destroy
-  @user = User.find(params[:id])
   @user.destroy
   session[:flash] = "User deleted" 
   redirect_to login_path
@@ -39,6 +37,10 @@ end
 private
 def user_params
   params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+end
+
+def select_user
+  @user = User.find(params[:id])
 end
 
 end
