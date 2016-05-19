@@ -13,13 +13,11 @@ class EventsController < ApplicationController
   end
 
   def new
-    hide_new_location
     @event = Event.new
+    @event.build_location
   end
 
   def create
-    binding.pry
-
     @event = Event.create(event_params)
     @current_user = User.find_by(id: session[:user_id] )
     @event.start_time = parse_time
@@ -53,8 +51,6 @@ class EventsController < ApplicationController
   redirect_to events_path
   end
 
-
-
   private
     def event_params
       params.require(:event).permit(:name, :meeting_place, :duration, :location_id, location_attributes: [:name, :address])
@@ -67,10 +63,6 @@ class EventsController < ApplicationController
 
     def select_event
       @event = Event.find(params[:id])
-    end
-
-    def hide_new_location
-      @event.build_location
     end
 
 end
