@@ -7,11 +7,13 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.build_location
   end
 
   def create
+    binding.pry
     @event = Event.create(event_params)
-    @event.start_time = parse_time
+    @event.start_time = Event.parse_time(params[:event])
     @event.host = @current_user
     @event.save
     redirect_to event_path(@event)
@@ -25,7 +27,7 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
-    @event.start_time = parse_time
+    @event.start_time = Event.parse_time(params[:event])
     @event.save
     redirect_to event_path(@event)
   end
@@ -37,14 +39,12 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :location_id, :meeting_place,:duration)
+      params.require(:event).permit(:name, :meeting_place, :duration, :location_id, location_attributes: [:name, :address])
     end
 
-    def parse_time
-      time = params[:event]
-      DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
-    end
-
+    # def parse_time(params)
+    #   DateTime.new(params["start_time(1i)"].to_i,params["start_time(2i)"].to_i,params["start_time(3i)"].to_i,params["start_time(4i)"].to_i,params["start_time(5i)"].to_i)
+    # end
 
     def select_event
       @event = Event.find(params[:id])

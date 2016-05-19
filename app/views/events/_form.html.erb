@@ -4,7 +4,20 @@
   <div><%= f.label :start_time %>
   <%= f.datetime_select :start_time, :ampm => true, :minute_step => 5 %></div>
   <div><%= f.label :location_id %>
-  <%= f.collection_select :location_id, Location.all, :id, :name %></div>
+    <h2>Select a location:</h2>
+  <%= f.collection_select :location_id, Location.all, :id, :name, {include_blank: true} %></div>
+  <h2>Make a new location</h2>
+  <%= f.fields_for :location do |location_form| %>
+    <div>
+      <%= location_form.label :name %>
+      <%= location_form.text_field :name %>
+    </div>
+    <div>
+      <%= location_form.label :address %>
+      <%= location_form.text_field :address %>
+    </div>
+  <% end %>
+  <h2>Other details</h2>
   <div><%= f.label :meeting_place %>
   <%= f.text_field :meeting_place %></div>
   <div><%= f.label :duration %>
