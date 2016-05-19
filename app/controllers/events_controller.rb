@@ -1,19 +1,15 @@
 class EventsController < ApplicationController
-  before_action :select_event, only: [:show, :update, :edit,:destroy]
+  before_action :select_event, only: [:show, :update, :edit,:destroy, :join]
 
   def index
     @events = Event.all
   end
 
   def join
-    @registration = Registration.new
-    @registration.guest_id = current_user.id
-    @registration.event_id = params[:id]
-    @registration.save
+    @event.update_registration(current_user)
     respond_to do |format|
       format.js
-    end
-    binding.pry
+    end   
   end
 
   def new
