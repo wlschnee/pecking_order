@@ -15,3 +15,7 @@
 # Ignore application configuration
 /config/application.yml
 /config/secrets.yml
+<<<<<<< HEAD
+=======
+/config/database.yml
+>>>>>>> 651f4b310b87e3451e752d79223f024d701bb42e

@@ -1,4 +1,4 @@
 <%= session[:flash] %>
 <h2><%= @user.full_name %></h2>
 
-<%= link_to "edit", edit_user_path(@user) %>
+<%= link_to "edit", edit_user_path(@user), class: "btn btn-primary" %>
