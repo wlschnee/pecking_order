@@ -4,9 +4,10 @@ class Event < ActiveRecord::Base
   has_many :registrations
   has_many :guests, :class_name => "User", through: :registrations
   has_many :comments
+  accepts_nested_attributes_for :location
 
   def update_registration(user)
-    user_joined?(user) ? leave(user) : join(user) 
+    user_joined?(user) ? leave(user) : join(user)
   end
 
   def join_class(user)
@@ -30,13 +31,13 @@ class Event < ActiveRecord::Base
   end
 
 private
-  
+
   def user_joined?(user)
     self.registrations.where(guest_id: user.id).any?
   end
 
   def join(user)
-    self.registrations.create(guest_id: user.id)  
+    self.registrations.create(guest_id: user.id)
   end
 
   def leave(user)

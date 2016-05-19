@@ -9,15 +9,16 @@ class EventsController < ApplicationController
     @event.update_registration(current_user)
     respond_to do |format|
       format.js
-    end   
+    end
   end
 
   def new
     @event = Event.new
+    hide_new_location
   end
 
   def create
-    @event = Event.create(event_params)
+    @event = Event.new(event_params)
     @current_user = User.find_by(id: session[:user_id] )
     @event.start_time = parse_time
     @event.host = @current_user
@@ -30,6 +31,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    hide_new_location_edit
     @current_user = User.find_by(id: session[:user_id])
     if @event.host == @current_user
       render :edit
@@ -54,16 +56,22 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :location_id, :meeting_place,:duration)
+      params.require(:event).permit(:name, :meeting_place, :duration, :location_id, location_attributes: [:name, :address])
     end
 
     def parse_time
       time = params[:event]
       DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
-  end
-
+    end
 
     def select_event
       @event = Event.find(params[:id])
+    end
+
+    def hide_new_location
+      @event.build_location
+    end
+
+    def hide_new_location_edit
     end
 end
