@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :select_event, only: [:show, :update, :edit,:destroy]
+  before_action :select_event, only: [:show, :update, :edit, :destroy]
+  # before_action :new_location, only: [:new, :edit]
 
   def index
     @events = Event.all
@@ -7,10 +8,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.build_location
   end
 
   def create
     @event = Event.create(event_params)
+    binding.pry
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
@@ -40,14 +43,13 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :location_id, :meeting_place,:duration)
+      params.require(:event).permit(:name, :meeting_place, :duration, :location_id, location_attributes: [:name, :address])
     end
 
     def parse_time
       time = params[:event]
       DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
-  end
-
+    end
 
     def select_event
       @event = Event.find(params[:id])
