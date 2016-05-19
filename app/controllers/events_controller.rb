@@ -23,7 +23,6 @@ class EventsController < ApplicationController
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
-    binding.pry
     redirect_to event_path(@event)
   end
 
