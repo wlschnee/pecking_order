@@ -13,11 +13,13 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
     hide_new_location
+    @event = Event.new
   end
 
   def create
+    binding.pry
+
     @event = Event.create(event_params)
     @current_user = User.find_by(id: session[:user_id] )
     @event.start_time = parse_time
@@ -31,7 +33,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    hide_new_location_edit
     @current_user = User.find_by(id: session[:user_id])
     if @event.host == @current_user
       render :edit
@@ -72,6 +73,4 @@ class EventsController < ApplicationController
       @event.build_location
     end
 
-    def hide_new_location_edit
-    end
 end
