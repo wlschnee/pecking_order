@@ -4,7 +4,8 @@
   <div><%= f.label :start_time %>
   <%= f.datetime_select :start_time, :ampm => true, :minute_step => 5 %></div>
   <div><%= f.label :location_id %>
-  <%= f.collection_select :location_id, Location.all, :id, :name %></div>
+  <%= f.collection_select :location_id, Location.all, :id, :name, {include_blank: true}%></div>
+
   <div><%= f.label :meeting_place %>
   <%= f.text_field :meeting_place %></div>
   <div><%= f.label :duration %>

@@ -40,7 +40,7 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :location_id, :meeting_place,:duration)
+      params.require(:event).permit(:name, :location_id, :meeting_place,:duration, :location[])
     end
 
     def parse_time
