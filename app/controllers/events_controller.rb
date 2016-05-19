@@ -5,6 +5,17 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def join
+    @registration = Registration.new
+    @registration.guest_id = current_user.id
+    @registration.event_id = params[:id]
+    @registration.save
+    respond_to do |format|
+      format.js
+    end
+    binding.pry
+  end
+
   def new
     @event = Event.new
   end
@@ -37,7 +48,6 @@ class EventsController < ApplicationController
     @event.save
     redirect_to event_path(@event)
   end
-
 
   def destroy
   @event.destroy

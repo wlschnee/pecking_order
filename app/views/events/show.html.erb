@@ -8,6 +8,8 @@ Address: <%= @event.location.address %><br>
 <%= @event.start_time.strftime("%I:%M %p, %a, %b, %-d, %Y") %>
 <%= @event.duration %>
 
+<h2>Who's hosting!?</h2>
+  <li><%= @event.host.full_name %></li>
 <h2>Who's going!?</h2>
 <ul>
   <% @event.guests.each do |guest| %>
@@ -17,5 +19,8 @@ Address: <%= @event.location.address %><br>
 <div>
 <% if @current_user == @event.host %>
 <%= link_to "Edit", edit_event_path(@event), class:"btn btn-primary" %>
+<% else %>
+<%= link_to "Join Event", join_path(id: @event.id), method:"post",class:"btn btn-primary", remote: :true %>
 <% end %>
+
 </div>

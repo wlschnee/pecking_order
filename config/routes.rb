@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   root "home#index"
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
-  delete "/logout", to: "sessions#destroy" 
+  delete "/logout", to: "sessions#destroy"
+  post "/events/:id/join" => "events#join", as: :join 
   resources :locations
   resources :events
   resources :users
+  resources :registrations
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
