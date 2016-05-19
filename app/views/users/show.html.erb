@@ -1,4 +1,22 @@
-<%= session[:flash] %>
+
 <h2><%= @user.full_name %></h2>
 
-<%= link_to "edit", edit_user_path(@user), class: "btn btn-primary" %>
+<h1>Upcoming Events</h1>
+  <% if @user.upcoming_events.count == 0 %>
+    <ul>
+      <li>No upcoming events... you should: <%= link_to "Create a New Event", new_event_path, class:"btn btn-primary" %></li>
+      </ul>
+  <% else %>
+  <% @user.upcoming_events.each do |event| %>  
+    <ul>
+    <li><h3><%= event.name %></h3></li>
+    <li><%= event.location.name %></li>
+    <li><%= event.start_time %></li>
+    <li>Number of Attendees: <%= event.guests.count + 1 %></li>
+    </ul>
+    <% end %>
+  <% end %>
+
+<% if current_user == @user %>
+<%= link_to "Edit User", edit_user_path(@user), class: "btn btn-primary" %>
+<% end %>
