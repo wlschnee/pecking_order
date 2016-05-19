@@ -1,8 +1,15 @@
 class EventsController < ApplicationController
-  before_action :select_event, only: [:show, :update, :edit,:destroy]
+  before_action :select_event, only: [:show, :update, :edit,:destroy, :join]
 
   def index
     @events = Event.all
+  end
+
+  def join
+    @event.update_registration(current_user)
+    respond_to do |format|
+      format.js
+    end   
   end
 
   def new
@@ -11,6 +18,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
+    @current_user = User.find_by(id: session[:user_id] )
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
@@ -18,9 +26,16 @@ class EventsController < ApplicationController
   end
 
   def show
+    @current_user = User.find_by(id: session[:user_id])
   end
 
   def edit
+    @current_user = User.find_by(id: session[:user_id])
+    if @event.host == @current_user
+      render :edit
+    else
+      redirect_to events_path
+    end
   end
 
   def update
@@ -29,7 +44,6 @@ class EventsController < ApplicationController
     @event.save
     redirect_to event_path(@event)
   end
-
 
   def destroy
   @event.destroy
