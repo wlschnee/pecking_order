@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
 
 def new
 end
@@ -6,9 +7,9 @@ end
 def create
   @user = User.find_by(email: params[:email])
   if @user != nil && @user.authenticate(params[:password]) 
-  session[:flash] = "Logged in as #{@user.full_name}"
   session[:user_id] = @user.id
-  redirect_to users_path
+  session[:flash] = "Logged in as #{@user.full_name}"
+  redirect_to events_path
   else
   session[:flash] = "Invalid login"
   redirect_to login_path
