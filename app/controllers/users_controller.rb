@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :select_user, only: [:show, :update, :edit,:destroy]
+  skip_before_action :require_login, only: [:new, :create]
 
 def index
   @users = User.all
@@ -11,13 +12,15 @@ end
 
 def create
   @user = User.create(user_params)
-  redirect_to events_path
+  session[:flash] = "User successfully created"
+  redirect_to login_path
 end
 
 def show
 end
 
 def edit
+  binding.pry
 end
 
 def update
