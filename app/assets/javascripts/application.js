@@ -16,4 +16,14 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery-ui/autocomplete
 
+$(document).ready(function(){
+$(".location_selector").change(function(){
+  if((this).find("location_selector").text() != "selection a location"){
+  $("#event_location_attributes_name").attr("disabled", true);
+} else {
+   $("#event_location_attributes_name").attr("disabled", false);
+    }
+  })
+})

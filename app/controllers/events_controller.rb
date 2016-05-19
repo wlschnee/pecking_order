@@ -8,12 +8,11 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.build_location
+    @event.build_location 
   end
 
   def create
     @event = Event.create(event_params)
-    binding.pry
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
@@ -43,11 +42,7 @@ class EventsController < ApplicationController
 
   private
     def event_params
-<<<<<<< HEAD
-      params.require(:event).permit(:name, :location_id, :meeting_place,:duration, :location[])
-=======
       params.require(:event).permit(:name, :meeting_place, :duration, :location_id, location_attributes: [:name, :address])
->>>>>>> 0b09e1b3614808282c1d361a0eb65bea4b452ed5
     end
 
     def parse_time
