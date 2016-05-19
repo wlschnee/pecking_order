@@ -14,14 +14,6 @@ Address: <%= @event.location.address %><br>
     <li><%= link_to guest.first_name, user_path(guest) %></li>
   <% end %>
 </ul>
-
-<div class="btn-group">
-  <button type="button" class="btn btn-default">
-    <%= link_to "Edit", edit_event_path(@event), :class => "btn" %>
-  </button>
-
-  <div type="button" class="btn btn-danger">
-    <%= link_to "Cancel", @events, :method => :delete, :class => "btn" %>
-  </button>
+<div>
+<%= link_to "Edit", edit_event_path(@event), class:"btn btn-primary" %>
 </div>
-
