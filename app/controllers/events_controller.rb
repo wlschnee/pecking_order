@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     hide_new_location
+    @event.comments.build
   end
 
   def create
@@ -28,6 +29,8 @@ class EventsController < ApplicationController
 
   def show
     @current_user = User.find_by(id: session[:user_id])
+    @comments = Comment.all
+    @event.comments.build
   end
 
   def edit

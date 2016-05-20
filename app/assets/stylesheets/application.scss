@@ -1,3 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.field_wth_errors label{
+  display: inline;
+  padding: 2px;
+  background-color: red;
+}
+
+.field_wth_errors input[type="text"] {
+  display: inline;
+}
+
+.field_wth_errors input[type="password"] {
+  display: inline;
+}
