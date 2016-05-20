@@ -14,7 +14,7 @@
        <% end %>
       </ul>
   <% else %>
-  <% @user.upcoming_events.each do |event| %>  
+  <% @user.upcoming_events.each do |event| %>
     <ul>
     <li><h3><%= event.name %></h3></li>
     <li><%= event.location.name %></li>
@@ -24,9 +24,9 @@
     <% end %>
   <% end %>
   <h3>Past Events</h3>
-  <% @user.past_events.each do |event| %>  
+  <% @user.past_events.each do |event| %>
     <ul>
-    <li><h3><%= event.name %></h3></li>
+    <li><h3><%= link_to event.name, event_path(event) %></h3></li>
     <li><%= event.location.name %></li>
     <li><%= event.start_time %></li>
     <li>Number of Attendees: <%= event.guests.count + 1 %></li>
