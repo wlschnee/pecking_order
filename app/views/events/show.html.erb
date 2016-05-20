@@ -31,13 +31,13 @@ Address: <%= @event.location.address %><br>
 <br>
 <br>
 <br>
-
+  <div class = "pull-middle">
 <%= form_for @event do |f| %>
   <%= f.fields_for :comment do |comment| %>
-      <div>
-        <%= comment.label :content %>
-        <%= comment.text_area :content %>
-      </div>
+        <b><%= comment.label :Comment %></b>
+        <br>
+        <%= comment.text_area :content, :cols => "40", :rows => "3" %>
+    </div>
        <%= f.submit "Submit", :class => "btn btn-primary" %>
       <% end %>
   <% end %>
