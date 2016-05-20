@@ -34,7 +34,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    hide_new_location_edit
     @current_user = User.find_by(id: session[:user_id])
     if @event.host == @current_user
       render :edit
@@ -55,8 +54,6 @@ class EventsController < ApplicationController
   redirect_to events_path
   end
 
-
-
   private
     def event_params
       params.require(:event).permit(:name, :meeting_place, :duration, :location_id, location_attributes: [:name, :address])
@@ -64,7 +61,7 @@ class EventsController < ApplicationController
 
     def parse_time
       time = params[:event]
-      DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
+      Time.zone.local(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
     end
 
     def select_event
@@ -77,4 +74,5 @@ class EventsController < ApplicationController
 
     def hide_new_location_edit
     end
+
 end
