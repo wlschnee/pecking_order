@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  post "/events/:id/join" => "events#join", as: :join 
+  post "/events/:id/join" => "events#join", as: :join
+
+  get "/contact" => "users#contact", as: :contact
+
   resources :locations
   resources :events
   resources :users
