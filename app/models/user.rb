@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :tips
   has_secure_password
-  validates :password_digest, presence: true, allow_nil: true
+  validates :password, length: { minimum: 6 }, allow_nil: true
   validates :email, presence: true, uniqueness: true, allow_nil: true
   validates_presence_of :first_name, :last_name,
 
@@ -23,9 +23,25 @@ class User < ActiveRecord::Base
       @all_events << registration.event
     end
     @upcoming = @all_events.select do |event|
-      event.start_time > Time.now
+      event.start_time > DateTime.now
     end
     @upcoming
+  end
+
+  def past_events
+    @all_events = []
+    @something = self.events
+    @something.each do |something|
+      @all_events << something
+    end
+    @all_registrations = self.registrations
+    @all_registrations.each do |registration|
+      @all_events << registration.event
+    end
+    @past = @all_events.select do |event|
+      event.start_time < DateTime.now
+    end
+    @past
   end
 
 end
