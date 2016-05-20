@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :tips
   has_secure_password
-  validates :password, confirmation: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, length: { minimum: 6 }, allow_nil: true
   validates :email, presence: true, uniqueness: true, allow_nil: true
   validates_presence_of :first_name, :last_name,
 
