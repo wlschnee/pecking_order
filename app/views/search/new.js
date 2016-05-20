@@ -1,4 +1,4 @@
-$("div.search_results").append("<%= j render partial: 'events/search_results', locals: {results: @results} %>" )
+$("div.search_results").html("<%= j render partial: 'events/search_results', locals: {results: @results} %>" )
   $('.result').on('click', function() {
     var current_id = $(this).attr('id')
     if ($('#event_location_attributes_id').val() != 'Make New Location') {
