@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     hide_new_location
+    @event.comments.build
   end
 
   def create
@@ -23,12 +24,13 @@ class EventsController < ApplicationController
     @event.start_time = parse_time
     @event.host = @current_user
     @event.save
-    binding.pry
     redirect_to event_path(@event)
   end
 
   def show
     @current_user = User.find_by(id: session[:user_id])
+    @comments = Comment.all
+    @event.comments.build
   end
 
   def edit

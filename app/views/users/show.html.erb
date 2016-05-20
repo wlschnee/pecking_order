@@ -1,10 +1,17 @@
 
-<h2><%= @user.full_name %></h2>
+<h1><%= @user.full_name %></h1>
 
-<h1>Upcoming Events</h1>
+<h3>Upcoming Events</h3
+>
   <% if @user.upcoming_events.count == 0 %>
     <ul>
-      <li>No upcoming events... you should: <%= link_to "Create a New Event", new_event_path, class:"btn btn-primary" %></li>
+      <li>No upcoming events... you should: 
+      <br>
+      <br>
+      <br>
+       <%= link_to "Create a New Event", new_event_path, class:"btn btn-primary" %>
+       <br>
+       <%= link_to "Attend an Event",  events_path, class:"btn btn-primary" %></li>
       </ul>
   <% else %>
   <% @user.upcoming_events.each do |event| %>  
