@@ -1,5 +1,7 @@
 <h1><%= @event.name %></h1>
 
+
+
 <h2>Where we're going:</h2>
 Place: <%= @event.location.name %><br>
 Address: <%= @event.location.address %><br>
@@ -26,4 +28,16 @@ Address: <%= @event.location.address %><br>
 <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", class: @event.join_class(current_user), remote: :true %>
 <% end %>
 
-</div>
+<br>
+<br>
+<br>
+  <div class = "pull-middle">
+<%= form_for @event do |f| %>
+  <%= f.fields_for :comment do |comment| %>
+        <b><%= comment.label :Comment %></b>
+        <br>
+        <%= comment.text_area :content, :cols => "40", :rows => "3" %>
+    </div>
+       <%= f.submit "Submit", :class => "btn btn-primary" %>
+      <% end %>
+  <% end %>
