@@ -12,8 +12,10 @@ end
 
 def create
   @user = User.create(user_params)
-  session[:flash] = "User successfully created"
-  redirect_to login_path
+  if @user.valid?
+    session[:flash] = "User successfully created"
+    redirect_to events_path
+  else
 end
 
 def show

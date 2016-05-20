@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :tips
   has_secure_password
-  validates :password_digest, presence: true, allow_nil: true
+  validates :password, confirmation: true, length: { minimum: 6 }, allow_nil: true
+  validate :secure_password
   validates :email, presence: true, uniqueness: true, allow_nil: true
   validates_presence_of :first_name, :last_name,
 
@@ -26,6 +27,10 @@ class User < ActiveRecord::Base
       event.start_time > Time.now
     end
     @upcoming
+  end
+
+  def secure_password
+    return false if (password =~ /[0-9]/).blank?
   end
 
 end
