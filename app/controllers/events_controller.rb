@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(params)
+    @event = Event.create(event_params)
     @current_user = User.find_by(id: session[:user_id] )
     @event.start_time = parse_time(params)
     @event.host = @current_user
