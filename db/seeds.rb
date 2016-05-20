@@ -8,7 +8,7 @@
 
 User.create(first_name: "Will", last_name: "S", email: "will@fi.com", password: "password")
 User.create(first_name: "Justin", last_name: "N", email: "justin@fi.com", password: "password")
-User.create(first_name: "Kristen", last_name: "D", email: "kristen@fi.com", password: "password")
+User.create(first_name: "Kristin", last_name: "D", email: "kristin@fi.com", password: "password")
 User.create(first_name: "Lamine", last_name: "N", email: "lamine@fi.com", password: "password")
 
 other_users = [["Alex", "S", "alemosie@fi.com"], ["Gabriel", "S", "gabe@fi.com"], ["Michael", "A-A", "michael-aa@fi.com"], ["Einar", "S", "einar@fi.com"], ["Chris", "M", "xm@fi.com"], ["Liana", "G", "liana@fi.com"]]
