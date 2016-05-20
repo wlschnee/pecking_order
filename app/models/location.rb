@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def thumbs_up_total
-    self.likes.where(likes: true).size
+    self.likes.size
   end
 
 end

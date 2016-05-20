@@ -16,7 +16,7 @@
 
 <% end %>
 
-<%= link_to like_location_path(@location), method: :post do %>
- <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-<%= @location.thumbs_up_total %>
-<% end %>
+<%= link_to like_location_path(@location, likes: true), method: :post do %>
+ <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> <%= @location.thumbs_up_total %>
+</a>
+ <% end %>
