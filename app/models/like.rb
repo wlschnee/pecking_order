@@ -1,6 +1,2 @@
-class Like < ApplicationController
-
-
-
-
+class Like < ActiveRecord::Base
 end

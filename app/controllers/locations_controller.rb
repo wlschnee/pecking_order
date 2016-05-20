@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
   def like 
     binding.pry
   @location = Location.find(params[:id])
-  Like.create(like: params[:like], user: User.first, location: @location)
+  Like.create(likes: params[:likes], user: User.first, location: @location)
   flash[:success] = "You have like this post"
   redirect_to :back
   end
