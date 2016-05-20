@@ -6,4 +6,22 @@ class Location < ActiveRecord::Base
   has_many :likes
   validates :name, uniqueness: true
 
+  def previous_events
+    previous_events = []
+    self.events.each do |event|
+      if event.start_time < DateTime.now
+        previous_events << event
+      end
+    end
+  end
+
+  def upcoming_events
+    upcoming_events = []
+    self.events.each do |event|
+      if event.start_time > DateTime.now
+        upcoming_events << event
+      end
+    end
+  end
+
 end

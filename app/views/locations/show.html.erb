@@ -4,16 +4,18 @@
 <h3><%= @location.address %> </h3>
 
 <ul>
-<% @location.events.each do |event| %>
+
+Upcoming Events:
+<% @location.upcoming_events.each do |event| %>
+<% binding.pry %>
   <li>
       <%= link_to event.name, event_path(event) %><br>
       <%= event.start_time.strftime("%a, %b %-d, %Y, %I:%M %p") %>
-      
+
       <%  event.guests.each do |guest| %>
           <%= link_to guest.full_name, user_path(guest) %>
       <% end %>
   </li>
-
 <% end %>
 
 </ul>
