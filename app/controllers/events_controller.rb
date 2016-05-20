@@ -61,11 +61,18 @@ class EventsController < ApplicationController
 
     def parse_time
       time = params[:event]
-      DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
+      Time.zone.local(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
     end
 
     def select_event
       @event = Event.find(params[:id])
+    end
+
+    def hide_new_location
+      @event.build_location
+    end
+
+    def hide_new_location_edit
     end
 
 end

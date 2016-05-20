@@ -1,8 +1,7 @@
 
 <h1><%= @user.full_name %></h1>
 
-<h3>Upcoming Events</h3
->
+<h3>Upcoming Events</h3>
   <% if @user.upcoming_events.count == 0 %>
     <ul>
       <li>No upcoming events...<% if current_user == @user %> you should: %>
@@ -24,6 +23,15 @@
     </ul>
     <% end %>
   <% end %>
+  <h3>Past Events</h3>
+  <% @user.past_events.each do |event| %>  
+    <ul>
+    <li><h3><%= event.name %></h3></li>
+    <li><%= event.location.name %></li>
+    <li><%= event.start_time %></li>
+    <li>Number of Attendees: <%= event.guests.count + 1 %></li>
+    </ul>
+    <% end %>
 
 <% if current_user == @user %>
 <%= link_to "Edit User", edit_user_path(@user), class: "btn btn-primary" %>
