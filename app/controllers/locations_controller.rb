@@ -12,6 +12,15 @@ class LocationsController < ApplicationController
   @location = Location.find(params[:id])
   end
 
+  def like 
+    binding.pry
+  @location = Location.find(params[:id])
+  Like.create(like: params[:like], user: User.first, location: @location)
+  flash[:success] = "You have like this post"
+  redirect_to :back
+  end
+
+
 
 
 end

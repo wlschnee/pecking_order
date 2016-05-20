@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   post "/login" => "sessions#create"
   delete "/logout", to: "sessions#destroy"
   post "/events/:id/join" => "events#join", as: :join 
-  resources :locations
+  resources :locations do
+    member do 
+      post 'like'
+    end
+  end
   resources :events
   resources :users
   resources :registrations

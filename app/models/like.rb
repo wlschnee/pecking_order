@@ -1,0 +1,6 @@
+class Like < ApplicationController
+
+
+
+
+end

@@ -6,4 +6,8 @@ class Location < ActiveRecord::Base
   has_many :likes
   validates :name, uniqueness: true
 
+  def thumbs_up_total
+    self.likes.where(like: true).size
+  end
+
 end
