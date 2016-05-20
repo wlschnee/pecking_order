@@ -23,7 +23,9 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
 
+  def contact
   end
 
   def edit
