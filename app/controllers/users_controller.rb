@@ -12,12 +12,16 @@ end
 
 def create
   @user = User.create(user_params)
-  session[:flash] = "User successfully created"
-  redirect_to login_path
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to events_path
+      else
+        render :new 
+      end
 end
 
 def show
-
+  
 end
 
 def edit
@@ -31,7 +35,8 @@ end
 
 def destroy
   @user.destroy
-  session[:flash] = "User deleted" 
+  session[:flash] = "User deleted"
+  session[:user_id] = nil
   redirect_to login_path
 end
 

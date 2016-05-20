@@ -6,7 +6,7 @@ end
 
 def create
   @user = User.find_by(email: params[:email])
-  if @user != nil && @user.authenticate(params[:password]) 
+  if @user != nil && @user.authenticate(params[:password])
   session[:user_id] = @user.id
   session[:flash] = "Logged in as #{@user.full_name}"
   redirect_to events_path
@@ -19,7 +19,7 @@ end
 def destroy
 session[:user_id] = nil
 flash.discard
-redirect_to root_url 
+redirect_to root_url
 end
 
 
