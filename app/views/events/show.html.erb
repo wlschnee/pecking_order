@@ -31,14 +31,6 @@ Address: <%= @event.location.address %><br>
 
 <br>
 <br>
+  <%= render partial: 'all_comments', locals: {comment: @comment, event: @event}%>
 <br>
-  <div class = "pull-middle">
-<%= form_for @event do |f| %>
-  <%= f.fields_for :comment do |comment| %>
-        <b><%= comment.label :Comment %></b>
-        <br>
-        <%= comment.text_area :content, :cols => "40", :rows => "3" %>
-    </div>
-       <%= f.submit "Submit", :class => "btn btn-primary" %>
-      <% end %>
-  <% end %>
+  <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>

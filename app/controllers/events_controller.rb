@@ -29,8 +29,8 @@ class EventsController < ApplicationController
 
   def show
     @current_user = User.find_by(id: session[:user_id])
-    @comments = Comment.all
-    @event.comments.build
+    @comment = Comment.new
+    @comments = @event.comments
   end
 
   def edit
