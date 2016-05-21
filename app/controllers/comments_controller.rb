@@ -7,9 +7,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
-    @event = Event.find_by(id: comment_params[:event_id]) 
-    redirect_to @event
+    if @comment.save
+      ActionCable.server.broadcast 'comments',
+        comment: @comment.content,
+        user: @comment.user.full_name
+      head :ok
+    end
   end
 
   private

@@ -1,3 +1,5 @@
+<div class="row">
+<div class="col-md-8">
 <h1><%= @event.name %></h1>
 
 
@@ -21,8 +23,6 @@ Address: <%= @event.location.address %><br>
     <li id="<%= guest.id %>"><%= link_to guest.first_name, user_path(guest) %></li>
   <% end %>
 </ul>
-<div>
-
 <% if @current_user == @event.host %>
 <%= link_to "Edit", edit_event_path(@event), id: "edit", class:"btn btn-primary" %>
 <% else %>
@@ -31,6 +31,13 @@ Address: <%= @event.location.address %><br>
 
 <br>
 <br>
-  <%= render partial: 'all_comments', locals: {comment: @comment, event: @event}%>
 <br>
   <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
+</div>
+<div class="col-md-4">
+<h2>COMMENTS</h2> 
+<div id="comments">
+<%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
+</div>
+</div>
+</div>
