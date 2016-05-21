@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   def index
-    @locations = Location.all
+    @locations = Location.all.sort_by{|likes| likes.thumbs_up_total}.reverse
     respond_to do |format|
       format.html
       format.json {@location = Location.search(params[:term])}
@@ -12,12 +12,10 @@ class LocationsController < ApplicationController
   @location = Location.find(params[:id])
   end
 
-  def like
-  binding.pry  
-  # @location = Location.find(params[:id])
-  # Like.create(likes: params[:likes], user: User.first, location: @location)
-  # flash[:success] = "You have like this post"
-  # redirect_to :back
+  def like 
+  @location = Location.find(params[:id])
+  like = Like.create(likes: params[:likes], user: User.first, location: @location)
+  redirect_to :back
   end
 
 
