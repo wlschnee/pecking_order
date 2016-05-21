@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :select_event, only: [:show, :update, :edit,:destroy, :join]
+  before_action :select_event, only: [:show, :update, :edit, :destroy, :join]
 
   def index
     @events = Event.all
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.create(event_params)
     @current_user = User.find_by(id: session[:user_id] )
-    @event.start_time = parse_time
+    @event.start_time = parse_time(params)
     @event.host = @current_user
     @event.save
     redirect_to event_path(@event)
@@ -35,7 +35,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    hide_new_location_edit
     @current_user = User.find_by(id: session[:user_id])
     if @event.host == @current_user
       render :edit
@@ -46,26 +45,24 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
-    @event.start_time = parse_time
+    @event.start_time = parse_time(params)
     @event.save
     redirect_to event_path(@event)
   end
 
   def destroy
-  @event.destroy
-  redirect_to events_path
+    @event.destroy
+    redirect_to events_path
   end
-
-
 
   private
     def event_params
       params.require(:event).permit(:name, :meeting_place, :duration, :location_id, location_attributes: [:name, :address])
     end
 
-    def parse_time
+    def parse_time(params)
       time = params[:event]
-      DateTime.new(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
+      Time.zone.local(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
     end
 
     def select_event
@@ -78,4 +75,5 @@ class EventsController < ApplicationController
 
     def hide_new_location_edit
     end
+
 end

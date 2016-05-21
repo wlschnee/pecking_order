@@ -1,23 +1,52 @@
 
 
 <h1><%= @location.name %></h1>
+<p><%= @location.address %> </p>
 
-<h3><%= @location.address %> </h3>
 
+<h3>Upcoming Events</h3>
 <ul>
-<% @location.events.each do |event| %>
-  <li>
-      <%= link_to event.name, event_path(event) %><br>
-      <%= event.start_time.strftime("%a, %b %-d, %Y, %I:%M %p") %>
-      
-      <%  event.guests.each do |guest| %>
-          <%= link_to guest.full_name, user_path(guest) %>
-      <% end %>
-  </li>
 
+<% if @location.upcoming_events.count == 0 %>
+  No upcoming events here.
+  <br><br>
+  <%= link_to "Schedule One", new_event_path, class:"btn btn-primary" %>
+<% else %>
+  <% @location.upcoming_events.each do |event| %>
+    <li>
+      <h3><%= link_to event.name, event_path(event) %><br></h3>
+      <%= event.start_time.strftime("%a, %b %-d, %Y, %I:%M %p") %><br><br>
+          <ul style="inline">
+          <%  event.guests.each do |guest| %>
+              <%= link_to guest.full_name, user_path(guest) %>
+          <% end %>
+          </ul>
+      </li>
+    <% end %>
 <% end %>
 
-<div class="pull-left">
+</ul>
+
+<h3>Previous Events</h3>
+  <ul>
+    <% @location.previous_events.each do |event| %>
+      <li>
+          <h3><%= link_to event.name, event_path(event) %><br></h3>
+
+          <%= event.start_time.strftime("%a, %b %-d, %Y, %I:%M %p") %><br><br>
+          <ul style="inline">
+            <li>
+              <%  event.guests.each do |guest| %>
+                  <%= link_to guest.full_name, user_path(guest) %>
+              <% end %>
+            </li>
+          </ul>
+    <% end %>
+  </ul>
+
+
+
+<div class="pull-left"> <!-- like button class -->
  <%= link_to like_location_path(@location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
  <%= @location.thumbs_up_total %>
  <% end %> &nbsp&nbsp&nbsp
@@ -25,4 +54,3 @@
  <%= @location.thumbs_down_total %>
  <% end %>
 </div>
-
