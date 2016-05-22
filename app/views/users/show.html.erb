@@ -33,13 +33,15 @@
     </ul>
     <% end %>
 
-<p><%= link_to "Add Friends", users_path, class:"btn btn-primary" %></p>
 
+<% if current_user == @user %>
+<p><%= link_to "Add Friends", users_path, class:"btn btn-primary" %></p>
+<% end %>
 <h2> Friends</h2>
 <ul>
   <% for friendship in @user.friendships %>
   <li>
-    <%= friendship.friend.full_name %>
+    <%= link_to friendship.friend.full_name, user_path(friendship)%>
     <%= link_to "remove", friendship, :method => :delete %>
   </li>
   <% end %>  
