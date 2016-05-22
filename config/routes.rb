@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users
   resources :registrations
   resources :comments
+  resources :tips
 
   mount ActionCable.server => '/cable'
 end

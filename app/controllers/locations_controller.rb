@@ -9,6 +9,7 @@ class LocationsController < ApplicationController
   end
 
   def show
+  @tip = Tip.new
   @location = Location.find(params[:id])
   end
 
