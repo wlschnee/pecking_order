@@ -42,7 +42,7 @@
   <% for friendship in @user.friendships %>
   <li>
     <%= link_to friendship.friend.full_name, user_path(friendship.friend)%>
-    <%= link_to "remove", friendship, :method => :delete %>
+    <%= link_to "remove", friendship, :method => :delete,  data: {confirm: "Are you sure you want to defriend #{friendship.friend.full_name}"} %>
   </li>
   <% end %> 
   </ul>
