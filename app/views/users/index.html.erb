@@ -2,19 +2,12 @@
 
 
 <% @users.each do |user| %>
-<div>
-  <%= link_to user.full_name, user  %>
-</div>
-
-
-<% for user in @users %>
-  <div class="user">
+<div class="user">
+  <%= link_to user.full_name, user,{:style=>'color:#231f20;', :class => "css_class"}  %>  
     <p>
-      <strong><%=h user.full_name %></strong>
       <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
-      <div class="clear"></div>
     </p>
   </div>
 <% end %>
 
-<% end %>
+
