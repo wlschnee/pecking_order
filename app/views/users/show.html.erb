@@ -9,7 +9,7 @@
       <br>
       <br>
        <%= link_to "Create a New Event", new_event_path, class:"btn btn-primary" %>
-       <br>
+       &nbsp;
        <%= link_to "Attend an Event",  events_path, class:"btn btn-primary" %></li>
        <% end %>
       </ul>
@@ -33,20 +33,20 @@
     </ul>
     <% end %>
 
-<p><%= link_to "Add Friends", users_path %></p>
+<p><%= link_to "Add Friends", users_path, class:"btn btn-primary" %></p>
 
-
+<h2> Friends</h2>
 <ul>
   <% for friendship in @user.friendships %>
   <li>
     <%= friendship.friend.full_name %>
-    (<%= link_to "remove", friendship, :method => :delete %>)
+    <%= link_to "remove", friendship, :method => :delete %>
   </li>
   <% end %>  
+  <% for user in @user.inverse_friends %>
+  <li><%= user.full_name %></li>
+  <% end %>
 </ul>
-
-
-
 
 
 
