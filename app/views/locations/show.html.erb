@@ -1,4 +1,5 @@
 
+
 <h1><%= @location.name %></h1>
 <p><%= @location.address %> </p>
 
@@ -23,6 +24,7 @@
       </li>
     <% end %>
 <% end %>
+
 </ul>
 
 <h3>Previous Events</h3>
@@ -42,3 +44,13 @@
     <% end %>
   </ul>
 
+
+
+<div class="pull-left"> <!-- like button class -->
+ <%= link_to like_location_path(@location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
+ <%= @location.thumbs_up_total %>
+ <% end %> &nbsp&nbsp&nbsp
+<%= link_to like_location_path(@location, likes: false), class:"glyphicon glyphicon-thumbs-down", method: :post do%>
+ <%= @location.thumbs_down_total %>
+ <% end %>
+</div>

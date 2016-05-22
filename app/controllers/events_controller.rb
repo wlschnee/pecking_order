@@ -27,6 +27,7 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+
   def show
     @current_user = User.find_by(id: session[:user_id])
     @comments = Comment.all
