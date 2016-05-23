@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'yelp'
 gem 'figaro'
 gem "jquery-ui-rails"
+gem 'rails_12factor'
 # OmniAuth gems
 gem 'omniauth'
 gem 'omniauth-twitter'
