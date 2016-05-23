@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(params[:id])
     @user.destroy
     session[:user_id] = nil
-    flash.discard
+    flash[:danger] = "You are logged out"
     redirect_to root_url
   end
 
