@@ -14,10 +14,10 @@ class LocationsController < ApplicationController
   end
 
 
-  def like 
-  @location = Location.find(params[:id])
-  like = Like.create(likes: params[:likes], user: current_user , location: @location)
-  redirect_to :back
+  def like
+    @location = Location.find(params[:id])
+    like = Like.create(likes: params[:likes], user: current_user, location: @location)
+    redirect_to :back
   end
 
 end
