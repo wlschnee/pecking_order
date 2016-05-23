@@ -17,6 +17,8 @@ def create
 end
 
 def destroy
+@user = User.find_by(params[:id])
+@user.destroy
 session[:user_id] = nil
 flash.discard
 redirect_to root_url

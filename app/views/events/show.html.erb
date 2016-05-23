@@ -24,7 +24,7 @@ Address: <%= @event.location.address %><br>
 <div>
 
 <% if @current_user == @event.host %>
-<%= link_to "Edit", edit_event_path(@event), id: "edit", class:"btn btn-primary" %>
+<%= link_to "Edit event", edit_event_path(@event), id: "edit", class:"btn btn-primary" %>
 <% else %>
 <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: @event.join_class(current_user), remote: :true %>
 <% end %>
@@ -42,3 +42,6 @@ Address: <%= @event.location.address %><br>
        <%= f.submit "Submit", :class => "btn btn-primary" %>
       <% end %>
   <% end %>
+
+
+
