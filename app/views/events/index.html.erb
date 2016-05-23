@@ -10,6 +10,8 @@
   <div class="col-md-4" align="center">
       <% if event.guests.include?(current_user) %>
     <span class="label label-success">Going!</span>
+      <% elsif event.host == current_user %>
+      <span class="label label-info">Hosting!</span>
     <% else %>
     <span class="label label-default">Not going</span>
     <% end %><br>
@@ -17,7 +19,7 @@
     <h2><%= event.host.full_name %></h2>
     <p><%= link_to event.name, event_path(event) %></p>
     <p><%= event.start_time %> @ <%= link_to event.location.name, location_path(event.location.name) %></p>
-    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).each do |guest| %>
+    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).reverse.each do |guest| %>
     <img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
     <% end %></p>
 
