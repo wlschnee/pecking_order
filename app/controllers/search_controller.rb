@@ -9,11 +9,10 @@ class SearchController < ApplicationController
   end
 
   def users
-    @users = User.all
+    @user = User.find_by(first_name: params[:friend_name])
+    UserMailer.invite_to_event(@user).deliver_now
     binding.pry
-    @user = @users.find_by(params[:name])
-    respond_to do |format|
-      format.js
-    end
+    flash[:success] = "Email successfully sent to #{@user.email}"
+    redirect_to events_path
   end
 end

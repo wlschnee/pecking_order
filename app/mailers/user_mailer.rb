@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+  default :from => "social.eats.app@gmail.com"
 
   def welcome_email(user)
     @user = user
@@ -7,7 +8,8 @@ class UserMailer < ApplicationMailer
   end
 
   def invite_to_event(user)
-
+    @user = user
+    mail(:to => 'kdonovan2005@gmail.com', :subject => 'Testing')
   end
 
-endf
+end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     respond_to do | format |
-      format.js
+      format.json
       format.html
     end
   end
@@ -46,6 +46,13 @@ class UsersController < ApplicationController
     session[:flash] = "User deleted"
     session[:user_id] = nil
     redirect_to login_path
+  end
+
+  def invite_to_event
+    binding.pry
+    @user = User.find_by(first_name: params[:friend_name])
+    UserMailer.invite_to_event(@user).deliver_now
+    flash[:success] = "Email successfully sent to #{@user.email}"
   end
 
 private

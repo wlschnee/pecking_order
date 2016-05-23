@@ -30,11 +30,11 @@
   <br>
   <br>
   <%= form_tag '/search/users', remote: true do %>
-    <%= label_tag 'name', 'Friends' %>
-    <%= text_field_tag 'name', nil, placeholder: 'Invite your friends!' %>
-    <%= submit_tag 'Add Friend', class: "btn btn-primary" %>
-  <ul class="invited_friends list-unstyled">
-  </ul>
+    <%= label_tag 'friend_name', 'Friends' %>
+    <%= text_field_tag 'friend_name', nil, placeholder: 'Invite your friends!' %>
+    <%= submit_tag 'Invite Friend', class: "btn btn-primary" %>
+  <div class="invite_list">
+  </div>
   <% end %>
 
   <% else %>
