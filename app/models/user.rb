@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :registrations, foreign_key: :guest_id
   has_many :comments
   has_many :tips
+  has_many :friendships
+  has_many :friends, :through => :friendships
   has_many :likes
   has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
