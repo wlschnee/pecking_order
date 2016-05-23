@@ -3,13 +3,13 @@
 
 <% @locations.each do |location| %>
 <br>
- <h3><%= link_to location.name, location_path(location), {:style=>'color:#0000FF;', :class => "css_class"} %></h3>
+ <h3><%= link_to location.name, location_path(location) %></h3>
   <div class="pull-left">
- <%= link_to like_location_path(location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
- <%= location.thumbs_up_total %>
- <% end %> &nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to like_location_path(location, likes: false), class:"glyphicon glyphicon-thumbs-down", method: :post do%>
- <%= location.thumbs_down_total %>
+   <%= link_to "like", like_location_path(location, likes: true), method: :post do %>
+     <%= location.thumbs_up_total %>
+   <% end %> &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to "dislike", like_location_path(location, likes: false), method: :post do%>
+   <%= location.thumbs_down_total %>
  <% end %>
 </div>
 
