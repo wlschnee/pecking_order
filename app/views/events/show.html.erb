@@ -32,11 +32,12 @@
   <br>
   <br>
   <br>
-    <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
   </div><!-- left column end -->
 
   <div class="col-md-4">
   <h2>COMMENTS</h2>
+    <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
+
     <div id="comments">
       <%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
     </div><!-- comments end -->

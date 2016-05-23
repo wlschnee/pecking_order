@@ -33,8 +33,8 @@ gem "jquery-ui-rails"
 gem 'rails_12factor'
 # OmniAuth gems
 gem 'omniauth'
-gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 
 # Use ActiveModel has_secure_password
