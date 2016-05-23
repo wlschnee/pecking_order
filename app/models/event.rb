@@ -4,13 +4,26 @@ class Event < ActiveRecord::Base
   has_many :registrations
   has_many :guests, :class_name => "User", through: :registrations
   has_many :comments
-  accepts_nested_attributes_for :location, reject_if: :all_blank
+  accepts_nested_attributes_for :location
   accepts_nested_attributes_for :comments
   validates :start_time, presence: true
 
+  def self.upcoming_events
+    upcoming_events = []
+    self.all.each do |event|
+      if event.start_time > Time.zone.now
+        upcoming_events << event
+      end
+    end
+    upcoming_events
+  end
 
   def update_registration(user)
     user_joined?(user) ? leave(user) : join(user)
+  end
+
+  def format_time
+    start_time.strftime("%a, %b %-d, %Y, %I:%M %p")
   end
 
   def join_class(user)
@@ -31,6 +44,16 @@ class Event < ActiveRecord::Base
 
   def join_name(user)
     user_joined?(user)
+  end
+
+  def lookup_and_set_event_location(location_attributes)
+    binding.pry
+    self.location = Location.find_or_create_by(name: location_attributes[:name], address: location_attributes[:address])
+  end
+
+  def parse_time(params)
+    time = params[:event]
+    self.start_time = Time.zone.local(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
   end
 
 private

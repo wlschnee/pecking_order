@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     end
   end
   resources :events
+  resources :locations
+  resources :events do
+    get :autocomplete_location_name, on: :collection
+  end
   resources :users
   resources :registrations
   resources :friendships

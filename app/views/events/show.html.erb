@@ -8,8 +8,9 @@
   Place: <%= @event.location.name %><br>
   Address: <%= @event.location.address %><br>
 
+
   <h2>Meet details</h2>
-  <%= @event.start_time %>
+  <%= @event.format_time %><br>
   <%= @event.duration %>
 
 
@@ -39,7 +40,6 @@
   <% else %>
   <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: @event.join_class(current_user), remote: :true %>
   <% end %>
-
   <br>
   <br>
   <br>

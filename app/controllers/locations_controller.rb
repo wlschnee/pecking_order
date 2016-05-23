@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
     @locations = Location.all.sort_by{|likes| likes.thumbs_up_total}.reverse
     respond_to do |format|
       format.html
-      format.json {@location = Location.search(params[:term])}
+      format.json { render json: @locations.to_json}
     end
   end
 

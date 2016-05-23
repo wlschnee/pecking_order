@@ -1,10 +1,21 @@
 
 
-<h1> All the events</h1>
+<h1>Upcoming Events</h1>
 
-<ul>
+<ul class="list-unstyled">
   <% @events.each do |event| %>
-    <li> <%= link_to event.name, event_path(event) %> </li>
+    <li><h3><%= link_to event.name, event_path(event) %></h3>
+    <%= link_to event.location.name, location_path(event.location) %>
+    <ul style="inline">
+    <% if event.guests == [] %>
+      <%= link_to event.host.full_name, user_path(event.host) %>
+    <% else %>
+      <%= event.guests.each do |guest| %>
+        <li class="list-unstyled"><%= link_to guest.name, user_path(guest) %></li>
+      <% end %>
+    <% end %>
+    </ul>
+     </li>
   <% end %>
 </ul><br>
 <div>
