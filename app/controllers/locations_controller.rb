@@ -9,17 +9,14 @@ class LocationsController < ApplicationController
   end
 
   def show
-  @tip = Tip.new
-  @location = Location.find(params[:id])
+    @tip = Tip.new
+    @location = Location.find(params[:id])
   end
 
-  def like 
-  @location = Location.find(params[:id])
-  like = Like.create(likes: params[:likes], user: User.first, location: @location)
-  redirect_to :back
+  def like
+    @location = Location.find(params[:id])
+    like = Like.create(likes: params[:likes], user: current_user, location: @location)
+    redirect_to :back
   end
-
-
-
 
 end
