@@ -11,9 +11,17 @@ class TipsController < ApplicationController
     redirect_to location_path(@tip.location)
   end
 
+  def edit
+    binding.pry
+  end
+
+  def destroy
+    binding.pry
+  end
+
   private
     def tip_params
-      params.require(:tip).permit(:content, :location_id, :event_id)
+      params.require(:tip).permit(:id, :content, :location_id, :event_id)
     end
 
 end

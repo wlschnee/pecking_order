@@ -47,4 +47,18 @@ class User < ActiveRecord::Base
     @past
   end
 
+  def self.register_user_with_omniauth(params)
+    user = User.find_or_create_by(email: params[:info][:email])
+    if user.provider.nil?
+      user.password = user.password_confirmation = SecureRandom.urlsafe_base64(n=6)
+      user.first_name = params[:info][:name].split(' ').first
+      user.last_name = params[:info][:name].split(' ').last
+      user.provider = params[:provider]
+      user.uid = params[:uid]
+      user.picture = params[:info][:image]
+      user.save
+    end
+    user
+  end
+
 end
