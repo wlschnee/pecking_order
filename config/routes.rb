@@ -6,11 +6,7 @@ Rails.application.routes.draw do
   post "/events/:id/join" => "events#join", as: :join
   post "/search" => "search#new"
   get "/contact" => "users#contact", as: :contact
-  resources :locations do
-    member do
-      post 'like'
-    end
-  end
+  resources :locations
   resources :events
   resources :users
   resources :registrations
