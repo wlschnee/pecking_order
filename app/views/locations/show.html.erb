@@ -44,7 +44,14 @@
 </ul>
 <% else %> 
 <% @location.tips.each do |tip| %>
-  <p><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
+  <% if tip.user == current_user %>
+  <p class="tip" id="your_tip" ><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
+  <%= link_to "Edit", edit_tip_path, :class => "btn btn-warning", id: "edit_button", style: "display: none;" %>
+  <%= link_to "Delete", tip_path, method: :delete, :class => "btn btn-danger", id: "delete_button", style: "display: none;" %>
+ 
+  <% else %>
+  <p class="tip"><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
+  <% end %>
   <% end %>
   <% end %><br>
 
