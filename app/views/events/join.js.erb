@@ -6,6 +6,7 @@ function add_user() {
     $("ul.guests").append("<li id=<%= current_user.id %>>" + "<a href= '/users/<%= current_user.id %>'><%= current_user.first_name %>" + "</a></li>")
   }
   else {
+    alert("You have been removed from the event!")
     $("li[id=<%= current_user.id %>]").hide()
   }
 }

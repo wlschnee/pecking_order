@@ -24,8 +24,9 @@ class EventsController < ApplicationController
     @event.start_time = parse_time(params)
     @event.host = @current_user
     @event.save
-    redirect_to event_path(@event)
+    redirect_to events_path(@event)
   end
+
 
   def show
     @current_user = User.find_by(id: session[:user_id])
