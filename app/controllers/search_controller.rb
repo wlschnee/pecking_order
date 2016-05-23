@@ -7,4 +7,13 @@ class SearchController < ApplicationController
       format.js
     end
   end
+
+  def users
+    @users = User.all
+    binding.pry
+    @user = @users.find_by(params[:name])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

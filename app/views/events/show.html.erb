@@ -25,6 +25,17 @@
   </ul>
   <% if @current_user == @event.host %>
   <%= link_to "Edit event", edit_event_path(@event), id: "edit", class:"btn btn-primary" %>
+  <br>
+  <br>
+  <br>
+  <%= form_tag '/search/users', remote: true do %>
+    <%= label_tag 'name', 'Friends' %>
+    <%= text_field_tag 'name', nil, placeholder: 'Invite your friends!' %>
+    <%= submit_tag 'Add Friend', class: "btn btn-primary" %>
+  <ul class="invited_friends list-unstyled">
+  </ul>
+  <% end %>
+
   <% else %>
   <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: @event.join_class(current_user), remote: :true %>
   <% end %>
