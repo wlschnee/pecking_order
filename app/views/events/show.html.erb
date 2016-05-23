@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8">
-  <h1><%= @event.name %></h1>
+  <h1 id="show"><%= @event.name %></h1>
 
 
 
@@ -26,17 +26,18 @@
   <% if @current_user == @event.host %>
   <%= link_to "Edit event", edit_event_path(@event), id: "edit", class:"btn btn-primary" %>
   <% else %>
-  <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: @event.join_class(current_user), remote: :true %>
+  <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: "btn btn-#{@event.join_class(current_user)}", remote: :true %>
   <% end %>
 
   <br>
   <br>
   <br>
-    <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
   </div><!-- left column end -->
 
   <div class="col-md-4">
   <h2>COMMENTS</h2>
+    <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
+
     <div id="comments">
       <%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
     </div><!-- comments end -->

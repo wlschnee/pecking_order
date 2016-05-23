@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   resources :friendships
   resources :comments
   resources :tips
+  get '/auth/:provider/callback', to: "sessions#create"
   mount ActionCable.server => '/cable'
 end

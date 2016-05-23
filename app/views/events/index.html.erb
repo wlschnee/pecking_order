@@ -1,12 +1,27 @@
-
-
-<h1> All the events</h1>
-
-<ul>
+<div class="row">
+<div class="text-center">
+<h1>Events going on right now</h1><br>
+<%= link_to "Create a New Event", new_event_path, class:"btn btn-primary" %>
+</div>
+</div>
+<br><br>
+  <div class="row">
   <% @events.each do |event| %>
-    <li> <%= link_to event.name, event_path(event) %> </li>
+  <div class="col-md-4" align="center">
+      <% if event.guests.include?(current_user) %>
+    <span class="label label-success">Going!</span>
+    <% else %>
+    <span class="label label-default">Not going</span>
+    <% end %><br>
+    <img src="<%= event.host.picture %>" class="img-circle" height="150" width="150">
+    <h2><%= event.host.full_name %></h2>
+    <p><%= link_to event.name, event_path(event) %></p>
+    <p><%= event.start_time %> @ <%= link_to event.location.name, location_path(event.location.name) %></p>
+    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).each do |guest| %>
+    <img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
+    <% end %></p>
+
+</div>
   <% end %>
-</ul><br>
-<div>
- <%= link_to "New Event", new_event_path, class:"btn btn-primary" %>
- </div>
+
+</div>
