@@ -37,6 +37,15 @@
           </ul>
     <% end %>
   </ul>
+      <div class="pull-left"> <!-- like button class -->
+       <%= link_to like_location_path(@location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
+       <%= @location.thumbs_up_total %>
+       <% end %> &nbsp&nbsp&nbsp
+      <%= link_to like_location_path(@location, likes: false), class:"glyphicon glyphicon-thumbs-down", method: :post do%>
+       <%= @location.thumbs_down_total %>
+       <% end %>
+    </div><!-- likes_end-->
+
 </div><!-- left_column_end -->
 <div class="col-md-4">
     <h3>TIPS</h3>
