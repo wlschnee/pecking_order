@@ -8,16 +8,6 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :comments
   validates :start_time, presence: true
 
-  def self.upcoming_events
-    @all_events = Event.all
-    @upcoming = []
-    @all_events.each do |event|   
-      if event.start_time > DateTime.now
-        @upcoming << event
-      end
-    end
-    @upcoming
-  end
 
   def update_registration(user)
     user_joined?(user) ? leave(user) : join(user)
@@ -25,9 +15,9 @@ class Event < ActiveRecord::Base
 
   def join_class(user)
     if user_joined?(user)
-      "danger"
+      "btn btn-danger"
     else
-      "success"
+      "btn btn-success"
     end
   end
 
@@ -43,18 +33,5 @@ class Event < ActiveRecord::Base
     user_joined?(user)
   end
 
-private
-
-  def user_joined?(user)
-    self.registrations.where(guest_id: user.id).any?
-  end
-
-  def join(user)
-    self.registrations.create(guest_id: user.id)
-  end
-
-  def leave(user)
-    self.registrations.find_by(guest_id: user.id).destroy
-  end
 
 end
