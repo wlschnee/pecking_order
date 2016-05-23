@@ -1,5 +1,5 @@
 add_user();
-$(".btn#join-leave").attr('class', "<%= @event.join_class(current_user) %>");
+$(".btn#join-leave").attr('class', "btn btn-<%= @event.join_class(current_user) %>");
 $(".btn#join-leave").html("<%= @event.join_message(current_user) %>");
 function add_user() {
   if($(".btn").text() == "Join Event") {

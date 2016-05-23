@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :select_event, only: [:show, :update, :edit, :destroy, :join]
 
   def index
-    @users = User.all
+    @events = Event.upcoming_events
   end
 
   def join
