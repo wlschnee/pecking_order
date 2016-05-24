@@ -24,9 +24,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(params[:id])
-    @user.destroy
-    session[:user_id] = nil
+    session.delete(:user_id)
     flash.discard
     redirect_to root_url
   end

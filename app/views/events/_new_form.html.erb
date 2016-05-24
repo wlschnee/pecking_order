@@ -11,7 +11,7 @@
 
     <div class= "location_selector">
       <h2>Select a location:</h2>
-      <%= f.fields_for :location, remote: true do |location_form| %>
+      <%= f.fields_for @event.location, remote: true do |location_form| %>
         <%= location_form.label :name %>
         <%= location_form.text_field :name %><br>
         <%= location_form.label :address %>

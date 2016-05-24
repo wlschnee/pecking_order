@@ -75,11 +75,11 @@ ActiveRecord::Schema.define(version: 20160524112641) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                                                                              null: false
-    t.datetime "updated_at",                                                                              null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "picture",         default: "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
+    t.string   "picture",         default: "/assets/default_profile.png"
     t.boolean  "login_social"
     t.boolean  "email_confirmed"
     t.string   "confirm_token"

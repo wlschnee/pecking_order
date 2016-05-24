@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
 //= require hide_location.js
 //= require hide_new_location_edit.js

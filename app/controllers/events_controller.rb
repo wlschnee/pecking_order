@@ -12,6 +12,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def invite
+    binding.pry
+
+  end
+
   def new
     @event = Event.new
     @event.build_location
@@ -53,7 +58,6 @@ class EventsController < ApplicationController
       flash[:danger] = "You need to give a location for an event"
       redirect_to :back
     else
-      binding.pry
     @event.update(event_params)
     @event.lookup_and_set_event_location(location_params)
     @event.parse_time(params)
@@ -73,7 +77,7 @@ class EventsController < ApplicationController
     end
 
     def location_params
-      params[:event][:location_attributes]
+      params[:event][:location]
     end
 
     def select_event
