@@ -8,7 +8,8 @@
 
   <h2>Meet details</h2>
   <p><strong>Time: </strong><%= @event.format_time %></p>
-  <p><strong>Duration: </strong><%= @event.duration %></p>
+  <p><strong>Duration: <span id="duration"><%= @event.duration %></span>
+</strong></p>
   <h2>Who's hosting!?</h2>
     <ul>
     <li><%= link_to @event.host.first_name, user_path(@event.host) %></li>
@@ -52,3 +53,4 @@
     </div><!-- comments end -->
   </div><!-- right column end -->
 </div><!-- row end -->
+

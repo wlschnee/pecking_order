@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   before_action :select_event, only: [:show, :update, :edit, :destroy, :join]
-  autocomplete :location, :name, :full => true, :extra_data => [:address]
-
+ 
   def index
     @events = Event.upcoming_events
   end
