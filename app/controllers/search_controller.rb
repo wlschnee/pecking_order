@@ -12,10 +12,12 @@ class SearchController < ApplicationController
 
   def users
     @user = User.find(params[:friend_id])
-    @event = Event.find(params[:comment][:event_id])
+    @event = Event.find(params[:event_id])
     UserMailer.invite_to_event(@user, current_user, @event).deliver_now
     flash[:success] = "Email successfully sent to #{@user.email}"
-    redirect_to event_path(@event)
+    respond_to do |format|
+      format.js
+    end
   end
 end
 

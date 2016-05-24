@@ -10,7 +10,8 @@ class CommentsController < ApplicationController
     if @comment.save
       ActionCable.server.broadcast 'comments',
         comment: @comment.content,
-        user: @comment.user.full_name
+        user: @comment.user.full_name,
+        timestamp: @comment.timestamp
       head :ok
     end
   end

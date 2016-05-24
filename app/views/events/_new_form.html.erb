@@ -16,6 +16,7 @@
         <%= location_form.text_field :name %><br>
         <%= location_form.label :address %>
         <%= location_form.text_field :address %>
+        <%= location_form.text_field :picture, style: "display: none;"%>
       <% end %> <!-- end location fields -->
     </div>
 
@@ -27,7 +28,12 @@
   </div>
   <div>
     <%= f.label :duration %>
-    <%= f.text_field :duration %>
+    <%= label :duration, "🐰 (quick, 5-10 mins)" %>
+    <%= f.radio_button :duration, "🐰" %>
+    <%= label :duration, "🐼 (chill, 15-20 mins)" %>
+    <%= f.radio_button :duration, "🐼" %>
+    <%= label :duration, "🐢 (super chill, 20+ mins)" %>
+    <%= f.radio_button :duration, "🐢" %>
   </div>
-  <%= f.submit "Submit", :class => "btn btn-defualt" %>
+  <%= f.submit "Submit", :class => "btn btn-primary" %>
 <% end %>
