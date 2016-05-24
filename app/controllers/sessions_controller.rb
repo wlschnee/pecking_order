@@ -8,16 +8,16 @@ class SessionsController < ApplicationController
     if params.key?('provider')
       @user = User.register_user_with_omniauth(omniauth_params)
       session[:user_id] = @user.id
-      session[:flash] = "Logged in as #{@user.full_name}"
+      flash[:success] = "Welcome back #{@user.full_name}!"
       redirect_to events_path
     else
       @user = User.find_by(email: params[:email])
       if @user != nil && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        session[:flash] = "Logged in as #{@user.full_name}"
+        flash[:success] = "Welcome back #{@user.full_name}!"
         redirect_to events_path
       else
-        session[:flash] = "Invalid login"
+        flash[:danger] = "Invalid login"
         redirect_to login_path
       end
     end
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(params[:id])
     @user.destroy
     session[:user_id] = nil
-    flash.discard
+    flash[:danger] = "You are logged out"
     redirect_to root_url
   end
 

@@ -13,6 +13,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
   end
 
+
   def like
     @location = Location.find(params[:id])
     like = Like.create(likes: params[:likes], user: current_user, location: @location)

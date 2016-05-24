@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       @user.set_confirmation_token
       @user.save(validate: false)
       UserMailer.registration_confirmation(@user).deliver_now
-      session[:flash] = "Please confirm your email address to continue."
+      flash[:success] = "Please confirm your email address to continue."
       redirect_to login_path
     else
       flash[:error] = "Invalid, please try again"
@@ -34,9 +34,10 @@ class UsersController < ApplicationController
       user.validate_email
       user.save(validate: false)
       session[:user_id] = user.id
+      flash[:success] = "You have successfully confirmed your email"
       redirect_to events_path
     else
-      session[:flash] = "Sorry, user does not exist"
+      flash[:danger] = "Sorry, user does not exist"
       redirect_to root_url
     end
   end
@@ -66,7 +67,7 @@ class UsersController < ApplicationController
   def invite_to_event
     @user = User.find_by(first_name: params[:friend_name])
     UserMailer.invite_to_event(@user).deliver_now
-    session[:flash] = "Email successfully sent to #{@user.email}"
+    flash[:success] = "Email successfully sent to #{@user.email}"
   end
 
 private
