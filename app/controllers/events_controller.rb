@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :select_event, only: [:show, :update, :edit, :destroy, :join]
-  autocomplete :location, :name, :full => true, :extra_data => [:address]
 
   def index
     @events = Event.upcoming_events
@@ -19,13 +18,18 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(event_params)
-    @event.lookup_and_set_event_location(location_params)
-    @current_user = User.find_by(id: session[:user_id] )
-    @event.parse_time(params)
-    @event.host = @current_user
-    @event.save
-    redirect_to events_path(@event)
+    @event = Event.new(event_params)
+    if location_params["name"].blank? || location_params["address"].blank?
+      flash[:danger] = "You need to give a location for an event"
+      redirect_to :back
+    else
+      @event.lookup_and_set_event_location(location_params)
+      @current_user = User.find_by(id: session[:user_id] )
+      @event.parse_time(params)
+      @event.host = @current_user
+      @event.save
+      redirect_to events_path(@event)
+    end
   end
 
 
@@ -45,10 +49,11 @@ class EventsController < ApplicationController
   end
 
   def update
-    if event_params["location_attributes"]["name"].blank? && event_params["location_id"].blank?
+    if location_params["name"].blank? || location_params["address"].blank?
       flash[:danger] = "You need to give a location for an event"
       redirect_to :back
     else
+      binding.pry
     @event.update(event_params)
     @event.lookup_and_set_event_location(location_params)
     @event.parse_time(params)
