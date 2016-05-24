@@ -72,7 +72,10 @@ class User < ActiveRecord::Base
     self.confirm_token = nil
   end
 
-
-
-
+  def orphan_events
+    events = Event.where(host_id: self.id)
+    events.each do |event|
+      User.first.events << event
+    end
+  end
 end

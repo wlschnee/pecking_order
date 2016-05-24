@@ -2,13 +2,15 @@
   <div class="col-md-8">
   <h1 id="show"><%= @event.name %></h1>
   <h2>Where we're going:</h2>
+  <p><img src="<%= @event.location.picture %>" class="img-rounded" height="100" width="100"></p>
   <p><strong>Place: </strong><%= link_to @event.location.name, @event.location %></p>
   <p><strong>Address: </strong><%= @event.location.address %></p>
 
 
   <h2>Meet details</h2>
   <p><strong>Time: </strong><%= @event.format_time %></p>
-  <p><strong>Duration: </strong><%= @event.duration %></p>
+  <p><strong>Duration: <span id="duration"><%= @event.duration %></span>
+</strong></p>
   <h2>Who's hosting!?</h2>
     <ul>
     <li><%= link_to @event.host.first_name, user_path(@event.host) %></li>
@@ -23,13 +25,15 @@
     <% end %>
     <% end %>
   </ul>
-   <%= form_tag '/search/users', remote: true do %>
-    <%= label_tag 'friend_name', 'Friends' %>
-    <%= text_field_tag 'friend_name', nil, placeholder: 'Invite your friends!' %>
-    <%= submit_tag 'Invite Friend', class: "btn btn-primary" %>
-  <div class="invite_list">
-  </div>
-  <% end %>
+  <%= form_tag '/search/users', remote: true do %>
+     <%= label_tag 'friend_search_text', 'Friends' %>
+     <%= text_field_tag 'friend_search_text', nil, placeholder: 'Invite your friends!'  %>
+     <%= hidden_field_tag 'friend_id' %>
+     <%= hidden_field_tag 'event_id', @event.id %>
+     <%= submit_tag 'Invite Friend', class: "btn btn-primary" %>
+   <% end %>
+  <ul class="invite_list list-unstyled">
+  </ul>
   <% if @current_user != @event.host %>
   <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: "btn btn-#{@event.join_class(current_user)}", remote: :true %>
   <% end %>
@@ -40,9 +44,9 @@
   </div><!-- left column end -->
 
   <div class="col-md-4">
-    <div id="comments" style="height:50%;overflow-y:auto;">
+    <div id="comments">
      <h2>COMMENTS</h2>
-      <div id="comments_container">
+      <div id="comments_container" style="height: 50vh; overflow-y: scroll">
         <%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
       </div>
       <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
@@ -52,3 +56,42 @@
     </div><!-- comments end -->
   </div><!-- right column end -->
 </div><!-- row end -->
+
+<script type="text/javascript">
+
+  $('#friend_search_text').autocomplete({
+    minLength: 2,
+    source: '<%= users_path(:json) %>',
+    focus: function(event, ui) {
+      $('#friend_search_text').val(ui.item.first_name + ' ' + ui.item.last_name)
+      return false
+    },
+    select: function(event, ui) {
+      $('#friend_search_text').val(ui.item.first_name + ' ' + ui.item.last_name)
+      $('#friend_id').val(ui.item.id)
+      return false
+    }
+  })
+  .data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+    return $( "<li></li>" )
+      .data( "item.autocomplete", item )
+      .append( "<a>" + item.first_name + "</a>" )
+      .appendTo( ul )
+  }
+
+  $("textarea#comment_content").on("keypress", function(e) {
+    if (e.keyCode === 13) {
+      $(this).submit()
+      $("textarea#comment_content").val("")
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  })
+  $("input#comments_button").on("click", function(e) {
+      $(this).submit()
+      $("textarea#comment_content").val("")
+      e.preventDefault();
+      e.stopPropagation();
+  })
+</script>
+

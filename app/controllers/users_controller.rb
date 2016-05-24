@@ -3,10 +3,14 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def index
-    @users = User.all
+    if params[:term]
+      @users = User.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "#{params[:term].downcase}%", "#{params[:term].downcase}%" )
+    else
+      @users = User.all
+    end
     respond_to do | format |
-      format.json
       format.html
+      format.json { render json: @users.to_json }
     end
   end
 
@@ -58,6 +62,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.orphan_events
     @user.destroy
     session[:flash] = "User deleted"
     session[:user_id] = nil

@@ -3,5 +3,5 @@
   <%= f.text_area :content, class: "form-control", data: {textarea: "comment"}%>
 
   <%= f.hidden_field :event_id, value: event.id %>
-  <%= f.submit "Send Comment", class: "btn btn-primary", data: {send: "comment"}%>
+  <%= f.submit "Send Comment", class: "btn btn-primary", id: "comments_button", data: {send: "comment"}%>
 <%end%>
