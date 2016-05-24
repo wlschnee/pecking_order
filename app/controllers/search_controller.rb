@@ -3,7 +3,7 @@
 result = Yelp.client.search('Financial District', parameters)class SearchController < ApplicationController
   def new
     parameters = { term: params[:search], limit: 12 }
-    rresult = Yelp.client.search('Financial District', parameters)
+    result = Yelp.client.search('Financial District', parameters)
     @results = result.businesses
     respond_to do |format|
       format.js
