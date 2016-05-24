@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       user.validate_email
       user.save(validate: false)
       session[:user_id] = user.id
-      redirect_to locaitons_path
+      redirect_to events_path
     else
       session[:flash] = "Sorry, user does not exist"
       redirect_to root_url

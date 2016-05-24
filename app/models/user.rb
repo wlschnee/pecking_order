@@ -67,8 +67,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  private
-
   def validate_email
     self.email_confirmed = true
     self.confirm_token = nil
