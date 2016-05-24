@@ -49,23 +49,31 @@
 
 </div><!-- left_column_end -->
 <div class="col-md-4">
-    <h3>TIPS</h3>
-    <% if @location.tips.count == 0 %>
-    <ul>
-      <li>No tips for this location</li>
-    </ul>
-    <% else %>
-    <% @location.tips.each do |tip| %>
-      <p><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
-      <% end %>
-      <% end %><br>
+<h3>TIPS</h3>
+<% if @location.tips.count == 0 %>
+<ul>
+  <li>No tips for this location</li>
+</ul>
+<% else %> 
+<% @location.tips.each do |tip| %>
+  <% if tip.user == current_user %>
+  <p class="tip" id="your_tip" ><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
+  <%= link_to "Edit", edit_tip_path, :class => "btn btn-warning", id: "edit_button", style: "display: none;" %>
+  <%= link_to "Delete", tip_path, method: :delete, :class => "btn btn-danger", id: "delete_button", style: "display: none;" %>
+ 
+  <% else %>
+  <p class="tip"><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
+  <% end %>
+  <% end %>
+  <% end %><br>
 
 
-        <%=form_for @tip do |f|%>
-          <%= f.label :your_tip%>:
-          <%= f.text_area :content, class: "form-control", data: {textarea: "tip"}%>
-      <%= f.hidden_field :location_id, value: @location.id %>
-      <%= f.submit "Leave Tip", class: "btn btn-primary", data: {send: "tip"}%>
-    <%end%>
-  </div><!-- right column end-->
-</div><!-- row end -->
+<%=form_for @tip do |f|%>
+  <%= f.label :your_tip%>:
+  <%= f.text_area :content, class: "form-control", data: {textarea: "tip"}%>
+
+  <%= f.hidden_field :location_id, value: @location.id %>
+  <%= f.submit "Leave Tip", class: "btn btn-primary", data: {send: "tip"}%>
+<%end%>
+</div>
+</div>

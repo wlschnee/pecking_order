@@ -1,23 +1,29 @@
-
-
-<h1>Upcoming Events</h1>
-
-<ul class="list-unstyled">
+<div class="row">
+<div class="text-center">
+<h1>Events going on right now</h1><br>
+<%= link_to "Create a New Event", new_event_path, class:"btn btn-primary" %>
+</div>
+</div>
+<br><br>
+  <div class="row">
   <% @events.each do |event| %>
-    <li><h3><%= link_to event.name, event_path(event) %></h3>
-    <%= link_to event.location.name, location_path(event.location) %>
-    <ul style="inline">
-    <% if event.guests == [] %>
-      <%= link_to event.host.full_name, user_path(event.host) %>
-    <% else %>
-      <% event.guests.each do |guest| %>
-        <li><%= link_to guest.first_name, user_path(guest) %></li>
-      <% end %>
-    <% end %>
-    </ul>
-     </li>
+  <div class="col-md-4" align="center">
+      <% if event.guests.include?(current_user) %>
+    <span class="label label-success">Going!</span>
+      <% elsif event.host == current_user %>
+      <span class="label label-info">Hosting!</span>
+      <% else %>
+    <span class="label label-default">Not going</span>
+      <% end %><br>
+    <img src="<%= event.host.picture %>" class="img-circle" height="150" width="150">
+    <h2><%= link_to event.name, event_path(event) %></h2>
+    <p><strong>Hosted by <%= link_to event.host.full_name, user_path(event.host) %></strong></p>
+    <p><%= event.start_time %> @ <%= link_to event.location.name, location_path(event.location.name) %></p>
+    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).reverse.each do |guest| %>
+    <img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
+    <% end %></p>
+
+  </div>
   <% end %>
-</ul><br>
-<div>
- <%= link_to "New Event", new_event_path, class:"btn btn-primary" %>
- </div>
+
+</div>

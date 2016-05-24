@@ -1,56 +1,54 @@
 <div class="row">
   <div class="col-md-8">
-  <h1><%= @event.name %></h1>
-
-
-
+  <h1 id="show"><%= @event.name %></h1>
   <h2>Where we're going:</h2>
-  Place: <%= @event.location.name %><br>
-  Address: <%= @event.location.address %><br>
+  <p><strong>Place: </strong><%= link_to @event.location.name, @event.location %></p>
+  <p><strong>Address: </strong><%= @event.location.address %></p>
 
 
   <h2>Meet details</h2>
-  <%= @event.format_time %><br>
-  <%= @event.duration %>
-
-
+  <p><strong>Time: </strong><%= @event.format_time %></p>
+  <p><strong>Duration: </strong><%= @event.duration %></p>
   <h2>Who's hosting!?</h2>
     <ul>
     <li><%= link_to @event.host.first_name, user_path(@event.host) %></li>
     </ul>
   <h2>Who's going!?</h2>
   <ul class= "guests">
+  <% if @event.guests.count == 0 %>
+    <li>No one yet, invite some people!</li>
+    <% else %>
     <% @event.guests.each do |guest| %>
       <li id="<%= guest.id %>"><%= link_to guest.first_name, user_path(guest) %></li>
     <% end %>
+    <% end %>
   </ul>
-  <% if @current_user == @event.host %>
-  <%= link_to "Edit event", edit_event_path(@event), id: "edit", class:"btn btn-primary" %>
-  <br>
-  <br>
-  <br>
-  <%= form_tag '/search/users', remote: true do %>
+   <%= form_tag '/search/users', remote: true do %>
     <%= label_tag 'friend_name', 'Friends' %>
     <%= text_field_tag 'friend_name', nil, placeholder: 'Invite your friends!' %>
     <%= submit_tag 'Invite Friend', class: "btn btn-primary" %>
   <div class="invite_list">
   </div>
   <% end %>
-
-  <% else %>
-  <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: @event.join_class(current_user), remote: :true %>
+  <% if @current_user != @event.host %>
+  <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: "btn btn-#{@event.join_class(current_user)}", remote: :true %>
   <% end %>
-  <br>
-  <br>
-  <br>
+<br>
+    <% if @current_user == @event.host %>
+  <p><%= link_to "Edit event", edit_event_path(@event), id: "edit", class:"btn btn-warning" %></p>
+  <% end %>
   </div><!-- left column end -->
 
   <div class="col-md-4">
-  <h2>COMMENTS</h2>
-    <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
+    <div id="comments" style="height:50%;overflow-y:auto;">
+     <h2>COMMENTS</h2>
+      <div id="comments_container">
+        <%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
+      </div>
+      <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
+      <br>
 
-    <div id="comments">
-      <%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
+
     </div><!-- comments end -->
   </div><!-- right column end -->
 </div><!-- row end -->

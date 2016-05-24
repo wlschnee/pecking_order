@@ -15,6 +15,8 @@
 //= require jquery-ui
 //= require autocomplete-rails
 //= require bootstrap-sprockets
+//= require hide_location.js
+//= require hide_new_location_edit.js
 //= require ./channels/events.js
 //= require ./channels/comments.js
 // require_tree .

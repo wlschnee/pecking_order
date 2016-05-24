@@ -45,11 +45,16 @@ class EventsController < ApplicationController
   end
 
   def update
+    if event_params["location_attributes"]["name"].blank? && event_params["location_id"].blank?
+      flash[:danger] = "You need to give a location for an event"
+      redirect_to :back
+    else
     @event.update(event_params)
     @event.lookup_and_set_event_location(location_params)
     @event.parse_time(params)
     @event.save
     redirect_to event_path(@event)
+  end
   end
 
   def destroy
