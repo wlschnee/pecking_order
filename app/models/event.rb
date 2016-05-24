@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :location, reject_if: :all_blank
   accepts_nested_attributes_for :comments
   validates :start_time, presence: true
+  validates :location, presence: true
 
   def self.upcoming_events
     @all_events = Event.all
