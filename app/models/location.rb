@@ -11,7 +11,6 @@ class Location < ActiveRecord::Base
     self.likes.where(likes: true).size
   end
 
-  
    def update_likes(user)
     user_liked?(user) ? unlike(user) : like(user)
   end

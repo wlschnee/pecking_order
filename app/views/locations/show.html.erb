@@ -40,11 +40,8 @@
   </ul>
       <div class="pull-left"> <!-- like button class -->
        <%= link_to like_location_path(@location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
-       <%= @location.thumbs_up_total %>
+       <%= @location.likes_message(current_user) %>
        <% end %> &nbsp&nbsp&nbsp
-      <%= link_to like_location_path(@location, likes: false), class:"glyphicon glyphicon-thumbs-down", method: :post do%>
-       <%= @location.thumbs_down_total %>
-       <% end %>
     </div><!-- likes_end-->
 
 </div><!-- left_column_end -->
