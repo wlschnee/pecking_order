@@ -4,7 +4,8 @@ class Location < ActiveRecord::Base
   has_many :hosts, :class_name => "User", through: :events
   has_many :tips
   has_many :likes
-  validates :name, uniqueness: true
+  validates :name, presence: true
+  validates :address, presence: true
 
   def thumbs_up_total
     self.likes.where(likes: true).size

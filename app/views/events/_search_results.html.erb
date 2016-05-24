@@ -1,16 +1,18 @@
-
-The search results!
-  <div class="result-wrapper">
-    <table class="table table-hover">
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
+<div class="result-wrapper">
+  <table class="table table-hover">
+    <tr>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Yelp Rating</th>
+    </tr>
+    <% @results.each_with_index do |result, index| %>
+      <tr class="result", id="<%= index %>">
+        <td id="picture_<%= index %>"><img src="<%= result.image_url %>"></td>
+        <td id="name_<%= index %>"><%= result.name %></td>
+        <td id="address_<%= index %>"><%= result.location.display_address.join(', ') %></td>
+        <td id="rating_<%= index %>"><img src="<%= result.rating_img_url %>"></td>
       </tr>
-      <% @results.each_with_index do |result, index| %>
-        <tr class="result", id="<%= index %>">
-          <td id="name_<%= index %>"><%= result.name %></td>
-          <td id="address_<%= index %>"><%= result.location.display_address.join(', ') %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+    <% end %>
+  </table>
+</div>

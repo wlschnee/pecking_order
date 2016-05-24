@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   post "/events/:id/join" => "events#join", as: :join
   post "/search" => "search#new"
+  post "/search/users" => "search#users"
   get "/contact" => "users#contact", as: :contact
   resources :locations do
     member do
@@ -12,11 +13,17 @@ Rails.application.routes.draw do
     end
   end
   resources :events
+  resources :locations
+  resources :events do
+    get :autocomplete_location_name, on: :collection
+  end
   resources :users
+  get 'invite_to_event', to: 'users#invite_to_event', as: :invite_to_event
   resources :registrations
   resources :friendships
   resources :comments
   resources :tips
   get '/auth/:provider/callback', to: "sessions#create"
+  get '/:token/confirm_email/', to: "users#confirm_email", as: 'confirm_email'
   mount ActionCable.server => '/cable'
 end

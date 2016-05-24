@@ -1,0 +1,7 @@
+Hi <%= @user.full_name %>
+
+Thanks for registering for Social Eats! We can't wait to help organize your next lunch outing!
+
+Before we can do that, we need you to confirm your email by clicking the link below:
+
+<%= link_to "confirm", confirm_email_url(@user.confirm_token, host: "http://localhost:3000") %>
