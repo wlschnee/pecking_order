@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20160524210942) do
     t.datetime "updated_at",                                              null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "picture",         default: "/assets/default_profile.png"
+    t.string   "picture",         default: "http://i.imgur.com/VVc1lle.png"
     t.boolean  "login_social"
     t.boolean  "email_confirmed"
     t.string   "confirm_token"
