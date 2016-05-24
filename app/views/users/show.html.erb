@@ -45,7 +45,7 @@
 <h2> Friends</h2>
 <div>
   <% @user.friends.each do |friend| %>
-    <a href="<%= user_path(friend) %>"><img src="<%= @user.picture %>" height="50", width="50" class="img-circle"></a>
+    <a href="<%= user_path(friend) %>"><img src="<%= friend.picture %>" height="50", width="50" class="img-circle"></a>
     <% end %>
     </div>
 <br>
