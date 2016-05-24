@@ -19,7 +19,7 @@ class EventsController < ApplicationController
 
   def create
     binding.pry
-    @event = Event.create(event_params)
+    @event = Event.new(event_params)
     @event.lookup_and_set_event_location(location_params)
     @current_user = User.find_by(id: session[:user_id] )
     @event.parse_time(params)

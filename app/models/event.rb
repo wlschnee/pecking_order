@@ -51,7 +51,7 @@ class Event < ActiveRecord::Base
   end
 
   def lookup_and_set_event_location(location_attributes)
-    self.location = Location.find_or_create_by(name: location_attributes[:name], address: location_attributes[:address])
+    self.location = Location.find_or_create_by(name: location_attributes[:name], address: location_attributes[:address], picture: location_attributes[:picture])
   end
 
   def parse_time(params)

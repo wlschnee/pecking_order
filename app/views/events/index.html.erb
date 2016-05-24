@@ -15,7 +15,7 @@
       <% else %>
     <span class="label label-default">Not going</span>
       <% end %><br>
-    <img src="<%= event.host.picture %>" class="img-circle" height="150" width="150">
+    <a href="<%= event_path(event) %>"><img src="<%= event.host.picture %>" class="img-circle" height="150" width="150"></a>
     <h2><%= link_to event.name, event_path(event) %></h2>
     <p><strong>Hosted by <%= link_to event.host.full_name, user_path(event.host) %></strong></p>
     <p><%= event.format_time %> @ <%= link_to event.location.name, location_path(event.location.name) %></p>
