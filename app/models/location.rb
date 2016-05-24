@@ -21,6 +21,9 @@ def likes_message(user)
       elsif 
         user_liked?(user) &&  self.likes.count >= 1
      "<strong>You</strong> and <strong>#{self.likes.count - 1} other people</strong> like this location".html_safe
+   else 
+      !!user_liked?(user) && self.likes.count >= 1
+      "<strong>#{self.likes.count} other people</strong> like this location".html_safe
     end
   end
 
