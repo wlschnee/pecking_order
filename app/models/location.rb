@@ -15,9 +15,6 @@ class Location < ActiveRecord::Base
     self.likes.where(likes: false).size
   end
 
-  def update_likes(user)
-    user_liked?(user) ? unlike(user) : like(user)
-  end
 
   def previous_events
     previous_events = []
@@ -39,15 +36,6 @@ class Location < ActiveRecord::Base
     upcoming_events
   end
 
-private 
-
-def like(user)
-    self.likes.create(user_id: user.id)
-  end
- 
- def unlike(user)
-    self.likes.find_by(user_id: user.id).destroy
-  end
 
 
 end

@@ -9,8 +9,6 @@ class Event < ActiveRecord::Base
   validates :start_time, presence: true
   validates :location, presence: true
 
-<<<<<<< HEAD
-=======
   def self.upcoming_events
     @all_events = Event.all
     @upcoming = []
@@ -21,7 +19,6 @@ class Event < ActiveRecord::Base
     end
     @upcoming
   end
->>>>>>> 5b8a5722428baa6d276ae247267f7b3208421a31
 
   def update_registration(user)
     user_joined?(user) ? leave(user) : join(user)
@@ -51,10 +48,7 @@ class Event < ActiveRecord::Base
     user_joined?(user)
   end
 
-<<<<<<< HEAD
-=======
   def lookup_and_set_event_location(location_attributes)
-    binding.pry
     self.location = Location.find_or_create_by(name: location_attributes[:name], address: location_attributes[:address])
   end
 
@@ -76,6 +70,5 @@ private
   def leave(user)
     self.registrations.find_by(guest_id: user.id).destroy
   end
->>>>>>> 5b8a5722428baa6d276ae247267f7b3208421a31
 
 end
