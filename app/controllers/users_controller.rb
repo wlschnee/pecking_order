@@ -64,7 +64,6 @@ class UsersController < ApplicationController
   end
 
   def invite_to_event
-    binding.pry
     @user = User.find_by(first_name: params[:friend_name])
     UserMailer.invite_to_event(@user).deliver_now
     session[:flash] = "Email successfully sent to #{@user.email}"

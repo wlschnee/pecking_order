@@ -162,8 +162,6 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails4-autocomplete (1.1.1)
-      rails (>= 3.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -242,7 +240,6 @@ DEPENDENCIES
   rack
   rails (>= 5.0.0.beta4, < 5.1)
   rails-erd
-  rails4-autocomplete
   rails_12factor
   redis
   sass-rails
