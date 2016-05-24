@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :select_event, only: [:show, :update, :edit, :destroy, :join]
- 
+  
   def index
     @events = Event.upcoming_events
   end
@@ -18,6 +18,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    binding.pry
     @event = Event.create(event_params)
     @event.lookup_and_set_event_location(location_params)
     @current_user = User.find_by(id: session[:user_id] )

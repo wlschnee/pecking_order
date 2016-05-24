@@ -51,7 +51,6 @@ class Event < ActiveRecord::Base
   end
 
   def lookup_and_set_event_location(location_attributes)
-    binding.pry
     self.location = Location.find_or_create_by(name: location_attributes[:name], address: location_attributes[:address])
   end
 

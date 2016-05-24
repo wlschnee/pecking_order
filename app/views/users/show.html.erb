@@ -1,7 +1,10 @@
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-4">
+<img src="<%= @user.picture %>" height="200", width="200" class="img-circle">
 <h1><%= @user.full_name %></h1>
 
+</div>
+<div class="col-md-4"">
 <h3>Upcoming Events</h3>
   <% if @user.upcoming_events.count == 0 %>
     <ul>
@@ -37,17 +40,15 @@
        &nbsp;
  <%= link_to "Attend an Event",  events_path, class:"btn btn-primary" %></li>
 
-
+</div>
+<div class="col-md-4">
 <h2> Friends</h2>
-<ul>
-  <% for friendship in @user.friendships %>
-  <li>
-    <%= link_to friendship.friend.full_name, user_path(friendship.friend)%>
-    <%= link_to "remove", friendship, :method => :delete,  data: {confirm: "Are you sure you want to defriend #{friendship.friend.full_name}"} %>
-  </li>
-  <% end %> 
-  </ul>
-
+<div>
+  <% @user.friends.each do |friend| %>
+    <a href="<%= user_path(friend) %>"><img src="<%= @user.picture %>" height="50", width="50" class="img-circle"></a>
+    <% end %>
+    </div>
+<br>
 <% if current_user == @user %>
 <p><%= link_to "Add Friends", users_path, class:"btn btn-primary" %></p>
 <% end %>
@@ -57,7 +58,5 @@
 <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
 <% end %>
 </ul>
-</div>
-<div class="col-md-4">
 </div>
 </div>
