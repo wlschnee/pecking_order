@@ -24,5 +24,6 @@ Rails.application.routes.draw do
   resources :comments
   resources :tips
   get '/auth/:provider/callback', to: "sessions#create"
+  get '/:token/confirm_email/', to: "users#confirm_email", as: 'confirm_email'
   mount ActionCable.server => '/cable'
 end

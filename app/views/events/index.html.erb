@@ -10,8 +10,8 @@
     <% if event.guests == [] %>
       <%= link_to event.host.full_name, user_path(event.host) %>
     <% else %>
-      <%= event.guests.each do |guest| %>
-        <li class="list-unstyled"><%= link_to guest.name, user_path(guest) %></li>
+      <% event.guests.each do |guest| %>
+        <li><%= link_to guest.first_name, user_path(guest) %></li>
       <% end %>
     <% end %>
     </ul>
