@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   def index
-    @locations = Location.all.sort_by{|likes| likes.thumbs_up_total}.reverse
+    @locations = Location.all.sort_by{|likes| likes.likes_message(@current_user)}.reverse
     respond_to do |format|
       format.html
       format.json { render json: @locations.to_json}
@@ -21,3 +21,4 @@ class LocationsController < ApplicationController
   end
 
 end
+
