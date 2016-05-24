@@ -11,8 +11,18 @@ class Location < ActiveRecord::Base
     self.likes.where(likes: true).size
   end
 
-  def thumbs_down_total
-    self.likes.where(likes: false).size
+  
+   def update_likes(user)
+    user_liked?(user) ? unlike(user) : like(user)
+  end
+
+def likes_message(user)
+  if user_liked?(user)    &&  self.likes.count == 1
+        "<strong>You</strong> liked this location".html_safe
+      elsif 
+        user_liked?(user) &&  self.likes.count >= 1
+     "<strong>You</strong> and <strong>#{self.likes.count - 1} other people</strong> like this location".html_safe
+    end
   end
 
   def previous_events
@@ -33,6 +43,19 @@ class Location < ActiveRecord::Base
       end
     end
     upcoming_events
+  end
+
+  private
+  def user_liked?(user)
+    self.likes.where(user: user).any?
+  end
+
+  def like(user)
+    self.likes.create(user_id: user.id)
+  end
+
+  def unlike(user)
+    self.likes.find_by(user_id: user.id).destroy
   end
 
 end

@@ -1,4 +1,6 @@
+
 class SearchController < ApplicationController
+
   def new
     parameters = { term: params[:search], limit: 12 }
     result = Yelp.client.search('Financial District', parameters)
@@ -16,3 +18,5 @@ class SearchController < ApplicationController
     redirect_to event_path(@event)
   end
 end
+
+
