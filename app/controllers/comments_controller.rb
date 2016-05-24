@@ -10,14 +10,14 @@ class CommentsController < ApplicationController
     if @comment.save
       ActionCable.server.broadcast 'comments',
         comment: @comment.content,
-        user: @comment.user.full_name
+        user: @comment.user.full_name,
       head :ok
     end
   end
 
   private
     def comment_params
-      params.require(:comment).permit(:content, :event_id)
+      params.require(:comment).permit(:content, :event_id, :timestamp)
     end
 
 end

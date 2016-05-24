@@ -1,3 +1,3 @@
   <% @comments.each do |comment| %>
-    <p><strong><%= comment.user.full_name %>: </strong><%= comment.content %></p><br>
+    <p><strong><%= comment.user.full_name %>: </strong><%= comment.content %> <br> <%= comment.timestamp %> </p><br>
     <% end %>
