@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
   end
 
   def invite_to_event(user)
-    binding.pry
+    # binding.pry
     @user = user
     mail(to: @user.email, :subject => "You've been invited to an event!")
   end
