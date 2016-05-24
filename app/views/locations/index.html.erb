@@ -4,7 +4,8 @@
 <% @locations.each do |location| %>
 <br>
   <h4><%= link_to location.name, location_path(location) %></h4>
-  <%= location.address %>
+  <%= location.address %><br>
+  <br>
   <div class="pull-left">
    <%= link_to like_location_path(location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
    <%= location.thumbs_up_total %>

@@ -30,9 +30,9 @@ class Event < ActiveRecord::Base
 
   def join_class(user)
     if user_joined?(user)
-      "danger"
+      "btn btn-danger"
     else
-      "success"
+      "btn btn-success"
     end
   end
 

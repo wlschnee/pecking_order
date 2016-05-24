@@ -15,6 +15,7 @@ class Location < ActiveRecord::Base
     self.likes.where(likes: false).size
   end
 
+
   def previous_events
     previous_events = []
     self.events.each do |event|
@@ -34,5 +35,7 @@ class Location < ActiveRecord::Base
     end
     upcoming_events
   end
+
+
 
 end
