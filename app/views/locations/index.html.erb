@@ -8,11 +8,8 @@
   <br>
   <div class="pull-left">
    <%= link_to like_location_path(location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
-   <%= location.thumbs_up_total %>
      <% end %> &nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to like_location_path(location, likes: false), class:"glyphicon glyphicon-thumbs-down", method: :post do%>
- <%= location.thumbs_down_total %>
- <% end %>
+      <%= location.likes_message(current_user) %>
 </div>
   <br>
   <br>

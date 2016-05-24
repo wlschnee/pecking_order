@@ -15,6 +15,14 @@ class Location < ActiveRecord::Base
     self.likes.where(likes: false).size
   end
 
+def likes_message(user)
+  if user_liked?(user)    &&  self.likes.count == 1
+        "<strong>You</strong> liked this location".html_safe
+      elsif 
+        user_liked?(user) &&  self.likes.count >= 1
+     "<strong>You</strong> and <strong>#{self.likes.count - 1} other people</strong> like this location".html_safe
+    end
+  end
 
   def previous_events
     previous_events = []
@@ -36,6 +44,9 @@ class Location < ActiveRecord::Base
     upcoming_events
   end
 
-
+ private
+  def user_liked?(user)
+    self.likes.where(user: user).any?
+  end
 
 end
