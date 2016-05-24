@@ -13,9 +13,10 @@
   <%= link_to "Schedule One", new_event_path, class:"btn btn-primary" %>
 <% else %>
   <% @location.upcoming_events.each do |event| %>
-    <li><h3><%= link_to event.name, event_path(event) %><br></h3></li>
-      <p><%= event.start_time.strftime("%a, %b %-d, %Y, %I:%M %p") %></p><br><br>
-          <ul>
+    <li>
+      <h3><%= link_to event.name, event_path(event) %><br></h3>
+      <%= event.format_time %><br><br>
+          <ul style="inline">
           <%  event.guests.each do |guest| %>
               <li><%= link_to guest.full_name, user_path(guest) %></li>s
           <% end %>

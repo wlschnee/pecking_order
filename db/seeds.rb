@@ -17,9 +17,9 @@ other_users.each do |first, last, email|
   User.create(first_name: first, last_name: last, email: email, password: "password")
 end
 
-chipotle = Location.create(name: "Chipotle", address: "2 Broadway")
-openkitchen =  Location.create(name: "Open Kitchen", address: "33 William St")
-varietycafe = Location.create(name: "Variety Cafe", address: "25 Broadway")
+chipotle = Location.create(name: "Chipotle", address: "2 Broadway, Financial District, New York, NY")
+openkitchen =  Location.create(name: "Open Kitchen", address: "33 William St, Financial District, New York, NY")
+varietycafe = Location.create(name: "Variety Cafe", address: "25 Broadway, Financial District, New York, NY")
 
 event1 = Event.create(name: "Burrito face", location_id: 1, start_time: Time.parse("12:15"), meeting_place: "In the hall by the elevator", duration: "rabbit emoji")
 event2 = Event.create(name: "Cooked sushi", location_id: 2, start_time: Time.parse("12:00"), meeting_place: "Downstairs lobby", duration: "snail emoji")

@@ -1,7 +1,7 @@
 <%=form_for @comment, remote: true  do |f|%>
-  <%= f.label :your_comment%>:
+  <%= f.label :Leave_a_Comment%>:
   <%= f.text_area :content, class: "form-control", data: {textarea: "comment"}%>
 
   <%= f.hidden_field :event_id, value: event.id %>
-  <%= f.submit "send", class: "btn btn-primary", data: {send: "comment"}%>
+  <%= f.submit "Send Comment", class: "btn btn-primary", data: {send: "comment"}%>
 <%end%>
