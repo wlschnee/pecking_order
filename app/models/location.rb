@@ -11,8 +11,9 @@ class Location < ActiveRecord::Base
     self.likes.where(likes: true).size
   end
 
-  def thumbs_down_total
-    self.likes.where(likes: false).size
+  
+   def update_likes(user)
+    user_liked?(user) ? unlike(user) : like(user)
   end
 
 def likes_message(user)
@@ -44,9 +45,17 @@ def likes_message(user)
     upcoming_events
   end
 
- private
+  private
   def user_liked?(user)
     self.likes.where(user: user).any?
+  end
+
+  def like(user)
+    self.likes.create(user_id: user.id)
+  end
+
+  def unlike(user)
+    self.likes.find_by(user_id: user.id).destroy
   end
 
 end

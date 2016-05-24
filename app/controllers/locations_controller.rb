@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
 
   def like
     @location = Location.find(params[:id])
-    like = Like.create(likes: params[:likes], user: current_user, location: @location)
+    @location.update_likes(current_user)
     redirect_to :back
   end
 
