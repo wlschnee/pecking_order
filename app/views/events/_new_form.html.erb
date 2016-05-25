@@ -27,13 +27,16 @@
     <%= f.text_field :meeting_place %>
   </div>
   <div>
-    <%= f.label :duration %>
     <%= label :duration, "🐰 (quick, 5-10 mins)" %>
     <%= f.radio_button :duration, "🐰" %>
+  </div>
+  <div>
     <%= label :duration, "🐼 (chill, 15-20 mins)" %>
     <%= f.radio_button :duration, "🐼" %>
+</div>
+<div>    
     <%= label :duration, "🐢 (super chill, 20+ mins)" %>
     <%= f.radio_button :duration, "🐢" %>
-  </div>
-  <%= f.submit "Submit", :class => "btn btn-primary" %>
+</div>
+    <%= f.submit "Submit", :class => "btn btn-primary" %>
 <% end %>
