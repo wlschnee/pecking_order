@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "/search" => "search#new"
   post "/search/users" => "search#users"
   get "/contact" => "users#contact", as: :contact
+  delete '/users/sign_out', to: 'users/sessions#destroy', as: 'logout'
   resources :locations do
     member do
       post 'like'
@@ -22,5 +23,4 @@ Rails.application.routes.draw do
   resources :comments
   resources :tips
   mount ActionCable.server => '/cable'
-  delete '/users/sign_out', to: 'users/sessions#destroy', as: 'logout'
 end
