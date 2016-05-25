@@ -10,14 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require modernizr.custom.32229-2.8-respondjs-1-4-2.js
 //= require jquery
+//= require jquery.jpanelmenu
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
+//= require main.js
 //= require hide_location.js
 //= require hide_new_location_edit.js
 //= require ./channels/events.js
 //= require ./channels/comments.js
 //= require form_clear.js
-//= require dancing_emoticons.js
 // require_tree .

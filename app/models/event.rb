@@ -30,6 +30,20 @@ class Event < ActiveRecord::Base
     start_time.strftime("%a, %b %-d, %Y, %I:%M %p")
   end
 
+  def weekly_time
+    if self.start_time.to_date == Date.current 
+      "Today - " + start_time.strftime("%I:%M %p")
+    elsif self.start_time.to_date == Date.current + 1
+      "Tomorrow - " + start_time.strftime("%I:%M %p")
+    elsif self.start_time.to_date.cweek == Date.current.cweek && self.start_time.to_date.year == Date.current.year
+      "This #{self.start_time.to_date.strftime("%A")} - " + + start_time.strftime("%I:%M %p")
+    elsif self.start_time.to_date.cweek == (Date.current.cweek + 1) && self.start_time.to_date.year == Date.current.year
+      "Next #{self.start_time.to_date.strftime("%A")} - " + start_time.strftime("%I:%M %p")
+    else
+      start_time.strftime("%a, %b %-d, %Y, %I:%M %p")
+    end
+  end
+
   def join_class(user)
     if user_joined?(user)
       "btn btn-danger"
