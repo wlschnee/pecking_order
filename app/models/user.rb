@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :likes
-  validates :password, length: { minimum: 6 }, allow_nil: true
   validates :email, presence: true, uniqueness: true, allow_nil: true
   validates_presence_of :first_name, :last_name,
 
@@ -80,7 +79,6 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.picture = auth.info.image
-      binding.pry
     end
   end
 

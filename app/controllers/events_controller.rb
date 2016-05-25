@@ -13,7 +13,6 @@ class EventsController < ApplicationController
   end
 
   def invite
-    binding.pry
 
   end
 
