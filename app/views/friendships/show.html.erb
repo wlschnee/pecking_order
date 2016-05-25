@@ -4,7 +4,8 @@
 <div class="row">
 <% if current_user.friends.count == 0 %>
 <div class="col-md-3" align="center">
-<h3>You don't have any friends yet!</h3>
+<h4 class="text-center">You don't have any friends yet!</h3>
+<%= link_to "Add New Friends", users_path, class: "btn btn-primary" %>
 <% else %>
 <% current_user.friends.each do |user| %>
 <div class="col-md-3" align="center">
@@ -17,6 +18,5 @@
 <% end %>
 <% end %>
 </div>
-<h2>Add New Friends</h2>
 
 
