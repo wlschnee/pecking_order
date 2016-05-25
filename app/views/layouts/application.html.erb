@@ -15,7 +15,7 @@
     <body>
         <main class="container left-container">
             <div class="row">
-
+             <% if user_signed_in? %>
                 <div id="menu-target">
                     <ul>
                         <li><img src="http://i.imgur.com/NJpHj7O.png" height="150" width="150"></li>
@@ -54,6 +54,7 @@
                             </ul>
                         </div>
                     </noscript>
+                <% end %>
                     <!-- end no script -->
 
                     <div class="site-info">
@@ -68,13 +69,14 @@
                         </div>
                     </div>
                 </section><!-- end sidebar -->
-
                 <section class="col-md-7 col-sm-12 col-md-offset-5 main-content">
+                <% if user_signed_in? %>
                     <div class="sub-nav">
                         <%= link_to "Events", events_path %>
                         <%= link_to "Friends", users_path %>
-                        <%= link_to "Locations", locations_path %>  
+                        <%= link_to "Locations", locations_path %>
                     </div>
+                <% end %>
                     <div class="home-page-posts animated fadeIn ">
                       <%= yield %>
                     </div><!-- Home page posts -->
@@ -88,7 +90,6 @@
             </div> <!--/row -->
 
         </main> <!-- /container -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     </body>
 </html>

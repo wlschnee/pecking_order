@@ -37,9 +37,9 @@ gem 'rails_12factor'
 # OmniAuth gems
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-gem 'omniauth-google-oauth2'
 gem 'actionview'
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

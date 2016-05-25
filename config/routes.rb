@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  root "home#index"
-  get "/login" => "sessions#new"
-  post "/login" => "sessions#create"
-  delete "/logout", to: "sessions#destroy"
+  devise_for :users, :controllers => {:registrations => "users/registrations", :sessions => "users/sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
+  root "locations#index"
   post "/events/:id/join" => "events#join", as: :join
   post "/search" => "search#new"
   post "/search/users" => "search#users"
@@ -19,11 +17,10 @@ Rails.application.routes.draw do
   end
   resources :users
   get 'invite_to_event', to: 'users#invite_to_event', as: :invite_to_event
-  resources :registrations
+  resources :registrations, only: :join
   resources :friendships
   resources :comments
   resources :tips
-  get '/auth/:provider/callback', to: "sessions#create"
-  get '/:token/confirm_email/', to: "users#confirm_email", as: 'confirm_email'
   mount ActionCable.server => '/cable'
+  delete '/users/sign_out', to: 'users/sessions#destroy', as: 'logout'
 end
