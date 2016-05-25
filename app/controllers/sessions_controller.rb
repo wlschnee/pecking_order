@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
   end
 
   def create
+    binding.pry
     if params.key?('provider')
       @user = User.register_user_with_omniauth(omniauth_params)
       session[:user_id] = @user.id
-      flash[:success] = "Welcome back #{@user.full_name}!"
+      flash[:success] = "Hey #{@user.full_name}!"
       redirect_to events_path
     else
       @user = User.find_by(email: params[:email])

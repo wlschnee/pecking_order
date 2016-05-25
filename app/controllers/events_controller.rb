@@ -20,6 +20,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.build_location
+    @locations = Location.all
   end
 
   def create
@@ -68,7 +69,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path
+    redirect_to current_user
   end
 
   private

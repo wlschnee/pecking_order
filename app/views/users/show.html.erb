@@ -4,7 +4,7 @@
 <h1><%= @user.full_name %></h1>
 
 </div>
-<div class="col-md-4"">
+<div class="col-md-4">
 <h3>Upcoming Events</h3>
   <% if @user.upcoming_events.count == 0 %>
     <ul>
@@ -31,6 +31,7 @@
       <li><%= event.location.name %></li>
       <li><%= event.format_time %></li>
       <li>Number of Attendees: <%= event.guests.count + 1 %></li>
+      (<%= link_to "remove", event, :method => :delete %>)
     </ul>
     <% end %>
 
@@ -49,6 +50,16 @@
     <% end %>
     </div>
 <br>
+
+<% if current_user == @user %>
+<% for friendship in @user.friendships %>
+  <li>
+    <%= link_to friendship.friend.full_name, user_path(friendship) %>
+    (<%= link_to "remove", friendship, :method => :delete %>)
+  </li>
+  <% end %> 
+  <% end %>
+
 <% if current_user == @user %>
 <p><%= link_to "Add Friends", users_path, class:"btn btn-primary" %></p>
 <% end %>
