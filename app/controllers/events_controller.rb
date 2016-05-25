@@ -29,9 +29,8 @@ class EventsController < ApplicationController
       redirect_to :back
     else
       @event.lookup_and_set_event_location(location_params)
-      @current_user = User.find_by(id: session[:user_id] )
       @event.parse_time(params)
-      @event.host = @current_user
+      @event.host = current_user
       @event.save
       redirect_to events_path(@event)
     end
@@ -39,14 +38,13 @@ class EventsController < ApplicationController
 
 
   def show
-    @current_user = User.find_by(id: session[:user_id])
+    current_user
     @comment = Comment.new
     @comments = @event.comments
   end
 
   def edit
-    @current_user = User.find_by(id: session[:user_id])
-    if @event.host == @current_user
+    if @event.host == current_user
       render :edit
     else
       redirect_to events_path

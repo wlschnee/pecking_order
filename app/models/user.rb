@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
   has_many :events, foreign_key: :host_id
   has_many :registrations, foreign_key: :guest_id
   has_many :comments
@@ -6,7 +10,6 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :likes
-  has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :email, presence: true, uniqueness: true, allow_nil: true
   validates_presence_of :first_name, :last_name,
@@ -61,21 +64,24 @@ class User < ActiveRecord::Base
     user
   end
 
-  def set_confirmation_token
-    if self.confirm_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
-    end
-  end
-
-  def validate_email
-    self.email_confirmed = true
-    self.confirm_token = nil
-  end
-
   def orphan_events
     events = Event.where(host_id: self.id)
     events.each do |event|
       User.first.events << event
     end
   end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.info.name.split(" ").first
+      user.last_name = auth.info.name.split(" ").last
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.picture = auth.info.image
+      binding.pry
+    end
+  end
+
 end
