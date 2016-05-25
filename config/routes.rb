@@ -22,5 +22,4 @@ Rails.application.routes.draw do
   resources :comments
   resources :tips
   mount ActionCable.server => '/cable'
-  delete '/users/sign_out', to: 'users/sessions#destroy', as: 'logout'
 end
