@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.first_name = auth.info.name.split(" ").first
       user.last_name = auth.info.name.split(" ").last
-      user.email = auth.info.email
+      user.email = auth.info.email || "facebook_" + SecureRandom.base64() + "@beef.com"
       user.password = Devise.friendly_token[0,20]
       user.picture = auth.info.image
     end
