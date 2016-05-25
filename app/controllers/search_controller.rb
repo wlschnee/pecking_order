@@ -11,7 +11,6 @@ class SearchController < ApplicationController
   end
 
   def users
-    binding.pry
     @user = User.find(params[:friend_id])
     @event = Event.find(params[:event_id])
     UserMailer.invite_to_event(@user, current_user, @event).deliver_now
