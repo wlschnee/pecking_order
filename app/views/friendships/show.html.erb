@@ -1,8 +1,12 @@
 <div class="row">
-<h2>All Users</h2>
+<h2>Your Friends</h2>
 </div>
 <div class="row">
-<% @users.each do |user| %>
+<% if current_user.friends.count == 0 %>
+<div class="col-md-3" align="center">
+<h3>You don't have any friends yet!</h3>
+<% else %>
+<% current_user.friends.each do |user| %>
 <div class="col-md-3" align="center">
 <div class="user">
   <a href="<%= user_path(user) %>"><img src="<%= user.picture %>" class="img-circle" height="150" width="150"></a>
@@ -11,6 +15,8 @@
 
 </div>
 <% end %>
+<% end %>
 </div>
+<h2>Add New Friends</h2>
 
 
