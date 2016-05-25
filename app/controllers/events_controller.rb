@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   end
 
   def invite
+
   end
 
   def new
