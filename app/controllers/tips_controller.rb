@@ -12,11 +12,9 @@ class TipsController < ApplicationController
   end
 
   def edit
-    # binding.pry
   end
 
   def destroy
-    # binding.pry
   end
 
   private

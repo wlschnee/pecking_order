@@ -46,7 +46,7 @@
 <h2> Friends</h2>
 <div>
   <% @user.friends.each do |friend| %>
-    <a href="<%= user_path(friend) %>"><img src="<%= @user.picture %>" height="50", width="50" class="img-circle"></a>
+    <a href="<%= user_path(friend) %>"><img src="<%= friend.picture %>" height="50", width="50" class="img-circle"></a>
     <% end %>
     </div>
 <br>
@@ -66,7 +66,7 @@
 
 
 <% if current_user == @user %>
-<%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
+<%= link_to "Edit Profile", edit_user_registration_path(@user), class: "btn btn-primary" %>
 <% end %>
 </ul>
 </div>
