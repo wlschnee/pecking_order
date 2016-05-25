@@ -1,16 +1,14 @@
-
-<h1> All Locations</h1>
-
-<% @locations.each do |location| %>
-<br>
-  <h4><%= link_to location.name, location_path(location) %></h4>
-  <%= location.address %><br>
-  <br>
-  <div class="pull-left">
-   <%= link_to like_location_path(location, likes: true), class:"glyphicon glyphicon-thumbs-up", method: :post do %>
-     <% end %> &nbsp;&nbsp;&nbsp;&nbsp;
-      <%= location.likes_message(current_user) %>
+<div class="row">
+<h1>All Locations</h1>
 </div>
-  <br>
-  <br>
+<div class="row">
+<% @locations.each do |location| %>
+<div class="col-md-3" align="center">
+<div class="location">
+  <a href="<%= location_path(location) %>"><img src="<%= location.picture %>" class="img-circle" height="150" width="150"></a>
+  <h4><%= link_to location.name, location_path(location) %></h4>
+  </div>
+</div>
+
 <% end %>
+</div>

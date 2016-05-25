@@ -1,61 +1,95 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>SocialEats</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Writer Theme | Home</title>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href=<% if user_signed_in? %>
-        <%= events_path%>
-      <% else %>
-        <%= root_path %>
-      <% end %>
-      >Social Eats!</a>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <% if user_signed_in? %>
-        <ul class="nav navbar-nav">
-          <li><%= link_to "Events", events_path %></li>
-          <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "Locations", locations_path %> </li>
-        </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged in as <%= current_user.full_name %><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Profile", user_path( current_user.id)%></li>
-            <li><li><%= link_to "Friends", users_path %></li></li>
-            <li><%= link_to "Events", events_path %></a></li>
-            <li><%= link_to "Locations", locations_path %></li>
-            <li><%= link_to "Contact Us", contact_path %></li>
-            <li role="separator" class="divider"></li>
-             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
-      </ul>
-      <% end %>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-  <div class="content">
-    <div class="container">
-      <%= render 'layouts/messages' %>
-    <%= yield %>
-    </div>
-  </div>
-</body>
+          <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+          <%= csrf_meta_tags %>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+    </head>
+    <body>
+        <main class="container left-container">
+            <div class="row">
+             <% if user_signed_in? %>
+                <div id="menu-target">
+                    <ul>
+                        <li><img src="http://i.imgur.com/NJpHj7O.png" height="150" width="150"></li>
+                        <li><i class="fa fa-home"></i><%= link_to "Home", root_path %></li>
+                        <li><i class="fa fa-user"></i><%= link_to "Profile", user_path(current_user) %></li>
+                        <li><i class="fa fa-anchor"></i><%= link_to "Friends", users_path %></li>
+                        <li><i class="fa fa-star"></i><%= link_to "Locations", locations_path %></li>
+                        <li><i class="fa fa-paper-plane"></i><%= link_to "Events", events_path %></li>
+                    </ul>
+                    <hr>
+                    <ul>
+                        <li><i class="fa fa-file"></i><%= link_to "Contact", contact_path %></li>
+                        <li><i class="fa fa-file"></i><%= link_to "Log Out", logout_path %></li>
+                    </ul>
+                </div>
+
+                <section class="sidebar col-md-5 col-sm-12" style="background-image: url(http://www.socialsamosa.com/wp-content/uploads/2015/10/food.jpg">
+
+                    <span class="menu-trigger animated fadeInDown">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </span>
+
+                    <!-- if the user has javascript disabled they can still use the menu -->
+                    <noscript>
+                        <div class="no-js-menu">
+                            <ul>
+                                <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                                <li><i class="fa fa-user"></i><a href="author.html">Profile</a></li>
+                                <li><i class="fa fa-anchor"></i><a href="page.html">Friends</a></li>
+                                <li><i class="fa fa-star"></i><a href="favorites.html">Groups</a></li>
+                                <li><i class="fa fa-paper-plane"></i><a href="contact.html">Events</a></li>
+                                <li><i class="fa fa-file"></i><a href="post.html">Contact</a></li>
+                                <li><i class="fa fa-file"></i><a href="post-sidebar.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </noscript>
+                <% end %>
+                    <!-- end no script -->
+
+                    <div class="site-info">
+                        <div class="primary-info">
+                            <h1>SocialEats</h1>
+                            <p>Get Lunch with your Friends!</a> </p>
+                      </div>
+                        <div class="secondary-info">
+                            <p>
+                                <a class="btn btn-primary" href="#"><i class="fa fa-user-plus"></i>Invite Friends to Join Social Eats</a>
+                            </p>
+                        </div>
+                    </div>
+                </section><!-- end sidebar -->
+                <section class="col-md-7 col-sm-12 col-md-offset-5 main-content">
+                <% if user_signed_in? %>
+                    <div class="sub-nav">
+                        <%= link_to "Events", events_path %>
+                        <%= link_to "Friends", users_path %>
+                        <%= link_to "Locations", locations_path %>
+                    </div>
+                <% end %>
+                    <div class="home-page-posts animated fadeIn ">
+                      <%= yield %>
+                    </div><!-- Home page posts -->
+
+                            </section>
+                        </div>
+                    </div>
+
+                </section><!-- main content -->
+
+            </div> <!--/row -->
+
+        </main> <!-- /container -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    </body>
 </html>
