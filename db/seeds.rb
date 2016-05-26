@@ -193,3 +193,43 @@ Friendship.create(user_id: @vs.id, friend_id: @jm.id)
 Friendship.create(user_id: @vs.id, friend_id: @gw.id)
 Friendship.create(user_id: @vs.id, friend_id: @ss.id)
 
+Tip.create(user_id: @dt.id, location_id: 1, content: "Kung Pao Shrimp FTW")
+Tip.create(user_id: @tl.id, location_id: 2, content: "Surprisingly good wine list")
+
+Tip.create(user_id: @ww.id, location_id: 2, content: "Loved the Oreo Milkshake")
+
+Tip.create(user_id: @js.id, location_id: 3, content: "Roasted Duck was good, so was the beer")
+
+Tip.create(user_id: @as.id, location_id: 4, content: "Best burger I've ever had")
+Tip.create(user_id: @jh.id, location_id: 4, content: "A man says order the burger")
+
+Tip.create(user_id: @ss.id, location_id: 6, content: "My favorite ramen shop in NYC")
+
+Tip.create(user_id: @cl.id, location_id: 7, content: "Order any of the pastas, avoid rest of entrees")
+
+Tip.create(user_id: @bt.id, location_id: 8, content: "The brisket and cornbread are amazing!")
+
+Comment.create(user_id: @dt.id, event_id: @cookout.id, content: "Can someone invite Daario?")
+Comment.create(user_id: @jm.id, event_id: @cookout.id, content: "That guy is the worst Khaleesi")
+Comment.create(user_id: @jm.id, event_id: @cookout.id, content: "Also, I love you")
+
+Comment.create(user_id: @ww.id, event_id: @treats.id, content: "Can't wait to see you Bran")
+Comment.create(user_id: @bs.id, event_id: @treats.id, content: "WAT")
+
+Comment.create(user_id: @as.id, event_id: @burgers.id, content: "What's the name of the drink I like here?")
+Comment.create(user_id: @jh.id, event_id: @burgers.id, content: "A drink has no name")
+
+Comment.create(user_id: @js.id, event_id: @bros.id, content: "Bring your appetites!")
+Comment.create(user_id: @tg.id, event_id: @bros.id, content: "Invite Brienne plz")
+
+Comment.create(user_id: @ss.id, event_id: @ramen.id, content: "Made the resi, can't wait!")
+Comment.create(user_id: @tg.id, event_id: @ramen.id, content: "Hi Brienne")
+Comment.create(user_id: @bt.id, event_id: @ramen.id, content: "...")
+
+Comment.create(user_id: @thg.id, event_id: @hotdogs.id, content: "What did the fire say to you Varys?")
+Comment.create(user_id: @vs.id, event_id: @hotdogs.id, content: "... let's talk about something else")
+
+Comment.create(user_id: @tg.id, event_id: @hotdogs.id, content: "Hi Brienne")
+Comment.create(user_id: @bt.id, event_id: @hotdogs.id, content: "I don't remember inviting you ...")
+Comment.create(user_id: @ss.id, event_id: @hotdogs.id, content: "LOL.")
+

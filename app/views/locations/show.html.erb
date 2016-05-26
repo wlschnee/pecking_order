@@ -18,7 +18,7 @@
       <%= event.format_time %><br><br>
           <ul style="inline">
           <%  event.guests.each do |guest| %>
-              <li><%= link_to guest.full_name, user_path(guest) %></li>s
+              <li><%= link_to guest.full_name, user_path(guest) %></li>
           <% end %>
           </ul>
     <% end %>
