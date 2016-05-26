@@ -3,6 +3,6 @@ App.messages = App.cable.subscriptions.create('CommentsChannel', {
     return $('#comments_container').append(this.renderComment(data));
   },
   renderComment: function(data) {
-    return "<p> <strong>" + data.user + ": </strong>" + data.comment + "<br>" + data.timestamp + "</p><br>";
+    return "<p> <strong>" + data.user + ": </strong>" + data.comment + "<br><font size='1'>" + data.timestamp + "</font></p><br>";
   }
 });
