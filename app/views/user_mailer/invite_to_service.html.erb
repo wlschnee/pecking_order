@@ -1,23 +1,10 @@
 Hi <%= @user[:name] %>!
 <br><br>
-<%= @sender.full_name %> has invited you to join them for <%= @event.name %> on Social Eats!
+<%= @sender.full_name %> has invited you to join them on Social Eats!
 <br>
 
 <%= link_to 'Click here to sign up', new_user_registration_url(host: "http://social-eats.herokuapp.com") %> for Social Eats and join the fun!
 <br>
-<h3>Here are the details:</h3>
-  <%= @event.name %><br>
-  <%= @event.location.name %><br>
-  <%= @event.location.address %><br>
-  <%= @event.format_time %>
-<br><br>
-<h3>Here are the other people currently attending!</h3><br>
-<ul>
-<%= @sender.full_name %>
-<% @event.guests.each do |guest| %>
-  <li><%= guest.full_name %></li>
-<% end %>
-</ul>
 <br>
 Don't be lonely! Come join us!
 <br><br>
