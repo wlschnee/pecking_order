@@ -3,7 +3,7 @@
 </div>
 <div class="row">
 <% @locations.each do |location| %>
-<div class="col-md-3" align="center">
+<div class="col-md-4" align="center">
 <div class="location">
   <a href="<%= location_path(location) %>"><img src="<%= location.picture %>" class="img-circle" height="150" width="150"></a>
   <h4><%= link_to location.name, location_path(location) %></h4>
