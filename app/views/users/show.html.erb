@@ -11,7 +11,7 @@
 <h3><%= @user.full_name %></h3>
 <% if @user != current_user && current_user.friends.include?(@user) == false && current_user.inverse_friends.include?(@user) == false %>
 <%=link_to "Be friends with #{@user.first_name}!", friendships_path(:friend_id => @user), class: "btn btn-primary", method: "post" %>
-<% elsif @user != current_user && current_user.friends.include?(@user) || current_user.inverse_friends.include?(@user) %>
+<% elsif @user != current_user && current_user.friends.include?(@user) && @user.inverse_friends.include?(current_user)  %>
 <%= link_to "Remove friend", friendship_path, :method => :delete , class: "btn btn-danger" %>
 <% end %>
 </div>
@@ -52,11 +52,9 @@
 <div>
   <% @user.friends.last(6).each do |friend| %>
     <a href="<%= user_path(friend) %>"><img src="<%= friend.picture %>" height="50", width="50" class="img-circle"></a>
-    <li> <%=friend.full_name %></li>
     <% end %>
     <% for user in @user.inverse_friends %>
     <a href="<%= user_path(user) %>"><img src="<%= user.picture %>" height="50", width="50" class="img-circle"></a>
-    <li> <%=user.full_name %></li>
   <% end %>
     </div>
 <br>
