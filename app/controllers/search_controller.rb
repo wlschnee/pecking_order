@@ -7,7 +7,7 @@ class SearchController < ApplicationController
       location = params[:search_location]
       result = Yelp.client.search(location, parameters)
     else
-      geocoder = Geocoder.search(remote.request_ip)
+      geocoder = Geocoder.search(reqeust.remote_ip)
       location = { latitude: geocoder[0].data['latitude'], longitude: geocoder[0].data['longitude'] }
       result = Yelp.client.search_by_coordinates(location, parameters)
     end
