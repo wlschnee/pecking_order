@@ -1,17 +1,27 @@
+
 <div class="row">
   <div class="col-md-4">
-<img src="<%= @user.picture %>" height="200", width="200" class="img-circle">
-<h1><%= @user.full_name %></h1>
-
+<br>
+<% if current_user.friends.include?(@user) %>
+    <div align="center">
+    <span class="label label-success">Friend</span>
+    </div>
+<% end %>
+<img src="<%= @user.picture %>" height="150", width="150" class="img-circle">
+<h3><%= @user.full_name %></h3>
+<% if @user != current_user && current_user.friends.include?(@user) == false %>
+<%=link_to "Be friends with #{@user.first_name}!", friendships_path(:friend_id => @user), class: "btn btn-primary", method: "post" %>
+<% elsif @user != current_user && current_user.friends.include?(@user) %>
+<%= link_to "Remove friend", friendship_path, :method => :delete , class: "btn btn-danger" %>
+<% end %>
 </div>
 <div class="col-md-4"">
 <h3>Upcoming Events</h3>
   <% if @user.upcoming_events.count == 0 %>
     <ul>
-      <li>No upcoming events...<% if current_user == @user %> you should:
-      <br>
-      <br>
-      <br>
+      <li>No upcoming events...<% if current_user == @user %> you should:</li>
+      <li><%= link_to "Create an Event", new_event_path, class: "btn btn-success" %></li> or ...
+      <li><%= link_to "Join an Existing Event", events_path, class: "btn btn-primary"%></li>
        <% end %>
       </ul>
   <% else %>
@@ -36,10 +46,6 @@
 
     <br>
 
- <%= link_to "Create a New Event", new_event_path, class:"btn btn-primary" %>
-       &nbsp;
- <%= link_to "Attend an Event",  events_path, class:"btn btn-primary" %></li>
-
 </div>
 <div class="col-md-4">
 <h2> Friends</h2>
@@ -49,14 +55,13 @@
     <% end %>
     </div>
 <br>
-<% if current_user == @user %>
-<p><%= link_to "Add Friends", users_path, class:"btn btn-primary" %></p>
-<% end %>
-
 
 <% if current_user == @user %>
-<%= link_to "Edit Profile", edit_user_registration_path(@user), class: "btn btn-primary" %>
+<%= link_to "Edit Profile", edit_user_registration_path(@user), class: "btn btn-warning" %>
 <% end %>
 </ul>
 </div>
 </div>
+
+
+
