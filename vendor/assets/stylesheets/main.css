@@ -1,8 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Droid+Serif:400,400italic,700);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 /* line 12, ../sass/_type.sass */
-#rabbit {
-  font-size: 200%;
-}
 
 body {
   line-height: 1.65;
@@ -15,8 +12,8 @@ input,
 select,
 textarea {
   color: #333337;
-  font-family: "Droid Serif", serif;
-}
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}``
 
 /* line 24, ../sass/_type.sass */
 .post-preview,
@@ -56,7 +53,7 @@ a {
 }
 /* line 45, ../sass/_type.sass */
 a:hover, a:active {
-  color: #4761e2;
+  color: #74D03A;
   transition: all 400ms;
 }
 
@@ -666,7 +663,7 @@ ol li {
 .btn-primary:hover,
 .label-primary:hover,
 .progress-bar-primary:hover {
-  background: #2140d5;
+  background: #74D03A;
   border-color: #213ed0;
 }
 
@@ -679,7 +676,7 @@ ol li {
 /* line 16, ../sass/partials/_bootstrap-components.sass */
 .btn-primary:hover {
   background-color: #2F49CA;
-  color: #fff;
+  color: #74D03A;
 }
 /* line 20, ../sass/partials/_bootstrap-components.sass */
 .btn-primary:active {
@@ -697,7 +694,7 @@ ol li {
 .btn-success:hover,
 .label-success:hover,
 .progress-bar-success:hover {
-  background: #148f77;
+  background: #74D03A;
   border-color: #138b73;
 }
 
@@ -712,7 +709,7 @@ ol li {
 .btn-warning:hover,
 .label-warning:hover,
 .progress-bar-warning:hover {
-  background: #c87f0a;
+  background: #74D03A;
   border-color: #c37b0a;
 }
 
@@ -727,7 +724,7 @@ ol li {
 .btn-danger:hover,
 .label-danger:hover,
 .progress-bar-danger:hover {
-  background: #dd2828;
+  background: #74D03A;
   border-color: #dc2424;
 }
 
@@ -742,7 +739,7 @@ ol li {
 .btn-info:hover,
 .label-info:hover,
 .progress-bar-info:hover {
-  background: #804399;
+  background: #74D03A;
   border-color: #7d4295;
 }
 
@@ -934,6 +931,7 @@ ol li {
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 450ms;
+  overflow: hidden;
 }
 @media (min-width: 768px) {
   /* line 1, ../sass/partials/_sidebar.sass */
@@ -958,7 +956,7 @@ ol li {
 }
 /* line 23, ../sass/partials/_sidebar.sass */
 .sidebar .site-info {
-  padding: 90px 15px 0 15px;
+  padding: 90px 15px 0 0px;
   color: #fafafa;
 }
 @media (min-width: 768px) {
@@ -986,6 +984,7 @@ ol li {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   letter-spacing: -2pt;
   margin-bottom: 0;
+  padding-left: 20px;
 }
 @media (min-width: 768px) {
   /* line 36, ../sass/partials/_sidebar.sass */
@@ -1004,6 +1003,7 @@ ol li {
   line-height: 2.4rem;
   font-size: 16px;
   font-size: 1.6rem;
+  padding-left: 20px
 }
 /* line 51, ../sass/partials/_sidebar.sass */
 .sidebar .site-info i {
@@ -1013,6 +1013,8 @@ ol li {
 /* line 55, ../sass/partials/_sidebar.sass */
 .sidebar .site-info .primary-info {
   border-bottom: solid 1px rgba(255, 255, 255, 0.3);
+  background-color: rgba(71, 97, 226, 0.9);
+  width: 500%;
 }
 /* line 58, ../sass/partials/_sidebar.sass */
 .sidebar .site-info .primary-info a {
@@ -1113,7 +1115,7 @@ ol li {
 }
 /* line 52, ../sass/partials/_main-content.sass */
 .post .post-preview p {
-  font-family: "Droid Serif", serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
 }
@@ -1643,7 +1645,7 @@ form input[type=submit] {
 /* line 40, ../sass/partials/_contact.sass */
 form input[type=submit]:hover {
   border: solid 2px #222;
-  background-color: #fafafa;
+  background-color: #74D03A;
 }
 
 /* line 1, ../sass/partials/_author.sass */
@@ -1835,7 +1837,7 @@ form input[type=submit]:hover {
 /* line 30, ../sass/_nojs.sass */
 .no-js-menu li a:hover {
   border-bottom: none;
-  color: #fff;
+  color: #74D03A;
 }
 
 /* line 35, ../sass/_nojs.sass */
@@ -1965,6 +1967,6 @@ a {
 /* line 65, ../sass/main.sass */
 a:hover, a:active, a:focus {
   text-decoration: none;
-  color: #333;
+  color: #74D03A;
   border-bottom: solid 1px #999;
 }

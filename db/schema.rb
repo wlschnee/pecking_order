@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20160525140428) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
+    t.string   "email",                  default: "",                               null: false
     t.string   "password_digest"
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
@@ -82,8 +82,6 @@ ActiveRecord::Schema.define(version: 20160525140428) do
     t.string   "uid"
     t.string   "picture",                default: "http://i.imgur.com/VVc1lle.png"
     t.boolean  "login_social"
-    t.boolean  "email_confirmed"
-    t.string   "confirm_token"
     t.string   "encrypted_password",     default: "",                               null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

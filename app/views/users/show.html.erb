@@ -28,8 +28,8 @@
   <% @user.upcoming_events.each do |event| %>
     <ul class="list-unstyled">
     <li><h4><%= link_to event.name, event_path(event) %></h4></li>
-    <li><%= event.location.name %></li>
-    <li><%= event.format_time %></li>
+    <li><%= link_to event.location.name, location_path(event.location) %></li>
+    <li><%= event.weekly_time %></li>
     <li>Number of Attendees: <%= event.guests.count + 1 %></li>
     </ul>
     <% end %>
@@ -38,8 +38,8 @@
   <% @user.past_events.each do |event| %>
     <ul class="list-unstyled">
     <li><h4><%= link_to event.name, event_path(event) %></h4></li>
-      <li><%= event.location.name %></li>
-      <li><%= event.format_time %></li>
+      <li><%= link_to event.location.name, location_path(event.location) %></li>
+      <li><%= event.weekly_time %></li>
       <li>Number of Attendees: <%= event.guests.count + 1 %></li>
     </ul>
     <% end %>
