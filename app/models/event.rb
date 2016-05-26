@@ -31,12 +31,12 @@ class Event < ActiveRecord::Base
   end
 
   def weekly_time
-    if self.start_time.to_date == Date.current 
+    if self.start_time.to_date == Date.current
       "Today - " + start_time.strftime("%I:%M %p")
     elsif self.start_time.to_date == Date.current + 1
       "Tomorrow - " + start_time.strftime("%I:%M %p")
     elsif self.start_time.to_date.cweek == Date.current.cweek && self.start_time.to_date.year == Date.current.year
-      "This #{self.start_time.to_date.strftime("%A")} - " + + start_time.strftime("%I:%M %p")
+      "This #{self.start_time.to_date.strftime("%A")} - " + start_time.strftime("%I:%M %p")
     elsif self.start_time.to_date.cweek == (Date.current.cweek + 1) && self.start_time.to_date.year == Date.current.year
       "Next #{self.start_time.to_date.strftime("%A")} - " + start_time.strftime("%I:%M %p")
     else
