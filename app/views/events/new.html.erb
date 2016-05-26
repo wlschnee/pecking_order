@@ -6,8 +6,9 @@
   </div><!-- left-col -->
   <div class="col-md-6" id="right-col">
     <%= form_tag '/search', remote: true do %>
-      <%= label_tag 'search', 'Search' %>
-      <%= text_field_tag 'search', nil, placeholder: 'powered by Yelp', width: "100%" %>
+      <%= label_tag 'search_business', 'Search' %>
+      <%= text_field_tag 'search_business', nil, placeholder: 'powered by Yelp'  %>
+      <%= text_field_tag 'search_location', nil, placeholder: 'enter a location' %>
       <%= submit_tag 'Search', class: "btn btn-default" %>
     <% end %>
     <div class="search_results">

@@ -12,8 +12,9 @@
 //
 //= require modernizr.custom.32229-2.8-respondjs-1-4-2.js
 //= require jquery
-//= require jquery.jpanelmenu
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery.jpanelmenu
 //= require jquery-ui/autocomplete
 //= require jquery-ui/effect.all
 //= require jquery-ui/effect
@@ -34,8 +35,7 @@
 //= require jquery-ui/effect-transfer
 //= require bootstrap-sprockets
 //= require main.js
-//= require hide_location.js
-//= require hide_new_location_edit.js
+//= require selectize
 //= require ./channels/events.js
 //= require ./channels/comments.js
 //= require form_clear.js
