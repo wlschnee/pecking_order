@@ -2,12 +2,24 @@ add_user();
 $(".btn#join-leave").attr('class', "btn btn-<%= @event.join_class(current_user) %>");
 $(".btn#join-leave").html("<%= @event.join_message(current_user) %>");
 function add_user() {
-  if($(".btn").text() == "Join Event") {
+  if ($(".btn#join-leave").text() == "Join Event") {
+      if ($("ul.guests").children().first().text() == "No one yet, invite some people!") {
+    $("ul.guests").html("<li id=<%= current_user.id %>>" + "<a href= '/users/<%= current_user.id %>'><%= current_user.first_name %>" + "</a></li>")
+      }
+    else {
     $("ul.guests").append("<li id=<%= current_user.id %>>" + "<a href= '/users/<%= current_user.id %>'><%= current_user.first_name %>" + "</a></li>")
+    }
   }
   else {
+    if ($("ul.guests").children().first().attr('id') == <%= current_user.id %>) {
+    $("li[id=<%= current_user.id %>]").remove()
+    $("ul.guests").append("<li>No one yet, invite some people!</li>")
     alert("You have been removed from the event!")
-    $("li[id=<%= current_user.id %>]").hide()
+    }
+    else {
+      $("li[id=<%= current_user.id %>]").remove()
+      alert("You have been removed from the event!")
+    }    
   }
 }
 
