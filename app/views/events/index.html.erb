@@ -16,6 +16,7 @@
     <span class="label label-default">Not going</span>
       <% end %><br>
     <a href="<%= event_path(event) %>"><img src="<%= event.host.picture %>" class="img-circle" height="150" width="150"></a>
+
     <h4><%= link_to event.name, event_path(event) %></h4>
     <h5><strong>Hosted by <%= link_to event.host.first_name, user_path(event.host) %></strong></h5>
     <h5><%= event.weekly_time %> @ <%= link_to event.location.name, location_path(event.location) %></h5>

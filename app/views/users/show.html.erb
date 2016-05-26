@@ -41,6 +41,7 @@
       <li><%= link_to event.location.name, location_path(event.location) %></li>
       <li><%= event.weekly_time %></li>
       <li>Number of Attendees: <%= event.guests.count + 1 %></li>
+      (<%= link_to "remove", event, :method => :delete %>)
     </ul>
     <% end %>
 
@@ -58,6 +59,11 @@
   <% end %>
     </div>
 <br>
+
+
+<% if current_user == @user %>
+<p><%= link_to "Add Friends", users_path, class:"btn btn-primary" %></p>
+<% end %>
 
 
 
