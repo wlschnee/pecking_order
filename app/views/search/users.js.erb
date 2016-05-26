@@ -1,1 +1,3 @@
-$('ul.invited_friends').append('<li id="invited_guest`"><%= @user.full_name %></li>')
+$('div.email-form#main-view-email-form').prepend('<div id="email_success"></div>')
+$('div#email_success').text("Message succesfully sent!").delay(4000).fadeOut();
+

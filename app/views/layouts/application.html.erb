@@ -65,7 +65,9 @@
                         <div class="primary-info">
                             <h1>SocialEats</h1>
                             <p>Eat lunch with your friends!</a> </p>
-                                <%= render partial: 'events/mail_friends', locals: {user: @users}, display: "none"%>
+                            <div class="email-form" id="main-view-email-form">
+                                <%= render partial: 'events/mail_friends', locals: {user: @users}%>
+                            </div>
                       </div>
                         <div class="secondary-info">
                             <p>
