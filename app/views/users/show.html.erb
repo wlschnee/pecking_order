@@ -48,7 +48,7 @@
 
 </div>
 <div class="col-md-4">
-<h2> Friends</h2>
+<h2><%= link_to "Friends", friendship_path(current_user) %></h2>
 <div>
   <% @user.friends.last(6).each do |friend| %>
     <a href="<%= user_path(friend) %>"><img src="<%= friend.picture %>" height="50", width="50" class="img-circle"></a>
