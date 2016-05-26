@@ -2,7 +2,7 @@
   <div class="col-md-8">
   <h1 id="show"><%= @event.name %></h1>
   <h2>Where we're going:</h2>
-  <p><img src="<%= @event.location.picture %>" class="img-rounded" height="100" width="100"></p>
+  <p><img src="<%= @event.location.picture %>" class="img-circle" height="100" width="100"></p>
   <p><strong>Place: </strong><%= link_to @event.location.name, @event.location %></p>
   <p><strong>Address: </strong><%= @event.location.address %></p>
 
@@ -93,4 +93,3 @@
       e.stopPropagation();
   })
 </script>
-
