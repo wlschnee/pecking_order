@@ -34,11 +34,13 @@ gem 'yelp'
 gem 'figaro'
 gem "jquery-ui-rails"
 gem 'rails_12factor'
-# OmniAuth gems
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'actionview'
 gem 'devise'
+gem 'geokit'
+gem 'geokit-rails'
+gem 'selectize-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

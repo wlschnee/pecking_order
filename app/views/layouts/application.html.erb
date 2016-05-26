@@ -19,21 +19,21 @@
                 <div id="menu-target">
                     <ul>
                         <li><img src="http://i.imgur.com/NJpHj7O.png" height="150" width="150"></li>
-                        <li><i class="fa fa-home"></i><%= link_to "Home", root_path %></li>
+                        <li><i class="fa fa-home"></i><%= link_to "Home", events_path %></li>
                         <li><i class="fa fa-user"></i><%= link_to "Profile", user_path(current_user) %></li>
-                        <li><i class="fa fa-anchor"></i><%= link_to "Friends", users_path %></li>
+                        <li><i class="fa fa-anchor"></i><%= link_to "Friends", friendship_path(current_user) %></li>
                         <li><i class="fa fa-star"></i><%= link_to "Locations", locations_path %></li>
                         <li><i class="fa fa-paper-plane"></i><%= link_to "Events", events_path %></li>
                     </ul>
                     <hr>
                     <ul>
                         <li><i class="fa fa-file"></i><%= link_to "Contact", contact_path %></li>
-                        <li><i class="fa fa-file"></i><%= link_to "Log Out", logout_path %></li>
+                        <li><i class="fa fa-file"></i><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
                     </ul>
                 </div>
-
+            <% end %>
                 <section class="sidebar col-md-5 col-sm-12" style="background-image: url(http://www.socialsamosa.com/wp-content/uploads/2015/10/food.jpg">
-
+            <% if user_signed_in? %>
                     <span class="menu-trigger animated fadeInDown">
                         <span class="bar"></span>
                         <span class="bar"></span>
@@ -44,13 +44,17 @@
                     <noscript>
                         <div class="no-js-menu">
                             <ul>
-                                <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                                <li><i class="fa fa-user"></i><a href="author.html">Profile</a></li>
-                                <li><i class="fa fa-anchor"></i><a href="page.html">Friends</a></li>
-                                <li><i class="fa fa-star"></i><a href="favorites.html">Groups</a></li>
-                                <li><i class="fa fa-paper-plane"></i><a href="contact.html">Events</a></li>
-                                <li><i class="fa fa-file"></i><a href="post.html">Contact</a></li>
-                                <li><i class="fa fa-file"></i><a href="post-sidebar.html">Logout</a></li>
+                                <li><img src="http://i.imgur.com/NJpHj7O.png" height="150" width="150"></li>
+                                <li><i class="fa fa-home"></i><%= link_to "Home", root_path %></li>
+                                <li><i class="fa fa-user"></i><%= link_to "Profile", user_path(current_user) %></li>
+                                <li><i class="fa fa-anchor"></i><%= link_to "Friends", users_path %></li>
+                                <li><i class="fa fa-star"></i><%= link_to "Locations", locations_path %></li>
+                                <li><i class="fa fa-paper-plane"></i><%= link_to "Events", events_path %></li>
+                            </ul>
+                    <hr>
+                    <ul>
+                        <li><i class="fa fa-file"></i><%= link_to "Contact", contact_path %></li>
+                        <li><i class="fa fa-file"></i><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
                             </ul>
                         </div>
                     </noscript>
@@ -73,11 +77,14 @@
                 <% if user_signed_in? %>
                     <div class="sub-nav">
                         <%= link_to "Events", events_path %>
-                        <%= link_to "Friends", users_path %>
+                        <%= link_to "Friends", friendship_path(current_user) %>
                         <%= link_to "Locations", locations_path %>
+                        <%= link_to "All Users", users_path %>
                     </div>
                 <% end %>
                     <div class="home-page-posts animated fadeIn ">
+                      </div>
+                      <%= render "layouts/messages" %>
                       <%= yield %>
                     </div><!-- Home page posts -->
 

@@ -11,20 +11,6 @@ var s,
 
             // initalize
             this.initalizers();
-            this.bindUiActions();
-        },
-        bindUiActions: function (){
-            // Should include all JS user interactions
-            var self = this;
-
-            $('.select-posts,.select-categories').on('click', function () {
-                self.homePostsCatSwitch();
-            });
-
-            $('.social-icon').on('click', function(){
-                self.socialIconClick( $(this) );
-            });
-
         },
         initalizers: function (){
             // Initalize any plugins for functions when page loads
