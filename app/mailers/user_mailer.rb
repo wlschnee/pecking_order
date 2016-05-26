@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+  dafault from: 'social.eats.app@gmail.com'
 
   def invite_to_event(user, sender, event)
     @user = user
