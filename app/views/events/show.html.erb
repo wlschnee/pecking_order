@@ -25,27 +25,27 @@
     <% end %>
     <% end %>
   </ul>
+    <% if current_user != @event.host %>
+  <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: "btn btn-#{@event.join_class(current_user)}", remote: :true %>
+  <% end %>
+
   <%= form_tag '/search/users', remote: true do %>
-     <%= label_tag 'friend_search_text', 'Friends' %>
+     <%= label_tag 'friend_search_text', 'Search' %>
      <%= text_field_tag 'friend_search_text', nil, placeholder: 'Invite your friends!'  %>
      <%= hidden_field_tag 'friend_id' %>
      <%= hidden_field_tag 'event_id', @event.id %>
-     <%= submit_tag 'Invite Friend', class: "btn btn-primary" %>
+     <%= submit_tag 'Invite', class: "btn btn-primary btn-xs" %>
    <% end %>
-  <ul class="invite_list list-unstyled">
-  </ul>
-  <% if current_user != @event.host %>
-  <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: "btn btn-#{@event.join_class(current_user)}", remote: :true %>
-  <% end %>
+
 <br>
-    <% if current_user == @event.host %>
+  <% if current_user == @event.host %>
   <p><%= link_to "Edit event", edit_event_path(@event), id: "edit", class:"btn btn-warning" %></p>
   <% end %>
   </div><!-- left column end -->
 
   <div class="col-md-4">
     <div id="comments">
-     <h2>COMMENTS</h2>
+     <h2>CHAT</h2>
       <div id="comments_container" style="height: 50vh; overflow-y: scroll">
         <%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
       </div>
@@ -91,6 +91,7 @@
       $("textarea#comment_content").val("")
       e.preventDefault();
       e.stopPropagation();
+
   })
 </script>
 

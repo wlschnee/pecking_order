@@ -53,7 +53,7 @@ a {
 }
 /* line 45, ../sass/_type.sass */
 a:hover, a:active {
-  color: #4761e2;
+  color: #74D03A;
   transition: all 400ms;
 }
 
@@ -663,7 +663,7 @@ ol li {
 .btn-primary:hover,
 .label-primary:hover,
 .progress-bar-primary:hover {
-  background: #2140d5;
+  background: #74D03A;
   border-color: #213ed0;
 }
 
@@ -676,7 +676,7 @@ ol li {
 /* line 16, ../sass/partials/_bootstrap-components.sass */
 .btn-primary:hover {
   background-color: #2F49CA;
-  color: #fff;
+  color: #74D03A;
 }
 /* line 20, ../sass/partials/_bootstrap-components.sass */
 .btn-primary:active {
@@ -694,7 +694,7 @@ ol li {
 .btn-success:hover,
 .label-success:hover,
 .progress-bar-success:hover {
-  background: #148f77;
+  background: #74D03A;
   border-color: #138b73;
 }
 
@@ -709,7 +709,7 @@ ol li {
 .btn-warning:hover,
 .label-warning:hover,
 .progress-bar-warning:hover {
-  background: #c87f0a;
+  background: #74D03A;
   border-color: #c37b0a;
 }
 
@@ -724,7 +724,7 @@ ol li {
 .btn-danger:hover,
 .label-danger:hover,
 .progress-bar-danger:hover {
-  background: #dd2828;
+  background: #74D03A;
   border-color: #dc2424;
 }
 
@@ -739,7 +739,7 @@ ol li {
 .btn-info:hover,
 .label-info:hover,
 .progress-bar-info:hover {
-  background: #804399;
+  background: #74D03A;
   border-color: #7d4295;
 }
 
@@ -1640,7 +1640,7 @@ form input[type=submit] {
 /* line 40, ../sass/partials/_contact.sass */
 form input[type=submit]:hover {
   border: solid 2px #222;
-  background-color: #fafafa;
+  background-color: #74D03A;
 }
 
 /* line 1, ../sass/partials/_author.sass */
@@ -1832,7 +1832,7 @@ form input[type=submit]:hover {
 /* line 30, ../sass/_nojs.sass */
 .no-js-menu li a:hover {
   border-bottom: none;
-  color: #fff;
+  color: #74D03A;
 }
 
 /* line 35, ../sass/_nojs.sass */
@@ -1962,6 +1962,6 @@ a {
 /* line 65, ../sass/main.sass */
 a:hover, a:active, a:focus {
   text-decoration: none;
-  color: #333;
+  color: #74D03A;
   border-bottom: solid 1px #999;
 }
