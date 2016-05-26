@@ -26,7 +26,7 @@
     <% else %>
     <span id="turtle" data-toggle="tooltip" data-placement="left" title="Super chill, 20+ mins"><%= event.duration %></span>
     <% end %>
-    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).reverse.each do |guest| %>
+    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(2).reverse.each do |guest| %>
     <img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
     <% end %></p>
 
@@ -44,7 +44,7 @@ $(function() {
   $(this).effect("bounce", {distance: 100}, "slow")
 });
   $("span#panda").on("click", function() {
-  
+
   $(this).effect("shake", {distance: 5}, "slow" )
 });
   $('span#rabbit').tooltip({
