@@ -37,3 +37,25 @@
   </div>
   <%= f.submit "Submit", :class => "btn btn-primary" %>
 <% end %>
+
+<script type="text/javascript">
+  $('#friend_search_text').autocomplete({
+    minLength: 2,
+    source: '<%= users_path(:json) %>',
+    focus: function(event, ui) {
+      $('#friend_search_text').val(ui.item.first_name + ' ' + ui.item.last_name)
+      return false
+    },
+    select: function(event, ufi) {
+      $('#friend_search_text').val(ui.item.first_name + ' ' + ui.item.last_name)
+      $('#friend_id').val(ui.item.id)
+      return false
+    }
+  })
+  .data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+    return $( "<li></li>" )
+      .data( "item.autocomplete", item )
+      .append( "<a>" + item.first_name + "</a>" )
+      .appendTo( ul )
+  }
+  </script>

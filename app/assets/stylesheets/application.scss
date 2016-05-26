@@ -1,3 +1,8 @@
+/*
+*= require selectize
+*= require selectize.default
+*/
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
@@ -20,7 +25,6 @@
 @import "partials/author";
 @import "partials/alt-home";
 @import "partials/page-404";
-
 @import "nojs";
 
 .field_wth_errors label{
@@ -85,4 +89,21 @@
       background-image: none;
     }
   }
+}
+
+input#search_business {
+  background-image: url(http://rails-yelp.herokuapp.com/assets/burst_tiny-e3efdd778ee6ed3ac31815e56aace16a.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  text-align:right;
+  text-indent: 16px;
+  direction:rtl;
+}
+input#search_location {
+  text-align:right;
+}
+
+
+input[type='text']:focus{
+text-align:left;
 }
