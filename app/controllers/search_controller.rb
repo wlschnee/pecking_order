@@ -18,15 +18,17 @@ class SearchController < ApplicationController
   end
 
   def users
-    if @user = User.find_by(email: params[:invitation_email])
+    if @user = User.find_by(email: params[:invitation_email]) && params[:event_for_email] != '/'
+      binding.pry
       @event = Event.find(params[:event_for_email].gsub(/[^\d]/,''))
       UserMailer.invite_to_event(@user, current_user, @event).deliver_now
-      flash[:success] = "Email successfully sent to #{@user.email}"
+    elsif params[:event_for_email] == '/'
+      @user = {name: params[:invitation_name], email: params[:invitation_email]}
+      UserMailer.invite_to_service(@user, current_user).deliver_now
     else
       @user = {name: params[:invitation_name], email: params[:invitation_email]}
       @event = Event.find(params[:event_for_email].gsub(/[^\d]/,''))
       UserMailer.invite_to_service(@user, current_user, @event).deliver_now
-      flash[:success] = "Email successfully sent to #{params[:name]} at #{params[:email]}"
     end
     respond_to do |format|
       format.js
