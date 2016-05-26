@@ -76,6 +76,7 @@
                 <section class="col-md-7 col-sm-12 col-md-offset-5 main-content">
                 <% if user_signed_in? %>
                     <div class="sub-nav">
+                        <img src="http://i.imgur.com/VVc1lle.png" height="100" width="100" class="img-circle">
                         <%= link_to "Events", events_path %>
                         <%= link_to "Friends", friendship_path(current_user) %>
                         <%= link_to "Locations", locations_path %>
