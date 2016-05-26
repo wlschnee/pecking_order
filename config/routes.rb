@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'invite_to_event', to: 'users#invite_to_event', as: :invite_to_event
   resources :registrations, only: :join
   resources :friendships
+  resources :inverse_friendships, :controller => 'friendships'
   resources :comments
   resources :tips
   mount ActionCable.server => '/cable'
