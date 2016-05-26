@@ -1,4 +1,4 @@
-include Geokit::Geocoders
+include Geocoder
 class SearchController < ApplicationController
 
   def new
@@ -7,8 +7,8 @@ class SearchController < ApplicationController
       location = params[:search_location]
       result = Yelp.client.search(location, parameters)
     else
-      geocoder = MultiGeocoder.geocode('request.remote_ip')
-      location = { latitude: geocoder.lat, longitude: geocoder.lng }
+      geocoder = Geocoder.search(remote.request_ip)
+      location = { latitude: geocoder[0].data['latitude'], longitude: geocoder[0].data['longitude'] }
       result = Yelp.client.search_by_coordinates(location, parameters)
     end
     @results = result.businesses
