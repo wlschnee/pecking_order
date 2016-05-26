@@ -15,10 +15,10 @@
   <% @location.upcoming_events.each do |event| %>
     <li>
       <h3><%= link_to event.name, event_path(event) %><br></h3>
-      <%= event.format_time %><br><br>
+      <%= event.format_time %><br>
           <ul style="inline">
           <%  event.guests.each do |guest| %>
-              <li><%= link_to guest.full_name, user_path(guest) %></li>s
+              <li><%= link_to guest.full_name, user_path(guest) %></li>
           <% end %>
           </ul>
     <% end %>

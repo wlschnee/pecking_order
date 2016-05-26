@@ -16,9 +16,9 @@
     <span class="label label-default">Not going</span>
       <% end %><br>
     <a href="<%= event_path(event) %>"><img src="<%= event.host.picture %>" class="img-circle" height="150" width="150"></a>
-    <h3><%= link_to event.name, event_path(event) %></h3>
-    <h4><strong>Hosted by <%= link_to event.host.full_name, user_path(event.host) %></strong></h4>
-    <h4><%= event.weekly_time %> @ <%= link_to event.location.name, location_path(event.location) %></h4>
+    <h4><%= link_to event.name, event_path(event) %></h4>
+    <h5><strong>Hosted by <%= link_to event.host.first_name, user_path(event.host) %></strong></h5>
+    <h5><%= event.weekly_time %> @ <%= link_to event.location.name, location_path(event.location) %></h5>
     <% if event.duration == "🐰" %>
     <span id="rabbit" data-toggle="tooltip" data-placement="left" title="Fast! 10-15mins"><%= event.duration %></span>
     <% elsif event.duration == "🐼" %>
@@ -26,11 +26,12 @@
     <% else %>
     <span id="turtle" data-toggle="tooltip" data-placement="left" title="Super chill, 20+ mins"><%= event.duration %></span>
     <% end %>
-    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(2).reverse.each do |guest| %>
+    <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).reverse.each do |guest| %>
     <img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
     <% end %></p>
 
   </div>
+  
   <% end %>
 
 </div>
