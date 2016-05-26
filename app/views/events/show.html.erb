@@ -25,15 +25,10 @@
     <% end %>
     <% end %>
   </ul>
-  <%= form_tag '/search/users', remote: true do %>
-     <%= label_tag 'friend_search_text', 'Friends' %>
-     <%= text_field_tag 'friend_search_text', nil, placeholder: 'Invite your friends!'  %>
-     <%= hidden_field_tag 'friend_id' %>
-     <%= hidden_field_tag 'event_id', @event.id %>
-     <%= submit_tag 'Invite Friend', class: "btn btn-primary" %>
-   <% end %>
-  <ul class="invite_list list-unstyled">
-  </ul>
+  <div class="friend-invitation">
+    <h2>Invite a friend</h2>
+    <%= render partial: 'mail_friends', locals: {user: @users} %>
+  </div>
   <% if current_user != @event.host %>
   <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: "btn btn-#{@event.join_class(current_user)}", remote: :true %>
   <% end %>
@@ -58,38 +53,18 @@
 </div><!-- row end -->
 
 <script type="text/javascript">
-
-  $('#friend_search_text').autocomplete({
-    minLength: 2,
-    source: '<%= users_path(:json) %>',
-    focus: function(event, ui) {
-      $('#friend_search_text').val(ui.item.first_name + ' ' + ui.item.last_name)
-      return false
-    },
-    select: function(event, ui) {
-      $('#friend_search_text').val(ui.item.first_name + ' ' + ui.item.last_name)
-      $('#friend_id').val(ui.item.id)
-      return false
-    }
-  })
-  .data( "uiAutocomplete" )._renderItem = function( ul, item ) {
-    return $( "<li></li>" )
-      .data( "item.autocomplete", item )
-      .append( "<a>" + item.first_name + "</a>" )
-      .appendTo( ul )
-  }
   $("textarea#comment_content").on("keypress", function(e) {
     if (e.keyCode === 13) {
-      $(this).submit()
-      $("textarea#comment_content").val("")
+      $(this).submit();
+      $("textarea#comment_content").val("");
       e.preventDefault();
       e.stopPropagation();
     }
-  })
+  });
   $("input#comments_button").on("click", function(e) {
-      $(this).submit()
-      $("textarea#comment_content").val("")
+       $(this).submit();
+      $("textarea#comment_content").val("");
       e.preventDefault();
       e.stopPropagation();
-  })
+  });
 </script>

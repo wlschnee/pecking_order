@@ -1,10 +1,9 @@
-Hi <%= @user.full_name %>!
+Hi <%= @user[:name] %>!
 <br><br>
 <%= @sender.full_name %> has invited you to join them for <%= @event.name %> on Social Eats!
 <br>
-<br>
-<%= link_to 'Click here to join', event_url(@event) %>
-<br>
+
+<%= link_to 'Click here to sign up', new_user_registration_url %> for Social Eats and join the fun!
 <br>
 <h3>Here are the details:</h3>
   <%= @event.name %><br>
@@ -23,4 +22,4 @@ Hi <%= @user.full_name %>!
 Don't be lonely! Come join us!
 <br><br>
 Sincerely,<br>
-<%= @sender.first_name %>
+<%= @sender.first_name %> and your friends at Social Eats
