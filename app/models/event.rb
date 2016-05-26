@@ -31,7 +31,7 @@ class Event < ActiveRecord::Base
   end
 
   def weekly_time
-    if self.start_time.to_date == Date.current 
+    if self.start_time.to_date == Date.current
       "Today - " + start_time.strftime("%I:%M %p")
     elsif self.start_time.to_date == Date.current + 1
       "Tomorrow - " + start_time.strftime("%I:%M %p")

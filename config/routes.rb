@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users/registrations", :sessions => "users/sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
-  root "locations#index"
+  root "events#index"
   post "/events/:id/join" => "events#join", as: :join
   post "/search" => "search#new"
   post "/search/users" => "search#users"
   get "/contact" => "users#contact", as: :contact
+  delete '/users/sign_out', to: 'users/sessions#destroy', as: 'logout'
   resources :locations do
     member do
       post 'like'
