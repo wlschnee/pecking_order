@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.jpanelmenu
-//= require jquery-ui/autocomplete
 //= require jquery-ui/effect.all
 //= require jquery-ui/effect
 //= require jquery-ui/effect-blind
@@ -35,8 +34,7 @@
 //= require jquery-ui/effect-transfer
 //= require bootstrap-sprockets
 //= require main.js
-//= require selectize
 //= require ./channels/events.js
 //= require ./channels/comments.js
 //= require form_clear.js
-// require_tree .
+//= require_tree .
