@@ -3,7 +3,7 @@ Hi <%= @user[:name] %>!
 <%= @sender.full_name %> has invited you to join them for <%= @event.name %> on Social Eats!
 <br>
 
-<%= link_to 'Click here to sign up', new_user_registration_url %> for Social Eats and join the fun!
+<%= link_to 'Click here to sign up', new_user_registration_url(host: "http://social-eats.herokuapp.com") %> for Social Eats and join the fun!
 <br>
 <h3>Here are the details:</h3>
   <%= @event.name %><br>
