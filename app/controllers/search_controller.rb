@@ -7,7 +7,7 @@ class SearchController < ApplicationController
       location = params[:search_location]
       result = Yelp.client.search(location, parameters)
     else
-      geocoder = MultiGeocoder.geocode('108.41.19.28')
+      geocoder = MultiGeocoder.geocode('request.remote_ip')
       location = { latitude: geocoder.lat, longitude: geocoder.lng }
       result = Yelp.client.search_by_coordinates(location, parameters)
     end
@@ -18,10 +18,16 @@ class SearchController < ApplicationController
   end
 
   def users
-    @user = User.find(params[:friend_id])
-    @event = Event.find(params[:event_id])
-    UserMailer.invite_to_event(@user, current_user, @event).deliver_now
-    flash[:success] = "Email successfully sent to #{@user.email}"
+    if @user = User.find_by(email: params[:invitation_email])
+      @event = Event.find(params[:event_for_email].gsub(/[^\d]/,''))
+      UserMailer.invite_to_event(@user, current_user, @event).deliver_now
+      flash[:success] = "Email successfully sent to #{@user.email}"
+    else
+      @user = {name: params[:invitation_name], email: params[:invitation_email]}
+      @event = Event.find(params[:event_for_email].gsub(/[^\d]/,''))
+      UserMailer.invite_to_service(@user, current_user, @event).deliver_now
+      flash[:success] = "Email successfully sent to #{params[:name]} at #{params[:email]}"
+    end
     respond_to do |format|
       format.js
     end
