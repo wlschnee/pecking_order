@@ -9,7 +9,14 @@
 
   <h2>Meet details</h2>
   <p><strong>Time: </strong><%= @event.format_time %></p>
-  <p><strong>Duration: <span id="duration"><%= @event.duration %></span>
+  <p><strong>Duration:    <% if @event.duration == "🐰" %>
+    <span id="rabbit" data-toggle="tooltip" data-placement="left" title="Fast! 10-15mins"><%= @event.duration %></span>
+    <% elsif @event.duration == "🐼" %>
+    <span id="panda" data-toggle="tooltip" data-placement="left" title="Chill, 15-20 mins"><%= @event.duration %></span>
+    <% else %>
+    <span id="turtle" data-toggle="tooltip" data-placement="left" title="Super chill, 20+ mins"><%= @event.duration %></span>
+    <% end %>
+
 </strong></p>
   <h2>Who's hosting!?</h2>
     <ul>

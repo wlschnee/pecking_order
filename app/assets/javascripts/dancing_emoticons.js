@@ -1,5 +1,4 @@
-  $('span#rabbit').effect("bounce", {distance: 100}, "slow")
-  $('span#panda').effect("shake", {distance: 5}, "slow" )
+
   $('span#rabbit').tooltip({
     placement : 'top',
     html : true,
