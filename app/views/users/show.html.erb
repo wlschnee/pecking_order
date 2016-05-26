@@ -49,11 +49,8 @@
 
 </div>
 <div class="col-md-4">
-<% if  @user == current_user %>
-<h2><%= link_to "Friends", friendship_path(current_user) %></h2>
-<% else %>
-<h2><%= link_to "Friends", friendship_path(@user) %></h2>
-<% end %>
+<h3>Friends</h3>
+
 <div>
   <% @user.friends.last(6).each do |friend| %>
     <a href="<%= user_path(friend) %>"><img src="<%= friend.picture %>" height="50", width="50" class="img-circle"></a>
