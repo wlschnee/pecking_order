@@ -38,8 +38,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'actionview'
 gem 'devise'
-gem 'geokit'
-gem 'geokit-rails'
+gem 'geocoder'
 gem 'selectize-rails'
 
 # Use ActiveModel has_secure_password

@@ -16,6 +16,7 @@
     <span class="label label-default">Not going</span>
       <% end %><br>
     <a href="<%= event_path(event) %>"><img src="<%= event.host.picture %>" class="img-circle" height="150" width="150"></a>
+
     <h4><%= link_to event.name, event_path(event) %></h4>
     <h5><strong>Hosted by <%= link_to event.host.first_name, user_path(event.host) %></strong></h5>
     <h5><%= event.weekly_time %> @ <%= link_to event.location.name, location_path(event.location) %></h5>
@@ -27,53 +28,11 @@
     <span id="turtle" data-toggle="tooltip" data-placement="left" title="Super chill, 20+ mins"><%= event.duration %></span>
     <% end %>
     <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).reverse.each do |guest| %>
-    <img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
-    <% end %></p>
+    <a href="<%= user_path(guest) %>"><img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
+    <% end %></p></a>
 
   </div>
   
   <% end %>
 
 </div>
-
-<script>
-$(function() {
-
-
-  $("span#rabbit").on("click", function() {
-
-  $(this).effect("bounce", {distance: 100}, "slow")
-});
-  $("span#panda").on("click", function() {
-
-  $(this).effect("shake", {distance: 5}, "slow" )
-});
-  $('span#rabbit').tooltip({
-    placement : 'top',
-    html : true,
-    trigger : 'hover', //<--- you need a trigger other than manual
-    delay: {
-       show: "0",
-       hide: "500"
-    },
-  })
-  $('span#panda').tooltip({
-    placement : 'top',
-    html : true,
-    trigger : 'hover', //<--- you need a trigger other than manual
-    delay: {
-       show: "0",
-       hide: "500"
-    },
-  })
-  $('span#turtle').tooltip({
-    placement : 'top',
-    html : true,
-    trigger : 'hover', //<--- you need a trigger other than manual
-    delay: {
-       show: "0",
-       hide: "500"
-    },
-  })
-  })
-</script>
