@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users/registrations", :sessions => "users/sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
-  root "events#index"
+  root "users#index"
   post "/events/:id/join" => "events#join", as: :join
   post "/search" => "search#new"
   post "/search/users" => "search#users"
