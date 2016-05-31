@@ -20,20 +20,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
-  # def create
-  # => Moved to Devise
-    # @user = User.new(user_params)
-    # if @user.save
-      # session[:user_id] = @user.id
-      # flash[:success] = "Account successfully created"
-      # redirect_to events_path
-    # else
-      # flash[:error] = "Invalid, please try again"
-      # render :new
-    # end
-  # end
-
   def show
   end
 
@@ -48,10 +34,6 @@ class UsersController < ApplicationController
     session[:flash] = "User updated"
     redirect_to user_path
   end
-
-  # def destroy
-    # moved to user sessions controller provided by devise
-  # end
 
   def invite_to_event
     @user = User.find_by(first_name: params[:friend_name])
