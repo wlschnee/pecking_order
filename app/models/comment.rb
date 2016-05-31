@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
+  delegate :location_id, :start_time, :meeting_place, :duration, :host_id, :name, :to => :event, :prefix => true
   include ActionView::Helpers::DateHelper
 
   def timestamp
