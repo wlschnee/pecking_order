@@ -1,0 +1,8 @@
+<%= form_tag '/search/users', remote: true do %>
+  <%= label_tag 'select_users', 'Name' %>
+  <%= text_field_tag 'select_users', nil, placeholder:'name' %><br>
+  <% unless @event.nil? %>
+    <%= hidden_field_tag 'event_for_email', {value: @event.id} %><br>
+  <% end %>
+  <%= submit_tag 'Send Email', class: 'btn btn-default', id:'invitation_send' %>
+<% end %>
