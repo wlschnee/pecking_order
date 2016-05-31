@@ -3,14 +3,16 @@ class UsersController < ApplicationController
 
   def index
     if params[:term]
-      @users = User.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "#{params[:term].downcase}%", "#{params[:term].downcase}%" )
+      binding.pry
+      @users = User.search(params[:term])
+      # User.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "#{params[:term].downcase}%", "#{params[:term].downcase}%" )
     else
       @users = User.all
     end
     respond_to do | format |
       format.html
       format.json { render json:
-        @users.as_json(only: [:first_name, :last_name, :email, :id]) }
+        @users.pluck_to_hash(['first_name']) }
     end
   end
 
@@ -18,17 +20,19 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:success] = "Account successfully created"
-      redirect_to events_path
-    else
-      flash[:error] = "Invalid, please try again"
-      render :new
-    end
-  end
+
+  # def create
+  # => Moved to Devise
+    # @user = User.new(user_params)
+    # if @user.save
+      # session[:user_id] = @user.id
+      # flash[:success] = "Account successfully created"
+      # redirect_to events_path
+    # else
+      # flash[:error] = "Invalid, please try again"
+      # render :new
+    # end
+  # end
 
   def show
   end
@@ -45,13 +49,9 @@ class UsersController < ApplicationController
     redirect_to user_path
   end
 
-  def destroy
-    @user.orphan_events
-    @user.destroy
-    session[:flash] = "User deleted"
-    session[:user_id] = nil
-    redirect_to login_path
-  end
+  # def destroy
+    # moved to user sessions controller provided by devise
+  # end
 
   def invite_to_event
     @user = User.find_by(first_name: params[:friend_name])

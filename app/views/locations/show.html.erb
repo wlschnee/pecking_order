@@ -15,7 +15,7 @@
   <% @location.upcoming_events.each do |event| %>
     <li>
       <h3><%= link_to event.name, event_path(event) %><br></h3>
-      <%= event.format_time %><br>
+      <%= event.weekly_time %><br>
           <ul style="inline">
           <%  event.guests.each do |guest| %>
               <li><%= link_to guest.full_name, user_path(guest) %></li>
@@ -51,13 +51,13 @@
 <ul>
   <li>No tips for this location</li>
 </ul>
-<% else %> 
+<% else %>
 <% @location.tips.each do |tip| %>
   <% if tip.user == current_user %>
   <p class="tip" id="your_tip" ><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
   <%= link_to "Edit", edit_tip_path, :class => "btn btn-warning", id: "edit_button", style: "display: none;" %>
   <%= link_to "Delete", tip_path, method: :delete, :class => "btn btn-danger", id: "delete_button", style: "display: none;" %>
- 
+
   <% else %>
   <p class="tip"><strong><%= tip.user.full_name %>: </strong><%= tip.content %></p>
   <% end %>

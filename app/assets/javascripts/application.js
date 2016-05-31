@@ -32,6 +32,7 @@
 //= require jquery-ui/effect-size
 //= require jquery-ui/effect-slide
 //= require jquery-ui/effect-transfer
+//= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
 //= require main.js
 //= require ./channels/events.js
