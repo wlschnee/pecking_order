@@ -49,9 +49,9 @@ class UsersController < ApplicationController
     redirect_to user_path
   end
 
-  # def destroy
-    # moved to user sessions controller provided by devise
-  # end
+  def destroy
+    binding.pry
+  end
 
   def invite_to_event
     @user = User.find_by(first_name: params[:friend_name])

@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   has_many :likes
   validates :email, presence: true, uniqueness: true, allow_nil: true, if: 'provider.blank?'
-  validates_presence_of :first_name, :last_name,
+  validates_presence_of :first_name, :last_name
+  before_destroy :orphan_events
 
   def full_name
     "#{first_name} #{last_name}"
@@ -54,7 +55,7 @@ class User < ActiveRecord::Base
   def orphan_events
     events = Event.where(host_id: self.id)
     events.each do |event|
-      User.first.events << event
+      event.host = User.first
     end
   end
 
