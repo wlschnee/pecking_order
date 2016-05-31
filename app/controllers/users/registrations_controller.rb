@@ -1,6 +1,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
 
+  def destroy
+    @user.orphan_events
+    @user.destroy
+    session[:flash] = "User deleted"
+    session[:user_id] = nil
+    redirect_to root_path
+  end
+
   protected
 
   def configure_permitted_parameters

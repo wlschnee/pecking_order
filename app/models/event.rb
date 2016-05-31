@@ -26,10 +26,6 @@ class Event < ActiveRecord::Base
     user_joined?(user) ? leave(user) : join(user)
   end
 
-  def format_time
-    start_time.strftime("%a, %b %-d, %Y, %I:%M %p")
-  end
-
   def weekly_time
     if self.start_time.to_date == Date.current
       "Today - " + start_time.strftime("%I:%M %p")
