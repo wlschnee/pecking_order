@@ -30,9 +30,6 @@
     <p><span class="badge"><%= event.guests.count %></span><% event.guests.last(5).reverse.each do |guest| %>
     <a href="<%= user_path(guest) %>"><img src="<%= guest.picture %>" class="img-circle" height="50" width="50" <% if guest == current_user%> style="border:2px solid green" <% end %>>
     <% end %></p></a>
-
   </div>
-  
   <% end %>
-
 </div>
