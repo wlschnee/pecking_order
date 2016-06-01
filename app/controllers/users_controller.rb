@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     if params[:term]
       binding.pry
       @users = User.search(params[:term])
-      # User.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "#{params[:term].downcase}%", "#{params[:term].downcase}%" )
     else
       @users = User.all
     end
@@ -19,20 +18,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
-
-  # def create
-  # => Moved to Devise
-    # @user = User.new(user_params)
-    # if @user.save
-      # session[:user_id] = @user.id
-      # flash[:success] = "Account successfully created"
-      # redirect_to events_path
-    # else
-      # flash[:error] = "Invalid, please try again"
-      # render :new
-    # end
-  # end
 
   def show
   end
