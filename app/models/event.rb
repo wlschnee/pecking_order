@@ -12,14 +12,7 @@ class Event < ActiveRecord::Base
     message: "%{value} is not a 🐰(fast), 🐼(chill), or 🐢(super chill) "}
 
   def self.upcoming_events
-    @all_events = Event.all
-    @upcoming = []
-    @all_events.each do |event|
-      if event.start_time > DateTime.now
-        @upcoming << event
-      end
-    end
-    @upcoming
+    @upcoming = Event.where("start_time > ?", DateTime.now)
   end
 
   def update_registration(user)

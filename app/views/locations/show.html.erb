@@ -7,12 +7,12 @@
 
 <h3>Upcoming Events</h3>
 <ul>
-<% if @location.upcoming_events.count == 0 %>
+<% if @upcoming_events.count == 0 %>
 <li>No upcoming events here.</li>
   <br>
   <%= link_to "Schedule One", new_event_path, class:"btn btn-primary" %>
 <% else %>
-  <% @location.upcoming_events.each do |event| %>
+  <% @upcoming_events.each do |event| %>
     <li>
       <h3><%= link_to event.name, event_path(event) %><br></h3>
       <%= event.weekly_time %><br>
@@ -28,7 +28,7 @@
 
 <h3>Previous Events</h3>
   <ul>
-    <% @location.previous_events.each do |event| %>
+    <% @past_events.each do |event| %>
       <li><h3><%= link_to event.name, event_path(event) %><br></h3></li>
           <%= event.start_time.strftime("%a, %b %-d, %Y, %I:%M %p") %><br><br>
           <ul>

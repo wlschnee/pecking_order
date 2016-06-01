@@ -20,6 +20,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    user_events = UserDecorator.new(@user)
+    @upcoming_events = user_events.upcoming_events
+    @past_events = user_events.past_events
   end
 
   def contact

@@ -20,37 +20,26 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def upcoming_events
-    @all_events = []
-    @something = self.events
-    @something.each do |something|
-      @all_events << something
-    end
-    @all_registrations = self.registrations
-    @all_registrations.each do |registration|
-      @all_events << registration.event
-    end
-    @upcoming = @all_events.select do |event|
-      event.start_time > DateTime.now
-    end
-    @upcoming
-  end
+  # def upcoming_events
 
-  def past_events
-    @all_events = []
-    @something = self.events
-    @something.each do |something|
-      @all_events << something
-    end
-    @all_registrations = self.registrations
-    @all_registrations.each do |registration|
-      @all_events << registration.event
-    end
-    @past = @all_events.select do |event|
-      event.start_time < DateTime.now
-    end
-    @past
-  end
+
+  # end
+
+  # def past_events
+    # @all_events = []
+    # @something = self.events
+    # @something.each do |something|
+      # @all_events << something
+    # end
+    # @all_registrations = self.registrations
+    # @all_registrations.each do |registration|
+      # @all_events << registration.event
+    # end
+    # @past = @all_events.select do |event|
+      # event.start_time < DateTime.now
+    # end
+    # @past
+  # end
 
   def orphan_events
     events = Event.where(host_id: self.id)
