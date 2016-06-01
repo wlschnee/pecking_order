@@ -12,6 +12,14 @@ class Event < ActiveRecord::Base
     message: "%{value} is not a 🐰(fast), 🐼(chill), or 🐢(super chill) "}
 
   def self.upcoming_events
+    @all_events = Event.all
+    @upcoming = []
+    @all_events.each do |event|
+      if event.start_time > DateTime.now
+        event = EventDecorator.new(event)
+        @upcoming << event
+      end
+    end
     @upcoming = Event.where("start_time > ?", DateTime.now)
   end
 
@@ -19,19 +27,6 @@ class Event < ActiveRecord::Base
     user_joined?(user) ? leave(user) : join(user)
   end
 
-  def weekly_time
-    if self.start_time.to_date == Date.current
-      "Today - " + start_time.strftime("%I:%M %p")
-    elsif self.start_time.to_date == Date.current + 1
-      "Tomorrow - " + start_time.strftime("%I:%M %p")
-    elsif self.start_time.to_date.cweek == Date.current.cweek && self.start_time.to_date.year == Date.current.year
-      "This #{self.start_time.to_date.strftime("%A")} - " + start_time.strftime("%I:%M %p")
-    elsif self.start_time.to_date.cweek == (Date.current.cweek + 1) && self.start_time.to_date.year == Date.current.year
-      "Next #{self.start_time.to_date.strftime("%A")} - " + start_time.strftime("%I:%M %p")
-    else
-      start_time.strftime("%a, %b %-d, %Y, %I:%M %p")
-    end
-  end
 
   def join_class(user)
     if user_joined?(user)

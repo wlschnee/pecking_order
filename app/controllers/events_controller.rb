@@ -37,6 +37,7 @@ class EventsController < ApplicationController
     current_user
     @comment = Comment.new
     @comments = @event.comments
+    @fancy_event = EventDecorator.new(@event)
   end
 
   def edit
