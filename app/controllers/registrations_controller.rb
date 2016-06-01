@@ -10,4 +10,14 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def destroy
+    binding.pry
+    @user.orphan_events
+    @user.registrations.destroy
+    @user.destroy
+    session[:flash] = "User deleted"
+    session[:user_id] = nil
+    redirect_to login_path
+  end
+
 end

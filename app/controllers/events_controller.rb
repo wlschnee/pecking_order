@@ -12,10 +12,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def invite
-
-  end
-
   def new
     @event = Event.new
     @event.build_location
