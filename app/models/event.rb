@@ -12,15 +12,10 @@ class Event < ActiveRecord::Base
     message: "%{value} is not a 🐰(fast), 🐼(chill), or 🐢(super chill) "}
 
   def self.upcoming_events
-    @all_events = Event.all
-    @upcoming = []
-    @all_events.each do |event|
-      if event.start_time > DateTime.now
-        event = EventDecorator.new(event)
-        @upcoming << event
-      end
+    upcoming = Event.where("start_time > ?", DateTime.now)
+    upcoming.map do |event|
+      event = EventDecorator.new(event)
     end
-    @upcoming = Event.where("start_time > ?", DateTime.now)
   end
 
   def update_registration(user)
@@ -43,10 +38,6 @@ class Event < ActiveRecord::Base
       "Join Event"
     end
   end
-
-  # def join_name(user)
-  #   user_joined?(user)
-  # end
 
   def lookup_and_set_event_location(location_attributes)
     self.location = Location.find_or_create_by(name: location_attributes[:name], address: location_attributes[:address], picture: location_attributes[:picture])
