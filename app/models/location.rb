@@ -27,27 +27,8 @@ class Location < ActiveRecord::Base
     end
   end
 
-  def previous_events
-    previous_events = []
-    self.events.each do |event|
-      if event.start_time < Time.zone.now
-        previous_events << event
-      end
-    end
-    previous_events
-  end
-
-  def upcoming_events
-    upcoming_events = []
-    self.events.each do |event|
-      if event.start_time > Time.zone.now
-        upcoming_events << event
-      end
-    end
-    upcoming_events
-  end
-
   private
+
   def user_liked?(user)
     self.likes.where(user: user).any?
   end
