@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
         @upcoming << event
       end
     end
-    @upcoming
+    @upcoming = Event.where("start_time > ?", DateTime.now)
   end
 
   def update_registration(user)
