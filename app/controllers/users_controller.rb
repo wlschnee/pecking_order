@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     if params[:term]
       binding.pry
       @users = User.search(params[:term])
-      # User.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "#{params[:term].downcase}%", "#{params[:term].downcase}%" )
     else
       @users = User.all
     end
