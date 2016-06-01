@@ -3,31 +3,21 @@ class UsersController < ApplicationController
 
   def index
     if params[:term]
-      @users = User.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "#{params[:term].downcase}%", "#{params[:term].downcase}%" )
+      binding.pry
+      @users = User.search(params[:term])
+      # User.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "#{params[:term].downcase}%", "#{params[:term].downcase}%" )
     else
       @users = User.all
     end
     respond_to do | format |
       format.html
       format.json { render json:
-        @users.as_json(only: [:first_name, :last_name, :email, :id]) }
+        @users.pluck_to_hash(['first_name']) }
     end
   end
 
   def new
     @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:success] = "Account successfully created"
-      redirect_to events_path
-    else
-      flash[:error] = "Invalid, please try again"
-      render :new
-    end
   end
 
   def show
@@ -43,14 +33,6 @@ class UsersController < ApplicationController
     @user.update(user_params)
     session[:flash] = "User updated"
     redirect_to user_path
-  end
-
-  def destroy
-    @user.orphan_events
-    @user.destroy
-    session[:flash] = "User deleted"
-    session[:user_id] = nil
-    redirect_to login_path
   end
 
   def invite_to_event

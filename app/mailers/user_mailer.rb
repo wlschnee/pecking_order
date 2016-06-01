@@ -14,8 +14,6 @@ class UserMailer < ApplicationMailer
     @event = event
     mail(to: @user[:email], :subject => "Invitation to join Social Eats from #{sender.first_name}!")
   end
-
-
   def invite_to_service(user, sender)
     @user = user
     @sender = sender

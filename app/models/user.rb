@@ -70,4 +70,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.search(term)
+    where("lower(first_name) iLIKE ? OR lower(last_name) ILIKE ?", "%#{term}%")
+  end
+
+  def self.pluck_to_hash(keys)
+    pluck(*keys).map{ |i| Hash[*keys.zip(pa).flatten]}
+  end
+
 end
