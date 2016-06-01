@@ -12,6 +12,7 @@ class EventDatetimeComparison
   def self.divide_events(all_events)
     events_hash = {upcoming: [], past: []}
     all_events.each do |event|
+      event = EventDecorator.new(event)
       if event.start_time > DateTime.now
         events_hash[:upcoming] << event
       else
