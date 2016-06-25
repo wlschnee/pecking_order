@@ -1,8 +1,6 @@
 <%= form_tag '/search/users', remote: true do %>
-  <%= label_tag 'invitation_name', 'Name' %>
-  <%= text_field_tag 'invitation_name', nil, placeholder:'name' %><br>
-  <%= label_tag 'invitation_email', 'Email' %>
-  <%= text_field_tag 'invitation_email', nil, placeholder:'email address' %>
+  <%= label_tag 'select_users', 'Name' %>
+  <%= text_field_tag 'select_users', nil, placeholder:'name' %><br>
   <% unless @event.nil? %>
     <%= hidden_field_tag 'event_for_email', {value: @event.id} %><br>
   <% end %>

@@ -17,7 +17,7 @@
 </div>
 <div class="col-md-4">
 <h3>Upcoming Events</h3>
-  <% if @user.upcoming_events.count == 0 %>
+  <% if @upcoming_events.count == 0 %>
     <ul>
       <li>No upcoming events...<% if current_user == @user %> you should:</li>
       <li><%= link_to "Create an Event", new_event_path, class: "btn btn-success" %></li> or ...
@@ -25,7 +25,7 @@
        <% end %>
       </ul>
   <% else %>
-  <% @user.upcoming_events.each do |event| %>
+  <% @upcoming_events.each do |event| %>
     <ul class="list-unstyled">
     <li><h4><%= link_to event.name, event_path(event) %></h4></li>
     <li><%= link_to event.location.name, location_path(event.location) %></li>
@@ -35,7 +35,7 @@
     <% end %>
   <% end %>
   <h3>Past Events</h3>
-  <% @user.past_events.each do |event| %>
+  <% @past_events.each do |event| %>
     <ul class="list-unstyled">
     <li><h4><%= link_to event.name, event_path(event) %></h4></li>
       <li><%= link_to event.location.name, location_path(event.location) %></li>
@@ -50,6 +50,7 @@
 </div>
 <div class="col-md-4">
 <h3>Friends</h3>
+
 <div>
   <% @user.friends.last(6).each do |friend| %>
     <a href="<%= user_path(friend) %>"><img src="<%= friend.picture %>" height="50", width="50" class="img-circle"></a>

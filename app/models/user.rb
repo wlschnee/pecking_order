@@ -13,48 +13,39 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   has_many :likes
   validates :email, presence: true, uniqueness: true, allow_nil: true, if: 'provider.blank?'
-  validates_presence_of :first_name, :last_name,
+  validates_presence_of :first_name, :last_name
+  before_destroy :orphan_events
 
   def full_name
     "#{first_name} #{last_name}"
   end
 
-  def upcoming_events
-    @all_events = []
-    @something = self.events
-    @something.each do |something|
-      @all_events << something
-    end
-    @all_registrations = self.registrations
-    @all_registrations.each do |registration|
-      @all_events << registration.event
-    end
-    @upcoming = @all_events.select do |event|
-      event.start_time > DateTime.now
-    end
-    @upcoming
-  end
+  # def upcoming_events
 
-  def past_events
-    @all_events = []
-    @something = self.events
-    @something.each do |something|
-      @all_events << something
-    end
-    @all_registrations = self.registrations
-    @all_registrations.each do |registration|
-      @all_events << registration.event
-    end
-    @past = @all_events.select do |event|
-      event.start_time < DateTime.now
-    end
-    @past
-  end
+
+  # end
+
+  # def past_events
+    # @all_events = []
+    # @something = self.events
+    # @something.each do |something|
+      # @all_events << something
+    # end
+    # @all_registrations = self.registrations
+    # @all_registrations.each do |registration|
+      # @all_events << registration.event
+    # end
+    # @past = @all_events.select do |event|
+      # event.start_time < DateTime.now
+    # end
+    # @past
+  # end
 
   def orphan_events
     events = Event.where(host_id: self.id)
     events.each do |event|
-      User.first.events << event
+      event.host = User.first
+      binding.pry
     end
   end
 
@@ -68,6 +59,14 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.picture = auth.info.image
     end
+  end
+
+  def self.search(term)
+    where("lower(first_name) iLIKE ? OR lower(last_name) ILIKE ?", "%#{term}%")
+  end
+
+  def self.pluck_to_hash(keys)
+    pluck(*keys).map{ |i| Hash[*keys.zip(pa).flatten]}
   end
 
 end

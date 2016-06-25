@@ -1,47 +1,47 @@
 <div class="row">
   <div class="col-md-8">
-  <h1 id="show"><%= @event.name %></h1>
+  <h1 id="show"><%= @fancy_event.name %></h1>
   <h2>Where we're going:</h2>
-  <p><img src="<%= @event.location.picture %>" class="img-circle" height="100" width="100"></p>
-  <p><strong>Place: </strong><%= link_to @event.location.name, @event.location %></p>
-  <p><strong>Address: </strong><%= @event.location.address %></p>
+  <p><img src="<%= @fancy_event.location.picture %>" class="img-circle" height="100" width="100"></p>
+  <p><strong>Place: </strong><%= link_to @fancy_event.location.name, @fancy_event.location %></p>
+  <p><strong>Address: </strong><%= @fancy_event.location.address %></p>
 
 
   <h2>Meet details</h2>
-  <p><strong>Time: </strong><%= @event.format_time %></p>
-  <p><strong>Duration:    <% if @event.duration == "🐰" %>
-    <span id="rabbit" data-toggle="tooltip" data-placement="left" title="Fast! 10-15mins"><%= @event.duration %></span>
-    <% elsif @event.duration == "🐼" %>
-    <span id="panda" data-toggle="tooltip" data-placement="left" title="Chill, 15-20 mins"><%= @event.duration %></span>
+  <p><strong>Time: </strong><%= @fancy_event.weekly_time %></p>
+  <p><strong>Duration:    <% if @fancy_event.duration == "🐰" %>
+    <span id="rabbit" data-toggle="tooltip" data-placement="left" title="Fast! 10-15mins"><%= @fancy_event.duration %></span>
+    <% elsif @fancy_event.duration == "🐼" %>
+    <span id="panda" data-toggle="tooltip" data-placement="left" title="Chill, 15-20 mins"><%= @fancy_event.duration %></span>
     <% else %>
-    <span id="turtle" data-toggle="tooltip" data-placement="left" title="Super chill, 20+ mins"><%= @event.duration %></span>
+    <span id="turtle" data-toggle="tooltip" data-placement="left" title="Super chill, 20+ mins"><%= @fancy_event.duration %></span>
     <% end %>
 
 </strong></p>
   <h2>Who's hosting!?</h2>
     <ul>
-    <li><%= link_to @event.host.first_name, user_path(@event.host) %></li>
+    <li><%= link_to @fancy_event.host.first_name, user_path(@fancy_event.host) %></li>
     </ul>
   <h2>Who's going!?</h2>
   <ul class= "guests">
-  <% if @event.guests.count == 0 %>
+  <% if @fancy_event.guests.count == 0 %>
     <li>No one yet, invite some people!</li>
     <% else %>
-    <% @event.guests.each do |guest| %>
+    <% @fancy_event.guests.each do |guest| %>
       <li id="<%= guest.id %>"><%= link_to guest.first_name, user_path(guest) %></li>
     <% end %>
     <% end %>
   </ul>
   <div class="friend-invitation">
     <h2>Invite a friend</h2>
-    <%= render partial: 'mail_friends', locals: {user: @users} %>
+    <%= render partial: 'user_search_email', locals: {user: @users} %>
   </div>
-  <% if current_user != @event.host %>
-  <%= link_to @event.join_message(current_user), join_path(id: @event.id), method:"post", id: "join-leave", class: "btn btn-#{@event.join_class(current_user)}", remote: :true %>
+  <% if current_user != @fancy_event.host %>
+  <%= link_to @fancy_event.join_message(current_user), join_path(id: @fancy_event.id), method:"post", id: "join-leave", class: "btn btn-#{@fancy_event.join_class(current_user)}", remote: :true %>
   <% end %>
 <br>
-  <% if current_user == @event.host %>
-  <p><%= link_to "Edit event", edit_event_path(@event), id: "edit", class:"btn btn-warning" %></p>
+  <% if current_user == @fancy_event.host %>
+  <p><%= link_to "Edit event", edit_event_path(@fancy_event), id: "edit", class:"btn btn-warning" %></p>
   <% end %>
   </div><!-- left column end -->
 
@@ -49,9 +49,9 @@
     <div id="comments">
      <h2>CHAT</h2>
       <div id="comments_container" style="height: 50vh; overflow-y: scroll">
-        <%= render partial: 'all_comments', locals: {comment: @comments, event: @event}%>
+        <%= render partial: 'all_comments', locals: {comment: @comments, event: @fancy_event}%>
       </div>
-      <%= render partial: 'comment_form', locals: {comment: @comment, event: @event}%>
+      <%= render partial: 'comment_form', locals: {comment: @comment, event: @fancy_event}%>
       <br>
 
 

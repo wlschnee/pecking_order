@@ -2,7 +2,6 @@
 
 <%= render "form" %>
 
-
-<%= link_to "Delete User", user_path, method: :delete, class:"btn btn-primary", data: {confirm: "Are you sure?"} %>
+<%= link_to "Delete User", user_path, method: :destroy, class:"btn btn-primary", data: {confirm: "Are you sure?"} %>
 
 <%= link_to "Cancel Edit", user_path, :class => "btn btn-danger" %>
