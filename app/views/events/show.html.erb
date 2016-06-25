@@ -61,7 +61,7 @@
 
 <script type="text/javascript">
 $(function() {
-  $("textarea#comment_content").on("keypress", function(e) {
+  $("comment_content").on("keypress", function(e) {
     if (e.keyCode === 13) {
       $(this).submit();
       $("textarea#comment_content").val("");
@@ -74,7 +74,7 @@ $(function() {
       $("textarea#comment_content").val("");
       e.preventDefault();
       e.stopPropagation();
-  })
+  });
   $("span#rabbit").on("click", function() {
 
   $(this).effect("bounce", {distance: 100}, "slow")

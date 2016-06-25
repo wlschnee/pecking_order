@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
     @locations = Location.all.sort_by{|likes| likes.likes_message(current_user)}.reverse
 
     end
-  end
+
 
   def show
     @tip = Tip.new
