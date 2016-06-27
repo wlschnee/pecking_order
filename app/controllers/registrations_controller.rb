@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
-    binding.pry
+    # binding.pry
     @user.orphan_events
     @user.registrations.destroy
     @user.destroy

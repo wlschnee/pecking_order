@@ -58,16 +58,10 @@ ActiveRecord::Schema.define(version: 20160531180139) do
   create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
-<<<<<<< HEAD
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
     t.string   "picture",    default: "http://i.imgur.com/Ths4eHf.png"
-=======
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "picture"
     t.index ["name"], name: "index_locations_on_name", using: :btree
->>>>>>> 805ed20a31e158fe6f98249185a38ce12c3e7aa3
   end
 
   create_table "registrations", force: :cascade do |t|

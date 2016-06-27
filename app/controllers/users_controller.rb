@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     if params[:term]
-      binding.pry
+      # binding.pry
       @users = User.search(params[:term])
     else
       @users = User.all
