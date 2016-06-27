@@ -24,6 +24,7 @@ class EventsController < ApplicationController
       flash[:danger] = "You need to give a location for an event"
       redirect_to :back
     else
+      binding.pry
       @event.lookup_and_set_event_location(location_params)
       @event.parse_time(params)
       @event.host = current_user
@@ -69,6 +70,10 @@ class EventsController < ApplicationController
   private
     def event_params
       params.require(:event).permit(:name, :meeting_place, :duration)
+    end
+
+    def time_params
+      params.require(:event).permit(:time)
     end
 
     def location_params

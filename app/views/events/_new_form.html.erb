@@ -5,7 +5,13 @@
   </div>
   <div>
     <%= f.label :start_time %>
-    <%= f.datetime_select :start_time, :ampm => true, :minute_step => 5 %>
+    <%# f.datetime_select :start_time, :ampm => true, :minute_step => 5 %>
+    <div class='input-group date' id='datetimepicker'>
+      <input type='text' class="form-control" name="event[time]" id="event_time">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
   </div>
 
 
@@ -34,7 +40,7 @@
     <%= label :duration, "🐼 (chill, 15-20 mins)" %>
     <%= f.radio_button :duration, "🐼" %>
 </div>
-<div>    
+<div>
     <%= label :duration, "🐢 (super chill, 20+ mins)" %>
     <%= f.radio_button :duration, "🐢" %>
 </div>

@@ -34,6 +34,8 @@
 //= require jquery-ui/effect-transfer
 //= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
 //= require main.js
 //= require ./channels/events.js
 //= require ./channels/comments.js
