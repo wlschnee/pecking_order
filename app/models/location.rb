@@ -15,39 +15,20 @@ class Location < ActiveRecord::Base
     user_liked?(user) ? unlike(user) : like(user)
   end
 
-def likes_message(user)
-  if user_liked?(user)    &&  self.likes.count == 1
-        "<strong>You</strong> liked this location".html_safe
-      elsif 
-        user_liked?(user) &&  self.likes.count >= 1
+  def likes_message(user)
+    if user_liked?(user)    &&  self.likes.count == 1
+      "<strong>You</strong> liked this location".html_safe
+    elsif
+      user_liked?(user) &&  self.likes.count >= 1
      "<strong>You</strong> and <strong>#{self.likes.count - 1} other people</strong> like this location".html_safe
-   else 
+    else
       !!user_liked?(user) && self.likes.count >= 1
       "<strong>#{self.likes.count} other people</strong> like this location".html_safe
     end
   end
 
-  def previous_events
-    previous_events = []
-    self.events.each do |event|
-      if event.start_time < Time.zone.now
-        previous_events << event
-      end
-    end
-    previous_events
-  end
-
-  def upcoming_events
-    upcoming_events = []
-    self.events.each do |event|
-      if event.start_time > Time.zone.now
-        upcoming_events << event
-      end
-    end
-    upcoming_events
-  end
-
   private
+
   def user_liked?(user)
     self.likes.where(user: user).any?
   end
