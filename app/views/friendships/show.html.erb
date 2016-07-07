@@ -3,27 +3,23 @@
 </div>
 <div class="row">
 <% if current_user.friends.count == 0 && current_user.inverse_friends== 0 %>
-<div class="col-md-3" align="center">
+<div class="col-md-4" align="center">
 <h4 class="text-center">You don't have any friends yet!</h4>
 <%= link_to "Add New Friends", users_path, class: "btn btn-primary" %>
 <% else %>
 <% current_user.friends.each do |user| %>
-<div class="col-md-3" align="center">
+<div class="col-md-4" align="center">
 <div class="user">
   <a href="<%= user_path(user) %>"><img src="<%= user.picture %>" class="img-circle" height="150" width="150"></a>
   <h4><%= link_to user.full_name, user_path(user) %></h4>
-  </div>
+</div>
 </div>
 <% end %>
-<div>
 <% end %>
-<div class="row">
 <% current_user.inverse_friends.each do |user| %>
-<div class="col-md-3" align="center">
+<div class="col-md-4" align="center">
  <a href="<%= user_path(user) %>"><img src="<%= user.picture %>" class="img-circle" height="150" width="150"></a>
 <h4><%= link_to user.full_name, user_path(user) %></h4>
 <% end %>
+</div><br>
 </div>
-</div>
-
-

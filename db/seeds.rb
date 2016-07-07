@@ -14,7 +14,6 @@
 @st = User.create(first_name: "Samwell", last_name: "Tarley", email: "sam@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/1792907622/samwell_400x400.png")
 @as = User.create(first_name: "Arya", last_name: "Stark", email: "arya@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/713341866620485633/r74dChcE_400x400.jpg")
 @cl = User.create(first_name: "Cersei", last_name: "Lannister", email: "cersei@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/730658482966413313/2Uy0RNCB_400x400.jpg")
-
 @jm = User.create(first_name: "Jorah", last_name: "Mormont", email: "jorah@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/608026278885748736/HedCKgIP_400x400.jpg")
 @ds = User.create(first_name: "Davos", last_name: "Seaworth", email: "davos@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/552990589847748609/Gsr52kfE.jpeg")
 @bt = User.create(first_name: "Brienne", last_name: "of Tarth", email: "brienne@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/679754441105489921/QuY3CKTr_400x400.jpg")
@@ -23,7 +22,6 @@
 @pb = User.create(first_name: "Petyr", last_name: "Baelish", email: "petyr@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/602838998873034752/-cmBy25c_400x400.png")
 @gw = User.create(first_name: "Grey", last_name: "Worm", email: "grey@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/470661678917775360/S4A9OP0G_400x400.jpeg")
 @ww = User.create(first_name: "White", last_name: "Walker", email: "white@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/735133346381062145/tyDO1BTc_400x400.jpg")
-
 @jh = User.create(first_name: "Jaqen", last_name: "H'ghar", email: "jaqen@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/542398181632258048/mq2GIZY5.png")
 @thg = User.create(first_name: "Theon", last_name: "Greyjoy", email: "theon@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/2792927926/e03c9ddcaa878e540a5aa69102e699d7_400x400.jpeg")
 @mt = User.create(first_name: "Margaery", last_name: "Tyrell", email: "margaery@got.com", password: "password", picture: "https://pbs.twimg.com/profile_images/713228404980523008/LjZqdtoP_400x400.jpg")
@@ -183,4 +181,3 @@ Comment.create(user_id: @vs.id, event_id: @hotdogs.id, content: "... let's talk 
 Comment.create(user_id: @tg.id, event_id: @bbq.id, content: "Hi Brienne")
 Comment.create(user_id: @bt.id, event_id: @bbq.id, content: "I don't remember inviting you ...")
 Comment.create(user_id: @ss.id, event_id: @bbq.id, content: "LOL.")
-

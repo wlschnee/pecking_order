@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(version: 20160531180139) do
   create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "picture"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.string   "picture",    default: "http://i.imgur.com/Ths4eHf.png"
     t.index ["name"], name: "index_locations_on_name", using: :btree
   end
 
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20160531180139) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",                  default: "",                               null: false
+    t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20160531180139) do
     t.string   "uid"
     t.string   "picture",                default: "http://i.imgur.com/VVc1lle.png"
     t.boolean  "login_social"
+    t.boolean  "email_confirmed"
+    t.string   "confirm_token"
     t.string   "encrypted_password",     default: "",                               null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
