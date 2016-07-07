@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
     events = Event.where(host_id: self.id)
     events.each do |event|
       event.host = User.first
-      binding.pry
     end
   end
 

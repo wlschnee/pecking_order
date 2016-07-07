@@ -19,16 +19,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
     if location_params["name"].blank? || location_params["address"].blank?
       flash[:danger] = "You need to give a location for an event"
       redirect_to :back
     else
-      binding.pry
-      @event.lookup_and_set_event_location(location_params)
-      @event.parse_time(params)
-      @event.host = current_user
-      @event.save
+      @event = Event.new(event_params)
+      EventDetailSetter.new(event_params, location_params, time_params, current_user).set_event_details(@event)
       redirect_to events_path(@event)
     end
   end
@@ -55,9 +51,7 @@ class EventsController < ApplicationController
       redirect_to :back
     else
       @event.update(event_params)
-      @event.lookup_and_set_event_location(location_params)
-      @event.parse_time(params)
-      @event.save
+      EventDetailSetter.new(event_params, location_params, time_params, current_user).set_event_details(@event)
       redirect_to event_path(@event)
     end
   end
@@ -73,7 +67,7 @@ class EventsController < ApplicationController
     end
 
     def time_params
-      params.require(:event).permit(:time)
+      params.require(:event).permit(:time)[:time]
     end
 
     def location_params

@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     if params.key?('provider')
       @user = User.register_user_with_omniauth(omniauth_params)
       session[:user_id] = @user.id

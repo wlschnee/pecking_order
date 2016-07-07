@@ -2,7 +2,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
 
   def destroy
-    binding.pry
     @user.orphan_events
     @user.destroy
     session[:flash] = "User deleted"

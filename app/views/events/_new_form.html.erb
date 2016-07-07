@@ -6,7 +6,7 @@
     <%= f.label :start_time %>
     <%# f.datetime_select :start_time, :ampm => true, :minute_step => 5 %>
     <div class='input-group date' id='datetimepicker'>
-      <input type='text' class="form-control" name="event[time]" id="event_time">
+      <input type='text' class="form-control" name="event[time]" id="event_time" <% if @event.start_time %>value="<%= @event.start_time.strftime("%m/%d/%Y %I:%M %p") %><% end %>">
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
