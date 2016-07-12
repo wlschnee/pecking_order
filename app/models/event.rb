@@ -43,9 +43,8 @@ class Event < ActiveRecord::Base
     self.location = Location.find_or_create_by(name: location_attributes[:name], address: location_attributes[:address], picture: location_attributes[:picture])
   end
 
-  def parse_time(params)
-    time = params[:event]
-    self.start_time = Time.zone.local(time["start_time(1i)"].to_i,time["start_time(2i)"].to_i,time["start_time(3i)"].to_i,time["start_time(4i)"].to_i,time["start_time(5i)"].to_i)
+  def parse_time(time_as_string)
+    self.start_time = Time.zone.parse(time_as_string)
   end
 
 private

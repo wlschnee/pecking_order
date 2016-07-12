@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
 include Adapter
+
   def new
     user_ip = request.remote_ip
     @results = YelpSearcher.search(params, user_ip)

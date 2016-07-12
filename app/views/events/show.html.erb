@@ -34,7 +34,7 @@
   </ul>
   <div class="friend-invitation">
     <h2>Invite a friend</h2>
-    <%= render partial: 'user_search_email', locals: {user: @users} %>
+    <%= render partial: 'mail_friends', locals: {user: @users} %>
   </div>
   <% if current_user != @fancy_event.host %>
   <%= link_to @fancy_event.join_message(current_user), join_path(id: @fancy_event.id), method:"post", id: "join-leave", class: "btn btn-#{@fancy_event.join_class(current_user)}", remote: :true %>
